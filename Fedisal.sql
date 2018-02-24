@@ -5,7 +5,7 @@
 /* Project name:                                                          */
 /* Author:                                                                */
 /* Script type:           Database creation script                        */
-/* Created on:            2018-02-24 10:40                                */
+/* Created on:            2018-02-24 14:57                                */
 /* ---------------------------------------------------------------------- */
 
 
@@ -98,7 +98,7 @@ GO
 
 
 /* ---------------------------------------------------------------------- */
-/* Add table "InformaciónPersonal"                                        */
+/* Add table "InformacionPersonal"                                        */
 /* ---------------------------------------------------------------------- */
 
 GO
@@ -126,7 +126,7 @@ GO
 
 
 CREATE TABLE [ProgramaBecas] (
-    [idPrograma] INTEGER IDENTITY(1,1) NOT NULL,
+    [idPrograma] CHAR(4) NOT NULL,
     [nombre] VARCHAR(40),
     [descripcion] VARCHAR(80),
     CONSTRAINT [PK_ProgramaBecas] PRIMARY KEY ([idPrograma])
@@ -192,7 +192,7 @@ CREATE TABLE [Becarios] (
     [fechaInicio] DATE,
     [fechaFin] DATE,
     [idInformacion] INTEGER,
-    [idPrograma] INTEGER,
+    [idPrograma] CHAR(4),
     [idUniversidad] INTEGER,
     [idCarrera] INTEGER,
     [idNivelEducativo] INTEGER,
@@ -460,3 +460,7 @@ ALTER TABLE [Usuario] ADD CONSTRAINT [TipoUsuario_Usuario]
     FOREIGN KEY ([idTipoUsuario]) REFERENCES [TipoUsuario] ([idTipoUsuario])
 GO
 
+INSERT INTO TipoDesembolso
+VALUES(NULL, 'Manutención'),
+VALUES(NULL, 'Matricula'),
+VALUES(NULL, 'Colegitura');
