@@ -46,16 +46,14 @@ public class DBConnection
         }
     }
 
-    public static string queryScalar(String query) //Devuelve la primera columna de la primera fila de una consulta
+    public static string queryScalar(SqlCommand _cmd) //Devuelve la primera columna de la primera fila de una consulta
     {
         string response = "";
         try
         {
-            connection = new SqlConnection(connectionString);
-            cmd = new SqlCommand(query, connection);
-            cmd.Connection.Open();
-            response = cmd.ExecuteScalar().ToString();
-            cmd.Connection.Close();
+            _cmd.Connection.Open();
+            response = _cmd.ExecuteScalar().ToString();
+            _cmd.Connection.Close();
         }
         catch (Exception e)
         {
