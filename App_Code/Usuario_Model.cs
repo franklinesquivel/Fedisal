@@ -49,4 +49,16 @@ public class Usuario_Model
         cmd.Parameters["@dui"].Value = dui;
         return Int32.Parse(DBConnection.queryScalar(cmd));
     }
+
+    public static int VerificarExistencia(int idInformacion)
+    {
+        /* Descripción de método
+           Verifica si existe un registro con el id especificado
+        */
+        SqlCommand cmd = DBConnection.getCommand("SELECT COUNT(*) FROM InformaciónPersonal WHERE idInformacion = @id");
+        cmd.Parameters.Add("@id", SqlDbType.VarChar);
+
+        cmd.Parameters["@id"].Value = idInformacion;
+        return Int32.Parse(DBConnection.queryScalar(cmd));
+    }
 }

@@ -196,6 +196,7 @@ CREATE TABLE [Becarios] (
     [idUniversidad] INTEGER,
     [idCarrera] INTEGER,
     [idNivelEducativo] INTEGER,
+	[contrasenna] VARCHAR(15) NOT NULL,
     CONSTRAINT [PK_Becarios] PRIMARY KEY ([idBecario])
 )
 GO
@@ -379,6 +380,7 @@ CREATE TABLE [Usuario] (
     [idUsuario] INTEGER IDENTITY(1,1) NOT NULL,
     [idInformacion] INTEGER,
     [idTipoUsuario] CHAR(1),
+	[nombreUsuario] VARCHAR(12)
     CONSTRAINT [PK_Usuario] PRIMARY KEY ([idUsuario])
 )
 GO
