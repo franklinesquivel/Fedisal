@@ -109,7 +109,7 @@
             </div>
 
             <div class="input-field col s12 center-align">
-                <asp:button text="Registrar" ID="btnRegister" CssClass="btn waves-effect waves-light"  runat="server" />
+                <asp:button text="Registrar" ID="btnRegister" OnClick="btnRegister_Click" CssClass="btn waves-effect waves-light"  runat="server" />
             </div>
         </div>
     </form>

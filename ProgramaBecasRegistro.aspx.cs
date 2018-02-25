@@ -26,7 +26,7 @@ public partial class ProgramaBecasRegistro : System.Web.UI.Page
             {
                 idNuevoPrograma += letras.Substring(rnd.Next(0, letras.Length - 1), 1); //Guardamos la letra seleccionada
             }
-        } while (ProgramaBeca_Model.verificarCodigo(idNuevoPrograma) > 0);
+        } while (ProgramaBeca_Model.VerificarCodigo(idNuevoPrograma) > 0);
     }
 
     protected void btnRegister_Click(object sender, EventArgs e)
@@ -35,9 +35,9 @@ public partial class ProgramaBecasRegistro : System.Web.UI.Page
         {
             string mensaje;
             ProgramaBeca programa = new ProgramaBeca(idNuevoPrograma, txtName.Text, txtDescription.Text);
-            if (ProgramaBeca_Model.verificarCodigo(programa.IdPrograma) == 0) //Volvemos a verificar codigo
+            if (ProgramaBeca_Model.VerificarCodigo(programa.IdPrograma) == 0) //Volvemos a verificar codigo
             {
-                if (ProgramaBeca_Model.insertar(programa))
+                if (ProgramaBeca_Model.Insertar(programa))
                 {
                     mensaje = "Materialize.toast('Programa registado exitosamente!', 2000, '', function(){ location.href = 'ProgramaBecasRegistro.aspx'})";
                 }else

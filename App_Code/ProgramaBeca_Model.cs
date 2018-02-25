@@ -15,7 +15,7 @@ public class ProgramaBeca_Model
 
     }
 
-    public static int verificarCodigo(string idPrograma) 
+    public static int VerificarCodigo(string idPrograma) 
     {
         /* Descripción de método
            Al momento de registrar un programa verifica si el codigo genrado automaticamente existe 
@@ -27,7 +27,7 @@ public class ProgramaBeca_Model
         return Int32.Parse(DBConnection.queryScalar(cmd));
     }
 
-    public static bool insertar(ProgramaBeca programa)
+    public static bool Insertar(ProgramaBeca programa)
     {
         SqlCommand cmd = DBConnection.getCommand("INSERT INTO ProgramaBecas(idPrograma, nombre, descripcion) VALUES(@idPrograma, @nombre, @descripcion)");
         cmd.Parameters.Add("@idPrograma", SqlDbType.Char);
