@@ -327,7 +327,7 @@ GO
 CREATE TABLE [Nota] (
     [idNota] INTEGER IDENTITY(1,1) NOT NULL,
     [nombreMateria] VARCHAR(40),
-    [nota] DEC(2, 2),
+    [nota] DEC(18, 2),
     [cumplioTercio] BIT,
     [idCiclo] INTEGER,
     CONSTRAINT [PK_Nota] PRIMARY KEY ([idNota])
@@ -463,6 +463,11 @@ ALTER TABLE [Usuario] ADD CONSTRAINT [TipoUsuario_Usuario]
 GO
 
 INSERT INTO TipoDesembolso
-VALUES(NULL, 'Manutención'),
-VALUES(NULL, 'Matricula'),
-VALUES(NULL, 'Colegitura');
+VALUES('Manutención')
+GO
+INSERT INTO TipoDesembolso
+VALUES('Matricula')
+GO
+INSERT INTO TipoDesembolso
+VALUES('Colegitura');
+GO
