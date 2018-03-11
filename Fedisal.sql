@@ -64,11 +64,11 @@ EXECUTE sp_addextendedproperty N'MS_Description', N'Nombre de la universidad.', 
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Dirección de la universidad.', 'SCHEMA', N'dbo', 'TABLE', N'Universidad', 'COLUMN', N'direccion'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Direcciï¿½n de la universidad.', 'SCHEMA', N'dbo', 'TABLE', N'Universidad', 'COLUMN', N'direccion'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Teléfono de la universidad.', 'SCHEMA', N'dbo', 'TABLE', N'Universidad', 'COLUMN', N'telefono'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Telï¿½fono de la universidad.', 'SCHEMA', N'dbo', 'TABLE', N'Universidad', 'COLUMN', N'telefono'
 GO
 
 
@@ -92,7 +92,7 @@ EXECUTE sp_addextendedproperty N'MS_Description', N'Nombre del nivel educativo.'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Descripción del nivel educativo.', 'SCHEMA', N'dbo', 'TABLE', N'NivelEducativo', 'COLUMN', N'descripcion'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Descripciï¿½n del nivel educativo.', 'SCHEMA', N'dbo', 'TABLE', N'NivelEducativo', 'COLUMN', N'descripcion'
 GO
 
 
@@ -201,7 +201,7 @@ CREATE TABLE [Becarios] (
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Código único del becario. ', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idBecario'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Cï¿½digo ï¿½nico del becario. ', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idBecario'
 GO
 
 
@@ -213,23 +213,23 @@ EXECUTE sp_addextendedproperty N'MS_Description', N'Fecha en la cual el becario 
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave foránea de la tabla Informacion_Personal.', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idInformacion'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave forï¿½nea de la tabla Informacion_Personal.', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idInformacion'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave foránea de la tabla ProgramaBecas', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idPrograma'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave forï¿½nea de la tabla ProgramaBecas', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idPrograma'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave foránea de la tabla Universidad', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idUniversidad'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave forï¿½nea de la tabla Universidad', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idUniversidad'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave foránea de la tabla Carrera', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idCarrera'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave forï¿½nea de la tabla Carrera', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idCarrera'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave foránea de la tabla NivelEducativo', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idNivelEducativo'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave forï¿½nea de la tabla NivelEducativo', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idNivelEducativo'
 GO
 
 
@@ -262,7 +262,7 @@ EXECUTE sp_addextendedproperty N'MS_Description', N'Presupuesto para colegiatura
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Presupuesto para la manutención diaria.', 'SCHEMA', N'dbo', 'TABLE', N'PresupuestoBecas', 'COLUMN', N'manutencion'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Presupuesto para la manutenciï¿½n diaria.', 'SCHEMA', N'dbo', 'TABLE', N'PresupuestoBecas', 'COLUMN', N'manutencion'
 GO
 
 
@@ -274,11 +274,11 @@ EXECUTE sp_addextendedproperty N'MS_Description', N'Presupuesto para otros aranc
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Presupuesto para el trabajo de graduación.', 'SCHEMA', N'dbo', 'TABLE', N'PresupuestoBecas', 'COLUMN', N'trabajoGraduacion'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Presupuesto para el trabajo de graduaciï¿½n.', 'SCHEMA', N'dbo', 'TABLE', N'PresupuestoBecas', 'COLUMN', N'trabajoGraduacion'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave foránea del Becario.', 'SCHEMA', N'dbo', 'TABLE', N'PresupuestoBecas', 'COLUMN', N'idBecario'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave forï¿½nea del Becario.', 'SCHEMA', N'dbo', 'TABLE', N'PresupuestoBecas', 'COLUMN', N'idBecario'
 GO
 
 
@@ -300,11 +300,11 @@ CREATE TABLE [Ciclo] (
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Año que se cursa el ciclo.', 'SCHEMA', N'dbo', 'TABLE', N'Ciclo', 'COLUMN', N'anio'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Aï¿½o que se cursa el ciclo.', 'SCHEMA', N'dbo', 'TABLE', N'Ciclo', 'COLUMN', N'anio'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Número del ciclo.', 'SCHEMA', N'dbo', 'TABLE', N'Ciclo', 'COLUMN', N'nCiclo'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Nï¿½mero del ciclo.', 'SCHEMA', N'dbo', 'TABLE', N'Ciclo', 'COLUMN', N'nCiclo'
 GO
 
 
@@ -312,7 +312,7 @@ EXECUTE sp_addextendedproperty N'MS_Description', N'Campo que autoriza al becari
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave foránea del Becario.', 'SCHEMA', N'dbo', 'TABLE', N'Ciclo', 'COLUMN', N'idBecario'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave forï¿½nea del Becario.', 'SCHEMA', N'dbo', 'TABLE', N'Ciclo', 'COLUMN', N'idBecario'
 GO
 
 
@@ -326,7 +326,7 @@ GO
 CREATE TABLE [Nota] (
     [idNota] INTEGER IDENTITY(1,1) NOT NULL,
     [nombreMateria] VARCHAR(40),
-    [nota] DEC(2, 2),
+    [nota] DEC(18, 2),
     [cumplioTercio] BIT,
     [idCiclo] INTEGER,
     CONSTRAINT [PK_Nota] PRIMARY KEY ([idNota])
@@ -461,4 +461,12 @@ ALTER TABLE [Usuario] ADD CONSTRAINT [TipoUsuario_Usuario]
     FOREIGN KEY ([idTipoUsuario]) REFERENCES [TipoUsuario] ([idTipoUsuario])
 GO
 
-INSERT INTO TipoDesembolso(nombre) VALUES('Manutención'), ('Matricula'), ('Colegiatura');
+INSERT INTO TipoDesembolso
+VALUES('ManutenciÃ³n')
+GO
+INSERT INTO TipoDesembolso
+VALUES('Matricula')
+GO
+INSERT INTO TipoDesembolso
+VALUES('Colegitura');
+GO
