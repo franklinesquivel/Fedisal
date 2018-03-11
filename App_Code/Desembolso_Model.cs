@@ -15,7 +15,7 @@ public class Desembolso_Model
 
     }
 
-    public static bool insert(Desembolso _d)
+    public static bool Insert(Desembolso _d)
     {
         SqlCommand cmd = DBConnection.getCommand("INSERT INTO Desembolso(monto, fecha, idTipoDesembolso, idBecario) VALUES(@monto, @fecha, @idTipo, @idBecario);");
         cmd.Parameters.Add("@monto", SqlDbType.Money);

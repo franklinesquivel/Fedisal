@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -23,7 +24,7 @@ public class Correo
     {
         bool response = true;
         //Obtener correo, contraseña y usuario
-        SqlDataReader reader = DBConnection.getData("SELECT correoElectronico FROM InformaciónPersonal WHERE idInformacion = "+ becario.IdInformacion +"");
+        SqlDataReader reader = DBConnection.getData("SELECT correoElectronico FROM InformacionPersonal WHERE idInformacion = "+ becario.IdInformacion +"");
         reader.Read();
 
         //Configuración del mensaje
@@ -49,6 +50,7 @@ public class Correo
         }
         catch (Exception e)
         {
+            Debug.WriteLine(e.Message);
             response = false;
         }
         return response;

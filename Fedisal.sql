@@ -15,9 +15,6 @@ GO
 CREATE DATABASE Fedisal;
 GO
 
-USE Fedisal;
-GO;
-
 /* ---------------------------------------------------------------------- */
 /* Add tables                                                             */
 /* ---------------------------------------------------------------------- */
@@ -31,6 +28,8 @@ GO
 
 GO
 
+USE Fedisal;
+GO
 
 CREATE TABLE [Carrera] (
     [idCarrera] INTEGER IDENTITY(1,1) NOT NULL,
@@ -462,7 +461,4 @@ ALTER TABLE [Usuario] ADD CONSTRAINT [TipoUsuario_Usuario]
     FOREIGN KEY ([idTipoUsuario]) REFERENCES [TipoUsuario] ([idTipoUsuario])
 GO
 
-INSERT INTO TipoDesembolso
-VALUES(NULL, 'Manutención'),
-VALUES(NULL, 'Matricula'),
-VALUES(NULL, 'Colegitura');
+INSERT INTO TipoDesembolso(nombre) VALUES('Manutención'), ('Matricula'), ('Colegiatura');

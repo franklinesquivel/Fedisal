@@ -1,18 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class DesembolsoRegistro : System.Web.UI.Page
+public partial class PresupuestoRegistro : System.Web.UI.Page
 {
-    private object fucFile;
-
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-            DBConnection.fillCmb(ref ddlType, "SELECT * FROM TipoDesembolso", "nombre", "idTipoDesembolso");
-            ddlType.Items.Insert(0, new ListItem("[Tipo de desembolso]", "0"));
-
             DBConnection.fillCmb(ref ddlScholar, "SELECT Becarios.idBecario, CONCAT(InformacionPersonal.apellidos, ', ', InformacionPersonal.nombres) AS display FROM (Becarios INNER JOIN InformacionPersonal ON InformacionPersonal.idInformacion = Becarios.idInformacion)", "display", "idBecario");
             ddlScholar.Items.Insert(0, new ListItem("[Becario]", "0"));
         }
@@ -23,11 +21,11 @@ public partial class DesembolsoRegistro : System.Web.UI.Page
         if (Page.IsValid)
         {
             String scriptstring;
-            Desembolso _d = new Desembolso(0, double.Parse(txtAmount.Text), txtDate.Text, int.Parse(ddlType.SelectedValue), ddlScholar.SelectedValue);
+            Presupuesto _p = new Presupuesto(double.Parse(txtLibro.Text), double.Parse(txtColegiatura.Text), double.Parse(txtManutencion.Text), double.Parse(txtMatricula.Text), double.Parse(txtOtros.Text), double.Parse(txtGraduacion.Text), ddlScholar.SelectedValue);
 
-            if (Desembolso_Model.Insert(_d))
+            if (Presupuesto_Model.Insert(_p))
             {
-                scriptstring = "Materialize.toast('El desembolso ha sido registrado éxitosamente', 2000, '', function(){location.href = 'DesembolsoRegistro.aspx'});";
+                scriptstring = "Materialize.toast('El presupuesto ha sido registrado éxitosamente', 2000, '', function(){location.href = 'PresupuestoRegistro.aspx'});";
             }
             else
             {

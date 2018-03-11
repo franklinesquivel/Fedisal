@@ -19,7 +19,7 @@ public class Usuario_Model
 
     public static bool Insertar(Usuario usuario)
     {
-        SqlCommand cmd = DBConnection.getCommand("INSERT INTO InformaciónPersonal(nombres, apellidos, dui, fechaNacimiento, direccionResidencia, telefono, correoElectronico) VALUES(@nombre, @apellido, @dui, @fecha, @residencia, @telefono, @correo)");
+        SqlCommand cmd = DBConnection.getCommand("INSERT INTO InformacionPersonal(nombres, apellidos, dui, fechaNacimiento, direccionResidencia, telefono, correoElectronico) VALUES(@nombre, @apellido, @dui, @fecha, @residencia, @telefono, @correo)");
         cmd.Parameters.Add("@nombre", SqlDbType.Char);
         cmd.Parameters.Add("@apellido", SqlDbType.VarChar);
         cmd.Parameters.Add("@dui", SqlDbType.VarChar);
@@ -43,7 +43,7 @@ public class Usuario_Model
         /* Descripción de método
            Al momento de registrar un usuario verifica si el dui ya existe 
         */
-        SqlCommand cmd = DBConnection.getCommand("SELECT COUNT(*) FROM InformaciónPersonal WHERE dui = @dui");
+        SqlCommand cmd = DBConnection.getCommand("SELECT COUNT(*) FROM InformacionPersonal WHERE dui = @dui");
         cmd.Parameters.Add("@dui", SqlDbType.VarChar);
 
         cmd.Parameters["@dui"].Value = dui;
@@ -55,7 +55,7 @@ public class Usuario_Model
         /* Descripción de método
            Verifica si existe un registro con el id especificado
         */
-        SqlCommand cmd = DBConnection.getCommand("SELECT COUNT(*) FROM InformaciónPersonal WHERE idInformacion = @id");
+        SqlCommand cmd = DBConnection.getCommand("SELECT COUNT(*) FROM InformacionPersonal WHERE idInformacion = @id");
         cmd.Parameters.Add("@id", SqlDbType.VarChar);
 
         cmd.Parameters["@id"].Value = idInformacion;

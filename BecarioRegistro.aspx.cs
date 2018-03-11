@@ -15,7 +15,7 @@ public partial class BecarioRegistro : System.Web.UI.Page
             //Cargamos la información en los dropdownlist
             DBConnection.fillCmb(ref ddlProgram, "SELECT * FROM ProgramaBecas", "nombre", "idPrograma");
             ddlProgram.Items.Insert(0, new ListItem("[Programa de Beca]", "0"));
-            DBConnection.fillCmb(ref ddlUser, "SELECT * FROM InformaciónPersonal", "dui", "idInformacion");
+            DBConnection.fillCmb(ref ddlUser, "SELECT * FROM InformacionPersonal", "dui", "idInformacion");
             ddlUser.Items.Insert(0, new ListItem("[DUI]", "0"));
             DBConnection.fillCmb(ref ddlUniversity, "SELECT * FROM Universidad", "nombre", "idUniversidad");
             ddlUniversity.Items.Insert(0, new ListItem("[Universidad]", "0"));
