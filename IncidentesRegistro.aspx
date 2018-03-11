@@ -25,21 +25,30 @@
        
        <br />
         <div class="center container">
-            <asp:GridView ID="DGV" runat="server" CssClass="striped" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+            <asp:GridView ID="DGV" runat="server" CssClass="striped" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="idBecario">
                 <Columns>
+                    <asp:TemplateField HeaderText="idBecario" SortExpression="idBecario" Visible="False">
+                        <EditItemTemplate>
+                            <asp:Label ID="lblID" runat="server" Text='<%# Eval("idBecario") %>'></asp:Label>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="lblID" runat="server" Text='<%# Bind("idBecario") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="nombres" HeaderText="Nombre del becario" SortExpression="nombres" />
                     <asp:BoundField DataField="apellidos" HeaderText="Apellido del becario" SortExpression="apellidos" />
-                    <asp:BoundField DataField="nombre" HeaderText="Programa de becas" SortExpression="nombre" />
-                    
-                    <asp:TemplateField HeaderText="Accion">
-                       <ItemTemplate>
-                           <asp:HyperLink NavigateUrl="#modal1" CssClass="waves-effect waves-light btn modal-trigger" Text="Aplicar" runat="server" />
-                       </ItemTemplate>
-                    </asp:TemplateField>
-                    
+                    <asp:BoundField DataField="nombre" HeaderText="Programa de Becas" SortExpression="nombre" />
+                    <asp:TemplateField HeaderText="Accion" SortExpression="idBecario">
+                        <EditItemTemplate>
+                            <asp:Label ID="lblBeca" runat="server" Text='<%# Eval("idBecario") %>'></asp:Label>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:HyperLink NavigateUrl="#modal1" ID="lblBeca" runat="server" IdBecario='<%# Eval("idBecario") %>' CssClass="btnIncidente waves-effect waves-light btn modal-trigger" Text="Aplicar" />
+                        </ItemTemplate>
+                    </asp:TemplateField>                    
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>" SelectCommand="SELECT InformacionPersonal.nombres, InformacionPersonal.apellidos, ProgramaBecas.nombre FROM Becarios INNER JOIN InformacionPersonal ON Becarios.idInformacion = InformacionPersonal.idInformacion INNER JOIN ProgramaBecas ON Becarios.idPrograma = ProgramaBecas.idPrograma"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>" SelectCommand="SELECT InformacionPersonal.nombres, InformacionPersonal.apellidos, ProgramaBecas.nombre, Becarios.idBecario FROM Becarios INNER JOIN InformacionPersonal ON Becarios.idInformacion = InformacionPersonal.idInformacion INNER JOIN ProgramaBecas ON Becarios.idPrograma = ProgramaBecas.idPrograma"></asp:SqlDataSource>
                 </div>
 
       <div id="modal1" class="modal">
