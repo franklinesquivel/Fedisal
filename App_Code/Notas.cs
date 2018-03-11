@@ -29,7 +29,7 @@ public class Notas
         this.idCiclo = ideCiclo;
     }
     public bool Insertar(Notas nota) {
-        SqlCommand comando = DBConnection.getCommand("INSERT INTO Nota(nombreMateria,nota,CumplioTercio,idCiclo) VALUES(@nombreMateria,@nota,@tercioSuperior,@idCiclo)");
+        SqlCommand comando = DBConnection.GetCommand("INSERT INTO Nota(nombreMateria,nota,CumplioTercio,idCiclo) VALUES(@nombreMateria,@nota,@tercioSuperior,@idCiclo)");
         comando.Parameters.Add("@nombreMateria", SqlDbType.VarChar);
         comando.Parameters.Add("@nota", SqlDbType.Decimal);
         comando.Parameters.Add("@tercioSuperior", SqlDbType.Bit);
@@ -39,7 +39,7 @@ public class Notas
         comando.Parameters["@nota"].Value = nota.Nota;
         comando.Parameters["@tercioSuperior"].Value = nota.TercioSuperior;
         comando.Parameters["@idCiclo"].Value = nota.IdCiclo;
-        if (DBConnection.executeCommandIUD(comando))
+        if (DBConnection.ExecuteCommandIUD(comando))
         {
             return true;
         }

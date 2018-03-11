@@ -28,7 +28,7 @@ public class DBConnection
 
     //ExecuteNonQuery, ExecuteReader, Execute Scalar
 
-    public static bool queryIUD(String query) //UPDATE, INSERT AND DELETE
+    public static bool QueryIUD(String query) //UPDATE, INSERT AND DELETE
     {
         bool response = false;
         try
@@ -46,7 +46,7 @@ public class DBConnection
         }
     }
 
-    public static string queryScalar(SqlCommand _cmd) //Devuelve la primera columna de la primera fila de una consulta
+    public static string QueryScalar(SqlCommand _cmd) //Devuelve la primera columna de la primera fila de una consulta
     {
         string response = "";
         try
@@ -63,7 +63,7 @@ public class DBConnection
         return response;
     }
 
-    public static SqlDataReader getData(String sql)
+    public static SqlDataReader GetData(String sql)
     {
         try
         {
@@ -87,13 +87,13 @@ public class DBConnection
         }
     }
 
-    public static SqlCommand getCommand(String query)
+    public static SqlCommand GetCommand(String query)
     {
         connection = new SqlConnection(connectionString);
         return new SqlCommand(query, connection);
     }
 
-    public static bool executeCommandIUD(SqlCommand _cmd)
+    public static bool ExecuteCommandIUD(SqlCommand _cmd)
     {
         bool response = false;
         _cmd.Connection.Open();
@@ -103,7 +103,7 @@ public class DBConnection
         return response;
     }
 
-    public static void fillCmb(ref DropDownList cmb, String query, String text, String value)
+    public static void FillCmb(ref DropDownList cmb, String query, String text, String value)
     {
         using (connection = new SqlConnection(connectionString))
         {

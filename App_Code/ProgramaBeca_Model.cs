@@ -20,16 +20,16 @@ public class ProgramaBeca_Model
         /* Descripción de método
            Al momento de registrar un programa verifica si el codigo genrado automaticamente existe 
         */
-        SqlCommand cmd = DBConnection.getCommand("SELECT COUNT(*) FROM ProgramaBecas WHERE idPrograma = @idPrograma");
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM ProgramaBecas WHERE idPrograma = @idPrograma");
         cmd.Parameters.Add("@idPrograma", SqlDbType.Char);
 
         cmd.Parameters["@idPrograma"].Value = idPrograma;
-        return Int32.Parse(DBConnection.queryScalar(cmd));
+        return Int32.Parse(DBConnection.QueryScalar(cmd));
     }
 
     public static bool Insertar(ProgramaBeca programa)
     {
-        SqlCommand cmd = DBConnection.getCommand("INSERT INTO ProgramaBecas(idPrograma, nombre, descripcion) VALUES(@idPrograma, @nombre, @descripcion)");
+        SqlCommand cmd = DBConnection.GetCommand("INSERT INTO ProgramaBecas(idPrograma, nombre, descripcion) VALUES(@idPrograma, @nombre, @descripcion)");
         cmd.Parameters.Add("@idPrograma", SqlDbType.Char);
         cmd.Parameters.Add("@nombre", SqlDbType.VarChar);
         cmd.Parameters.Add("@descripcion", SqlDbType.VarChar);
@@ -37,6 +37,6 @@ public class ProgramaBeca_Model
         cmd.Parameters["@idPrograma"].Value = programa.IdPrograma;
         cmd.Parameters["@nombre"].Value = programa.Nombre;
         cmd.Parameters["@descripcion"].Value = programa.Descripcion;
-        return DBConnection.executeCommandIUD(cmd);
+        return DBConnection.ExecuteCommandIUD(cmd);
     }
 }

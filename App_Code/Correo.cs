@@ -20,11 +20,11 @@ public class Correo
         //
     }
 
-    public static bool enviarCorreoBecario(Becario becario)
+    public static bool EnviarCorreoBecario(Becario becario)
     {
         bool response = true;
         //Obtener correo, contraseña y usuario
-        SqlDataReader reader = DBConnection.getData("SELECT correoElectronico FROM InformacionPersonal WHERE idInformacion = "+ becario.IdInformacion +"");
+        SqlDataReader reader = DBConnection.GetData("SELECT correoElectronico FROM InformacionPersonal WHERE idInformacion = "+ becario.IdInformacion +"");
         reader.Read();
 
         //Configuración del mensaje

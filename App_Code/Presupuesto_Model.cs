@@ -19,7 +19,7 @@ public class Presupuesto_Model
 
     public static bool Insert(Presupuesto _p)
     {
-        SqlCommand cmd = DBConnection.getCommand("INSERT INTO PresupuestoBecas(libro, colegiatura, manutencion, matricula, otros, trabajoGraduacion, idBecario) VALUES(@libro, @colegiatura, @manutencion, @matricula, @otros, @trabajoGraduacion, @idBecario);");
+        SqlCommand cmd = DBConnection.GetCommand("INSERT INTO PresupuestoBecas(libro, colegiatura, manutencion, matricula, otros, trabajoGraduacion, idBecario) VALUES(@libro, @colegiatura, @manutencion, @matricula, @otros, @trabajoGraduacion, @idBecario);");
         cmd.Parameters.Add("@libro", SqlDbType.Money);
         cmd.Parameters.Add("@colegiatura", SqlDbType.Money);
         cmd.Parameters.Add("@manutencion", SqlDbType.Money);
@@ -36,6 +36,6 @@ public class Presupuesto_Model
         cmd.Parameters["@trabajoGraduacion"].Value = _p.TrabajoGraduacion;
         cmd.Parameters["@idBecario"].Value = _p.IdBecario;
 
-        return DBConnection.executeCommandIUD(cmd);
+        return DBConnection.ExecuteCommandIUD(cmd);
     }
 }

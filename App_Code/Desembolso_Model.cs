@@ -17,7 +17,7 @@ public class Desembolso_Model
 
     public static bool Insert(Desembolso _d)
     {
-        SqlCommand cmd = DBConnection.getCommand("INSERT INTO Desembolso(monto, fecha, idTipoDesembolso, idBecario) VALUES(@monto, @fecha, @idTipo, @idBecario);");
+        SqlCommand cmd = DBConnection.GetCommand("INSERT INTO Desembolso(monto, fecha, idTipoDesembolso, idBecario) VALUES(@monto, @fecha, @idTipo, @idBecario);");
         cmd.Parameters.Add("@monto", SqlDbType.Money);
         cmd.Parameters.Add("@fecha", SqlDbType.Date);
         cmd.Parameters.Add("@idTipo", SqlDbType.Int);
@@ -28,6 +28,6 @@ public class Desembolso_Model
         cmd.Parameters["@idTipo"].Value = _d.IdTipoDesembolso;
         cmd.Parameters["@idBecario"].Value = _d.IdBecario;
 
-        return DBConnection.executeCommandIUD(cmd);
+        return DBConnection.ExecuteCommandIUD(cmd);
     }
 }

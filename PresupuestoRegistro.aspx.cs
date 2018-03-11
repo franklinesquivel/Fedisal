@@ -11,7 +11,7 @@ public partial class PresupuestoRegistro : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            DBConnection.fillCmb(ref ddlScholar, "SELECT Becarios.idBecario, CONCAT(InformacionPersonal.apellidos, ', ', InformacionPersonal.nombres) AS display FROM (Becarios INNER JOIN InformacionPersonal ON InformacionPersonal.idInformacion = Becarios.idInformacion)", "display", "idBecario");
+            DBConnection.FillCmb(ref ddlScholar, "SELECT Becarios.idBecario, CONCAT(InformacionPersonal.apellidos, ', ', InformacionPersonal.nombres) AS display FROM (Becarios INNER JOIN InformacionPersonal ON InformacionPersonal.idInformacion = Becarios.idInformacion)", "display", "idBecario");
             ddlScholar.Items.Insert(0, new ListItem("[Becario]", "0"));
         }
     }

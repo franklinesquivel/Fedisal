@@ -11,11 +11,11 @@ public partial class ProgramaBecasRegistro : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        generarCodigo();
+        GenerarCodigo();
         resultCode.InnerHtml = "<h5 class='center-align  deep-purple-text text-lighten-2'>Código: " + idNuevoPrograma+"</h5>";
     }
 
-    protected void generarCodigo()
+    protected void GenerarCodigo()
     {//Generamos un codigo aleatorio
         Random rnd = new Random();
         string letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //Cadena ocupada para generar un código aleatorio

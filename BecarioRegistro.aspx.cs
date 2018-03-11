@@ -13,15 +13,15 @@ public partial class BecarioRegistro : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             //Cargamos la información en los dropdownlist
-            DBConnection.fillCmb(ref ddlProgram, "SELECT * FROM ProgramaBecas", "nombre", "idPrograma");
+            DBConnection.FillCmb(ref ddlProgram, "SELECT * FROM ProgramaBecas", "nombre", "idPrograma");
             ddlProgram.Items.Insert(0, new ListItem("[Programa de Beca]", "0"));
-            DBConnection.fillCmb(ref ddlUser, "SELECT * FROM InformacionPersonal", "dui", "idInformacion");
+            DBConnection.FillCmb(ref ddlUser, "SELECT * FROM InformacionPersonal", "dui", "idInformacion");
             ddlUser.Items.Insert(0, new ListItem("[DUI]", "0"));
-            DBConnection.fillCmb(ref ddlUniversity, "SELECT * FROM Universidad", "nombre", "idUniversidad");
+            DBConnection.FillCmb(ref ddlUniversity, "SELECT * FROM Universidad", "nombre", "idUniversidad");
             ddlUniversity.Items.Insert(0, new ListItem("[Universidad]", "0"));
-            DBConnection.fillCmb(ref ddlProfession, "SELECT * FROM Carrera", "nombre", "idCarrera");
+            DBConnection.FillCmb(ref ddlProfession, "SELECT * FROM Carrera", "nombre", "idCarrera");
             ddlProfession.Items.Insert(0, new ListItem("[Carrera]", "0"));
-            DBConnection.fillCmb(ref ddlDegree, "SELECT * FROM NivelEducativo", "nombre", "idNivelEducativo");
+            DBConnection.FillCmb(ref ddlDegree, "SELECT * FROM NivelEducativo", "nombre", "idNivelEducativo");
             ddlDegree.Items.Insert(0, new ListItem("[Nivel Educativo]", "0"));
         }
     }
@@ -49,7 +49,7 @@ public partial class BecarioRegistro : System.Web.UI.Page
                 {//Verificamos si existe el mismo idinformacion en el mismo programa
                     DateTime fechaInicial = DateTime.Parse(dtpStart.Text, CultureInfo.InvariantCulture);
                     DateTime fechaFinal = DateTime.Parse(dtpEnd.Text, CultureInfo.InvariantCulture);
-                    Becario becario = new Becario(generarCodigoBecario(ddlProgram.SelectedValue), int.Parse(ddlUser.SelectedValue), ddlProgram.SelectedValue, int.Parse(ddlUniversity.SelectedValue), int.Parse(ddlProfession.SelectedValue), int.Parse(ddlDegree.SelectedValue), fechaInicial, fechaFinal, generarContrasenna());
+                    Becario becario = new Becario(GenerarCodigoBecario(ddlProgram.SelectedValue), int.Parse(ddlUser.SelectedValue), ddlProgram.SelectedValue, int.Parse(ddlUniversity.SelectedValue), int.Parse(ddlProfession.SelectedValue), int.Parse(ddlDegree.SelectedValue), fechaInicial, fechaFinal, GenerarContrasenna());
                     if (Becario_Model.Insertar(becario))
                     {
                         mensaje = "Materialize.toast('Becario registrado con exito', 2000, '', function(){ location.href = 'BecarioRegistro.aspx'})";
@@ -70,7 +70,7 @@ public partial class BecarioRegistro : System.Web.UI.Page
         }//fin page.isValid
     }
 
-    protected string generarCodigoBecario(string idPrograma)
+    protected string GenerarCodigoBecario(string idPrograma)
     {
         string codigoBecario = idPrograma+DateTime.Now.Year.ToString(); //BBEAP2018
         //Se obtiene el numero de becarios en dicho programa y se aumenta en 1
@@ -92,7 +92,7 @@ public partial class BecarioRegistro : System.Web.UI.Page
         return codigoBecario;
     }
 
-    protected string generarContrasenna()
+    protected string GenerarContrasenna()
     { //Generamos la contraseña
         Random rnd = new Random();
         string contrasenna = "";
