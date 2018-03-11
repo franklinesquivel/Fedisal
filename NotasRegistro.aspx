@@ -52,7 +52,7 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" InitialValue = "0" CssClass="error-tag" ControlToValidate="ddlCiclo" ErrorMessage="Debes seleccionar un valor!" Display="Dynamic">
                 </asp:RequiredFieldValidator>
                 </div>
-                <div class="input-field col s12 center-align"> <!-- Botón de registro -->
+                <div class="input-field col s12 center-align">
                 <asp:button text="Ingresar Nota" ID="btnRegistrar" OnClick="btnRegistrar_Click" CssClass="btn waves-effect waves-light"  runat="server" />
             </div>
             </div>
