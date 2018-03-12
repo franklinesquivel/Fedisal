@@ -57,4 +57,16 @@ public class ProgramaBeca
         this.Nombre = nombre;
         this.Descripcion = descripcion;
     }
+
+    public object DevolverDatos(int numBecarios)
+    {
+        object[] datos = { idPrograma, nombre, descripcion, numBecarios};
+        return datos;
+    }
+
+    public object DevolverDatos()
+    {
+        object[] datos = { idPrograma, nombre, descripcion};
+        return datos;
+    }
 }
