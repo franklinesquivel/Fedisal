@@ -61,4 +61,15 @@ public class Usuario_Model
         cmd.Parameters["@id"].Value = idInformacion;
         return Int32.Parse(DBConnection.QueryScalar(cmd));
     }
+
+    public static bool Login(string nombreUsuario, string contrasenna)
+    {
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Usuario WHERE idUsuario = @idUsuario and contrasenna = @contrasenna");
+        cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar);
+        cmd.Parameters.Add("@contrasenna", SqlDbType.VarChar);
+
+        cmd.Parameters["@idUsuario"].Value = nombreUsuario;
+        cmd.Parameters["@contrasenna"].Value = contrasenna;
+        return (Int32.Parse(DBConnection.QueryScalar(cmd)) > 0 ? true : false);
+    }
 }

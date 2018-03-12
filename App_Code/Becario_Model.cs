@@ -70,4 +70,18 @@ public class Becario_Model
         cmd.Parameters["@idPrograma"].Value = idPrograma;
         return Int32.Parse(DBConnection.QueryScalar(cmd));
     }
+
+    public static bool Login(string nombreUsuario, string contrasenna)
+    {
+        /* Descripción de método
+           Es llamado en el login y verifica si el becario existe
+        */
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Becarios WHERE idBecario = @idBecario and contrasenna = @contrasenna");
+        cmd.Parameters.Add("@idBecario", SqlDbType.VarChar);
+        cmd.Parameters.Add("@contrasenna", SqlDbType.VarChar);
+
+        cmd.Parameters["@idBecario"].Value = nombreUsuario;
+        cmd.Parameters["@contrasenna"].Value = contrasenna;
+        return (Int32.Parse(DBConnection.QueryScalar(cmd)) > 0 ? true : false);
+    }
 }
