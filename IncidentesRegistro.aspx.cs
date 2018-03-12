@@ -15,9 +15,26 @@ public partial class IncidentesRegistro : System.Web.UI.Page
             ddlIncidentes.Items.Insert(0, new ListItem("[Incidentes]", "0"));
         }
     }
-
+    [System.Web.Services.WebMethod]
     protected void btnAplicar_Click(object sender, EventArgs e)
     {
+        string idBecario = "";
+        Page.Validate();
+        if (Page.IsValid)
+        {
+            string msg;
 
+            Incidentes incidente = new Incidentes(idBecario,Convert.ToInt32(ddlIncidentes.SelectedValue));
+
+            if (Incidentes.InsertarIncidente(incidente))
+            {
+                msg = "Materialize.toast('Nota agregada con exito', 2000, '', function(){ location.href = 'NotasRegistro.aspx'})";
+            }
+            else
+            {
+                msg = "Materialize.toast('Ha ocurrido un Error',2000)";
+            }
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "confirmLog", msg, true);
+        }
     }
 }
