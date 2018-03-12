@@ -103,6 +103,16 @@ public class DBConnection
         return response;
     }
 
+    public static String ExecuteCommandScalar(SqlCommand _cmd)
+    {
+        String response = "0";
+        _cmd.Connection.Open();
+        response = _cmd.ExecuteScalar().ToString();
+        _cmd.Connection.Close();
+
+        return response;
+    }
+
     public static void FillCmb(ref DropDownList cmb, String query, String text, String value)
     {
         using (connection = new SqlConnection(connectionString))

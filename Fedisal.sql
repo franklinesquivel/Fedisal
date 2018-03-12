@@ -180,13 +180,13 @@ GO
 
 
 /* ---------------------------------------------------------------------- */
-/* Add table "Becarios"                                                   */
+/* Add table "Becario"                                                   */
 /* ---------------------------------------------------------------------- */
 
 GO
 
 
-CREATE TABLE [Becarios] (
+CREATE TABLE [Becario] (
     [idBecario] VARCHAR(12) NOT NULL,
     [fechaInicio] DATE,
     [fechaFin] DATE,
@@ -195,41 +195,41 @@ CREATE TABLE [Becarios] (
     [idUniversidad] INTEGER,
     [idCarrera] INTEGER,
     [idNivelEducativo] INTEGER,
-	[contrasenna] VARCHAR(15) NOT NULL,
-    CONSTRAINT [PK_Becarios] PRIMARY KEY ([idBecario])
+	[contrasenna] VARCHAR(200) NOT NULL,
+    CONSTRAINT [PK_Becario] PRIMARY KEY ([idBecario])
 )
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'C�digo �nico del becario. ', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idBecario'
+EXECUTE sp_addextendedproperty N'MS_Description', N'C�digo �nico del becario. ', 'SCHEMA', N'dbo', 'TABLE', N'Becario', 'COLUMN', N'idBecario'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Fecha en la cual el becario inicia el programa.', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'fechaInicio'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Fecha en la cual el becario inicia el programa.', 'SCHEMA', N'dbo', 'TABLE', N'Becario', 'COLUMN', N'fechaInicio'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Fecha en la cual el becario  finaliza el programa', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'fechaFin'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Fecha en la cual el becario  finaliza el programa', 'SCHEMA', N'dbo', 'TABLE', N'Becario', 'COLUMN', N'fechaFin'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave for�nea de la tabla Informacion_Personal.', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idInformacion'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave for�nea de la tabla Informacion_Personal.', 'SCHEMA', N'dbo', 'TABLE', N'Becario', 'COLUMN', N'idInformacion'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave for�nea de la tabla ProgramaBecas', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idPrograma'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave for�nea de la tabla ProgramaBecas', 'SCHEMA', N'dbo', 'TABLE', N'Becario', 'COLUMN', N'idPrograma'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave for�nea de la tabla Universidad', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idUniversidad'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave for�nea de la tabla Universidad', 'SCHEMA', N'dbo', 'TABLE', N'Becario', 'COLUMN', N'idUniversidad'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave for�nea de la tabla Carrera', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idCarrera'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave for�nea de la tabla Carrera', 'SCHEMA', N'dbo', 'TABLE', N'Becario', 'COLUMN', N'idCarrera'
 GO
 
 
-EXECUTE sp_addextendedproperty N'MS_Description', N'Llave for�nea de la tabla NivelEducativo', 'SCHEMA', N'dbo', 'TABLE', N'Becarios', 'COLUMN', N'idNivelEducativo'
+EXECUTE sp_addextendedproperty N'MS_Description', N'Llave for�nea de la tabla NivelEducativo', 'SCHEMA', N'dbo', 'TABLE', N'Becario', 'COLUMN', N'idNivelEducativo'
 GO
 
 
@@ -376,10 +376,11 @@ GO
 
 
 CREATE TABLE [Usuario] (
-    [idUsuario] INTEGER IDENTITY(1,1) NOT NULL,
-    [idInformacion] INTEGER,
-    [idTipoUsuario] CHAR(1),
-	[nombreUsuario] VARCHAR(12)
+    [idUsuario] char(5) NOT NULL,
+    [idInformacion] INTEGER NOT NULL,
+    [idTipoUsuario] CHAR(1) NOT NULL,
+	[nombreUsuario] VARCHAR(12) NOT NULL,
+    [contrasenna] VARCHAR(200) NOT NULL,
     CONSTRAINT [PK_Usuario] PRIMARY KEY ([idUsuario])
 )
 GO
@@ -392,38 +393,38 @@ GO
 GO
 
 
-ALTER TABLE [Becarios] ADD CONSTRAINT [Carrera_Becarios] 
+ALTER TABLE [Becario] ADD CONSTRAINT [Carrera_Becario] 
     FOREIGN KEY ([idCarrera]) REFERENCES [Carrera] ([idCarrera])
 GO
 
 
-ALTER TABLE [Becarios] ADD CONSTRAINT [NivelEducativo_Becarios] 
+ALTER TABLE [Becario] ADD CONSTRAINT [NivelEducativo_Becario] 
     FOREIGN KEY ([idNivelEducativo]) REFERENCES [NivelEducativo] ([idNivelEducativo])
 GO
 
 
-ALTER TABLE [Becarios] ADD CONSTRAINT [ProgramaBecas_Becarios] 
+ALTER TABLE [Becario] ADD CONSTRAINT [ProgramaBecas_Becario] 
     FOREIGN KEY ([idPrograma]) REFERENCES [ProgramaBecas] ([idPrograma])
 GO
 
 
-ALTER TABLE [Becarios] ADD CONSTRAINT [InformacionPersonal_Becarios] 
+ALTER TABLE [Becario] ADD CONSTRAINT [InformacionPersonal_Becario] 
     FOREIGN KEY ([idInformacion]) REFERENCES [InformacionPersonal] ([idInformacion])
 GO
 
 
-ALTER TABLE [Becarios] ADD CONSTRAINT [Universidad_Becarios] 
+ALTER TABLE [Becario] ADD CONSTRAINT [Universidad_Becario] 
     FOREIGN KEY ([idUniversidad]) REFERENCES [Universidad] ([idUniversidad])
 GO
 
 
-ALTER TABLE [PresupuestoBecas] ADD CONSTRAINT [Becarios_PresupuestoBecas] 
-    FOREIGN KEY ([idBecario]) REFERENCES [Becarios] ([idBecario])
+ALTER TABLE [PresupuestoBecas] ADD CONSTRAINT [Becario_PresupuestoBecas] 
+    FOREIGN KEY ([idBecario]) REFERENCES [Becario] ([idBecario])
 GO
 
 
-ALTER TABLE [Ciclo] ADD CONSTRAINT [Becarios_Ciclo] 
-    FOREIGN KEY ([idBecario]) REFERENCES [Becarios] ([idBecario])
+ALTER TABLE [Ciclo] ADD CONSTRAINT [Becario_Ciclo] 
+    FOREIGN KEY ([idBecario]) REFERENCES [Becario] ([idBecario])
 GO
 
 
@@ -437,13 +438,13 @@ ALTER TABLE [Desembolso] ADD CONSTRAINT [TipoDesembolso_Desembolso]
 GO
 
 
-ALTER TABLE [Desembolso] ADD CONSTRAINT [Becarios_Desembolso] 
-    FOREIGN KEY ([idBecario]) REFERENCES [Becarios] ([idBecario])
+ALTER TABLE [Desembolso] ADD CONSTRAINT [Becario_Desembolso] 
+    FOREIGN KEY ([idBecario]) REFERENCES [Becario] ([idBecario])
 GO
 
 
-ALTER TABLE [BitacoraIncidentes] ADD CONSTRAINT [Becarios_BitacoraIncidentes] 
-    FOREIGN KEY ([idBecario]) REFERENCES [Becarios] ([idBecario])
+ALTER TABLE [BitacoraIncidentes] ADD CONSTRAINT [Becario_BitacoraIncidentes] 
+    FOREIGN KEY ([idBecario]) REFERENCES [Becario] ([idBecario])
 GO
 
 
@@ -461,12 +462,12 @@ ALTER TABLE [Usuario] ADD CONSTRAINT [TipoUsuario_Usuario]
     FOREIGN KEY ([idTipoUsuario]) REFERENCES [TipoUsuario] ([idTipoUsuario])
 GO
 
-INSERT INTO TipoDesembolso
-VALUES('Manutención')
-GO
-INSERT INTO TipoDesembolso
-VALUES('Matricula')
-GO
-INSERT INTO TipoDesembolso
-VALUES('Colegitura');
-GO
+INSERT INTO [TipoDesembolso] VALUES
+('Manutención'),
+('Matricula'),
+('Colegitura');
+
+INSERT INTO [TipoUsuario] VALUES
+('A', 'Administrador'),
+('C', 'Contador'),
+('G', 'GestorEducativo');
