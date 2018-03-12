@@ -10,7 +10,7 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Sesion.VerificarUsuario(Session["ID"].ToString());
     }
 
     protected void btnIngresar_Click(object sender, EventArgs e)
@@ -22,7 +22,6 @@ public partial class Login : System.Web.UI.Page
         {
             if (Becario_Model.Login(txtUsername.Text, txtPassword.Text))
             {
-                //Inicializar variables de sesion
                 mensaje = "Materialize.toast('Becario encontrado', 2000)";
             }
             else

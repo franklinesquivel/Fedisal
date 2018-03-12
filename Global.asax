@@ -24,6 +24,7 @@
     {
         // Código que se ejecuta al iniciarse una nueva sesión
         Session["Logged"] = "false"; //Variable que nos inicia la sesión
+        Session["ID"] = "";
     }
 
     void Session_End(object sender, EventArgs e) 

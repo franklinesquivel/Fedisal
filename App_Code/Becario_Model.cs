@@ -82,6 +82,16 @@ public class Becario_Model
 
         cmd.Parameters["@idBecario"].Value = nombreUsuario;
         cmd.Parameters["@contrasenna"].Value = contrasenna;
-        return (Int32.Parse(DBConnection.QueryScalar(cmd)) > 0 ? true : false);
+        
+        if(Int32.Parse(DBConnection.QueryScalar(cmd)) > 0)
+        {
+            HttpContext.Current.Session["Logged"] = "true";
+            HttpContext.Current.Session["ID"] = nombreUsuario;
+            Sesion.SetearUsuario("Becario", nombreUsuario, "Becario", "idBecario");
+            return true;
+        }else
+        {
+            return false;
+        }
     }
 }
