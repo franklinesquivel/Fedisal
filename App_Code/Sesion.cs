@@ -67,44 +67,54 @@ public static class Sesion
         }
     }
 
-    public static void SetearUsuario(Usuario _u)
+    public static void SetearUsuario(String _tipo, String _id, String _tabla, String _campoLlave)
     {
-        tipo = "Usuario";
-        id = _u.IdUsuario.ToString();
-        tabla = "Usuario";
-        campoLlave = "idUsuario";
-    }
-
-    public static void SetearUsuario(Becario _u)
-    {
-        tipo = "Becario";
-        id = _u.IdBecario;
-        tabla = "Becario";
-        campoLlave = "idBecario";
+        tipo = _tipo;
+        id = _id;
+        tabla = _tabla;
+        campoLlave = _campoLlave;
     }
 
     public static void VerificarUsuario(String _id)
     {
+        if (Boolean.Parse(HttpContext.Current.Session["Logged"].ToString())){
+            SqlDataReader data = DBConnection.GetData("SELECT* FROM " + tabla + " AS tbl " + (tipo == "Becario" ? "" : "INNER JOIN TipoUsuario AS tu ON tbl.idTipoUsuario = tu.idTipoUsuario") + " WHERE tbl." + CampoLlave + " = '" + _id + "';");
+            String path = HttpContext.Current.Request.Url.AbsolutePath;
+            String accesandoA = path.Split('/')[1];
 
-        SqlDataReader data = DBConnection.GetData("SELECT* FROM " + tabla + " AS tbl " + (tipo == "Becario" ? "" : "INNER JOIN TipoUsuario AS tu ON tbl.idTipoUsuario = tu.idTipoUsuario") + " WHERE tbl." + CampoLlave + " = '" + _id + "';");
-        String path = HttpContext.Current.Request.Url.AbsolutePath;
-        String accesandoA = path.Split('/')[0];
-
-        if (data.HasRows)
-        {
-            if(tipo == "Becario" && accesandoA != Tipo)
+            if (data != null)
             {
-                HttpContext.Current.Response.Redirect("/Becario");
-            }else
-            {
-                if(data["descripcion"].ToString() != accesandoA)
+                if (data.HasRows)
                 {
-                    HttpContext.Current.Response.Redirect("/" + data["descripcion"].ToString());
+                    data.Read();
+                    if (tipo == "Becario" && accesandoA != Tipo)
+                    {
+                        HttpContext.Current.Response.Redirect("/Becario");
+                    }
+                    else
+                    {
+                        if (data["descripcion"].ToString() != accesandoA)
+                        {
+                            HttpContext.Current.Response.Redirect("/" + data["descripcion"].ToString() + "/");
+                        }
+                    }
+                }
+                else
+                {
+                    if (accesandoA != "Login.aspx")
+                    {
+                        HttpContext.Current.Response.Redirect("/Login.aspx");
+                    }
                 }
             }
-        }else
-        {
-            HttpContext.Current.Response.Redirect("/");
+            else
+            {
+                if (accesandoA != "Login.aspx")
+                {
+                    HttpContext.Current.Response.Redirect("/Login.aspx");
+                }
+            }
+
         }
     }
 }

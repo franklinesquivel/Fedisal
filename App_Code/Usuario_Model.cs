@@ -64,12 +64,25 @@ public class Usuario_Model
 
     public static bool Login(string nombreUsuario, string contrasenna)
     {
-        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Usuario WHERE nombreUsuario = @idUsuario and contrasenna = @contrasenna");
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Usuario WHERE idUsuario = @idUsuario and contrasenna = @contrasenna");
         cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar);
         cmd.Parameters.Add("@contrasenna", SqlDbType.VarChar);
 
         cmd.Parameters["@idUsuario"].Value = nombreUsuario;
         cmd.Parameters["@contrasenna"].Value = contrasenna;
-        return (Int32.Parse(DBConnection.QueryScalar(cmd)) > 0 ? true : false);
+
+        if (Int32.Parse(DBConnection.QueryScalar(cmd)) > 0)
+        {
+            SqlDataReader data = DBConnection.GetData("SELECT * FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario WHERE u.idUsuario = '" + nombreUsuario + "' and u.contrasenna = '" + contrasenna + "';");
+            data.Read();
+            HttpContext.Current.Session["Logged"] = "true";
+            HttpContext.Current.Session["ID"] = nombreUsuario;
+            Sesion.SetearUsuario(data["descripcion"].ToString(), nombreUsuario, "Usuario", "idUsuario");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
