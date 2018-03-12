@@ -64,7 +64,7 @@ public class Usuario_Model
 
     public static bool Login(string nombreUsuario, string contrasenna)
     {
-        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Usuario WHERE idUsuario = @idUsuario and contrasenna = @contrasenna");
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Usuario WHERE nombreUsuario = @idUsuario and contrasenna = @contrasenna");
         cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar);
         cmd.Parameters.Add("@contrasenna", SqlDbType.VarChar);
 

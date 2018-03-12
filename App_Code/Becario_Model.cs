@@ -76,7 +76,7 @@ public class Becario_Model
         /* Descripción de método
            Es llamado en el login y verifica si el becario existe
         */
-        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Becarios WHERE idBecario = @idBecario and contrasenna = @contrasenna");
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Becario WHERE idBecario = @idBecario and contrasenna = @contrasenna");
         cmd.Parameters.Add("@idBecario", SqlDbType.VarChar);
         cmd.Parameters.Add("@contrasenna", SqlDbType.VarChar);
 
