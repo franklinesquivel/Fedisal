@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class Usuario
 {
-    private int idUsuario;
+    private String idUsuario;
     private string nombre;
     private string apellido;
     private string dui;
@@ -17,7 +17,7 @@ public class Usuario
     private string telefono;
     private string correo;
 
-    public int IdUsuario
+    public String IdUsuario
     {
         get
         {

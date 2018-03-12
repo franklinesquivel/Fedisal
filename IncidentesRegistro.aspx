@@ -48,7 +48,7 @@
                     </asp:TemplateField>                    
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>" SelectCommand="SELECT InformacionPersonal.nombres, InformacionPersonal.apellidos, ProgramaBecas.nombre, Becarios.idBecario FROM Becarios INNER JOIN InformacionPersonal ON Becarios.idInformacion = InformacionPersonal.idInformacion INNER JOIN ProgramaBecas ON Becarios.idPrograma = ProgramaBecas.idPrograma"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>" SelectCommand="SELECT InformacionPersonal.nombres, InformacionPersonal.apellidos, ProgramaBecas.nombre, Becario.idBecario FROM Becario INNER JOIN InformacionPersonal ON Becario.idInformacion = InformacionPersonal.idInformacion INNER JOIN ProgramaBecas ON Becario.idPrograma = ProgramaBecas.idPrograma"></asp:SqlDataSource>
                 </div>
 
       <div id="modal1" class="modal">

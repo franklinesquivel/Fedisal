@@ -19,7 +19,7 @@ public class Becario_Model
         /* Descripción de método
            Verifica si existe un registro con el mismo dui en el mismo programa
         */
-        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Becarios WHERE idInformacion = @idInformacion AND idPrograma = @idPrograma");
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Becario WHERE idInformacion = @idInformacion AND idPrograma = @idPrograma");
         cmd.Parameters.Add("@idInformacion", SqlDbType.VarChar);
         cmd.Parameters.Add("@idPrograma", SqlDbType.Char);
 
@@ -30,7 +30,7 @@ public class Becario_Model
 
     public static bool Insertar(Becario becario)
     {
-        SqlCommand cmd = DBConnection.GetCommand("INSERT INTO Becarios(idBecario, fechaInicio, fechaFin, idInformacion, idPrograma, idUniversidad, idCarrera, idNivelEducativo, contrasenna) VALUES(@id, @fechaInicio, @fechaFin, @informacion, @programa, @universidad, @carrera, @nivel, @contra)");
+        SqlCommand cmd = DBConnection.GetCommand("INSERT INTO Becario(idBecario, fechaInicio, fechaFin, idInformacion, idPrograma, idUniversidad, idCarrera, idNivelEducativo, contrasenna) VALUES(@id, @fechaInicio, @fechaFin, @informacion, @programa, @universidad, @carrera, @nivel, @contra)");
         cmd.Parameters.Add("@id", SqlDbType.VarChar);
         cmd.Parameters.Add("@fechaInicio", SqlDbType.Date);
         cmd.Parameters.Add("@fechaFin", SqlDbType.Date);
@@ -64,7 +64,7 @@ public class Becario_Model
         /* Descripción de método
            Obtiene le numero de becarios ingresados en dicho programa
         */
-        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Becarios WHERE idPrograma = @idPrograma");
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Becario WHERE idPrograma = @idPrograma");
         cmd.Parameters.Add("@idPrograma", SqlDbType.Char);
 
         cmd.Parameters["@idPrograma"].Value = idPrograma;

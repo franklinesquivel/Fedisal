@@ -13,7 +13,7 @@ public partial class DesembolsoRegistro : System.Web.UI.Page
             DBConnection.FillCmb(ref ddlType, "SELECT * FROM TipoDesembolso", "nombre", "idTipoDesembolso");
             ddlType.Items.Insert(0, new ListItem("[Tipo de desembolso]", "0"));
 
-            DBConnection.FillCmb(ref ddlScholar, "SELECT Becarios.idBecario, CONCAT(InformacionPersonal.apellidos, ', ', InformacionPersonal.nombres) AS display FROM (Becarios INNER JOIN InformacionPersonal ON InformacionPersonal.idInformacion = Becarios.idInformacion)", "display", "idBecario");
+            DBConnection.FillCmb(ref ddlScholar, "SELECT Becario.idBecario, CONCAT(InformacionPersonal.apellidos, ', ', InformacionPersonal.nombres) AS display FROM (Becario INNER JOIN InformacionPersonal ON InformacionPersonal.idInformacion = Becario.idInformacion)", "display", "idBecario");
             ddlScholar.Items.Insert(0, new ListItem("[Becario]", "0"));
         }
     }
