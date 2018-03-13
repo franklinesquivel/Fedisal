@@ -50,9 +50,9 @@
             </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>" SelectCommand="SELECT InformacionPersonal.nombres, InformacionPersonal.apellidos, ProgramaBecas.nombre, Becario.idBecario FROM Becario INNER JOIN InformacionPersonal ON Becario.idInformacion = InformacionPersonal.idInformacion INNER JOIN ProgramaBecas ON Becario.idPrograma = ProgramaBecas.idPrograma"></asp:SqlDataSource>
                 </div>
+                <asp:TextBox ForeColor="White" ID="txtIdBecario" CssClass="form-control if" runat="server" />
 
-            <asp:TextBox Visible="true" ID="txtIdBecario" CssClass="form-control" runat="server" />
-
+            
       <div id="modal1" class="modal">
         <div class="modal-content">
           <h4>Registro Incidente con el becado</h4>

@@ -12,29 +12,24 @@ public partial class NotasRegistro : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            string becario = "ATDS20180001";
+            string becario = "ATDS20180001";//cambiar por variable de sesion del codigo
+
             DBConnection.FillCmb(ref ddlCiclo, "SELECT * FROM Ciclo WHERE idBecario='"+ becario +"'","nCiclo","idCiclo");
             ddlCiclo.Items.Insert(0, new ListItem("[Ciclo]", "0"));
             ddlTercioSuperior.Items.Insert(0, new ListItem("[Tercio Superior]","0"));
             }
     }
-
     protected void btnRegistrar_Click(object sender, EventArgs e)
     {
-        Page.Validate();
         if (Page.IsValid)
         {
             int TS;
             string msg;
-            if (Convert.ToBoolean(ddlTercioSuperior.SelectedValue) == true)
-            {
-                TS = 1;
-            }else
-            {
-                TS = 0;
-            }
+            if (Convert.ToBoolean(ddlTercioSuperior.SelectedValue) == true){ TS = 1;}
+            else{ TS = 0;}
+
             Notas Nota = new Notas(txtNombreMateria.Text, Convert.ToDecimal(txtNotaMateria.Text),Convert.ToByte(TS),int.Parse(ddlCiclo.SelectedValue));
-            if (Nota.Insertar(Nota))
+            if (Notas_Model.Insertar(Nota))
             {
                 msg = "Materialize.toast('Nota agregada con exito', 2000, '', function(){ location.href = 'NotasRegistro.aspx'})";
             }

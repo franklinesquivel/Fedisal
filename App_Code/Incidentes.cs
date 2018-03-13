@@ -14,11 +14,8 @@ using System.Diagnostics;
 /// </summary>
 public class Incidentes
 {
-    private static string connectionString = mySetting.ConnectionString;
     private int idTipoIncidente;
     private string idBecario;
-    private static ConnectionStringSettings mySetting = ConfigurationManager.ConnectionStrings["Fedisal_CS"];
-    
 
     public string IdBecario
     {
@@ -52,22 +49,4 @@ public class Incidentes
         this.idTipoIncidente = idTipoIncidente;
     }
 
-    public static bool InsertarIncidente(Incidentes inci)
-    {
-        SqlCommand comando = DBConnection.GetCommand("INSERT INTO BitacoraIncidentes(idTipoIncidente,idBecario) VALUES(@idTipo,@idBeca)");
-        comando.Parameters.Add("@idTipo", SqlDbType.Int);
-        comando.Parameters.Add("@idBeca", SqlDbType.VarChar);
-
-        comando.Parameters["@idTipo"].Value = inci.idBecario;
-        comando.Parameters["@idBeca"].Value = inci.idTipoIncidente;
-
-        if (DBConnection.ExecuteCommandIUD(comando))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }

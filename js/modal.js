@@ -6,21 +6,22 @@
         $(".btnIncidente").click(function () {
             
             $('#modal1').modal('open'); //Abre modal
-            let idBecario = $(this).attr("IdBecario");
-            $('#txtIdBecario').val() = idBecario;
+            let idBecario = $(this).attr('IdBecario');
+            $('#txtIdBecario').val(idBecario);
+
             $.ajax({
                 type: 'POST',
-                url: 'App_Code/Incidentes.cs/InsertarIncidente',
+                url: 'IncidentesRegistro.aspx/InsertarIncidente',
                 cache: true,
                 asyc: false,
-                data: `{inci: ${inci}}`,
+                data: `{Incidentes: ${incidentes}}`,
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function (r) {
                     if (r.d !=false) {
                         console.log("Registro hecho");
                     } else {
-                        console.log("no se realizo")
+                        console.log("no se realizo el registro")
                     }
                 }
             });

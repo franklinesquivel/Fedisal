@@ -53,7 +53,7 @@
                 </asp:RequiredFieldValidator>
                 </div>
                 <div class="input-field col s12 center-align">
-                <asp:button text="Ingresar Nota" ID="btnRegistrar" OnClick="btnRegistrar_Click" CssClass="btn waves-effect waves-light"  runat="server" />
+                    <asp:Button text="Ingresar Nota" ID="btnRegistrar" OnClick="btnRegistrar_Click" CssClass="btn waves-effect waves-light"  runat="server" />
             </div>
             </div>
         </form>

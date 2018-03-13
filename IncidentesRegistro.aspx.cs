@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -16,19 +18,41 @@ public partial class IncidentesRegistro : System.Web.UI.Page
         }
     }
     [System.Web.Services.WebMethod]
+    public static bool InsertarIncidente(Incidentes incidentes)
+    {
+        SqlCommand comando = DBConnection.GetCommand("INSERT INTO BitacoraIncidentes(idTipoIncidente,idBecario) VALUES(@idTipo,@idBeca)");
+        comando.Parameters.Add("@idTipo", SqlDbType.Int);
+        comando.Parameters.Add("@idBeca", SqlDbType.VarChar);
+
+        comando.Parameters["@idTipo"].Value = incidentes.IdTipoIncidente;
+        comando.Parameters["@idBeca"].Value = incidentes.IdBecario;
+        
+
+        if (DBConnection.ExecuteCommandIUD(comando))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     protected void btnAplicar_Click(object sender, EventArgs e)
     {
-        string idBecario = "";
+        string idBecario;
+        idBecario = txtIdBecario.Text;
+
         Page.Validate();
         if (Page.IsValid)
         {
             string msg;
 
-            Incidentes incidente = new Incidentes(idBecario,Convert.ToInt32(ddlIncidentes.SelectedValue));
+            Incidentes incidente = new Incidentes(idBecario , int.Parse(ddlIncidentes.SelectedValue));
 
-            if (Incidentes.InsertarIncidente(incidente))
+            if (InsertarIncidente(incidente))
             {
-                msg = "Materialize.toast('Nota agregada con exito', 2000, '', function(){ location.href = 'NotasRegistro.aspx'})";
+                msg = "Materialize.toast('Incidente aplicado con exito', 2000, '')";
             }
             else
             {
