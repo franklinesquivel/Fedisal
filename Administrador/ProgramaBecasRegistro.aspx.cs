@@ -23,8 +23,8 @@ public partial class ProgramaBecasRegistro : System.Web.UI.Page
         string letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //Cadena ocupada para generar un código aleatorio
         do
         {
-            idNuevoPrograma = "";
-            for (int i = 0; i < 4; i++)
+            idNuevoPrograma = "BE";
+            for (int i = 0; i < 2; i++)
             {
                 idNuevoPrograma += letras.Substring(rnd.Next(0, letras.Length - 1), 1); //Guardamos la letra seleccionada
             }
@@ -41,7 +41,7 @@ public partial class ProgramaBecasRegistro : System.Web.UI.Page
             {
                 if (ProgramaBeca_Model.Insertar(programa))
                 {
-                    mensaje = "Materialize.toast('Programa registado exitosamente!', 2000, '', function(){ location.href = 'ProgramaBecasRegistro.aspx'})";
+                    mensaje = "Materialize.toast('Programa registado exitosamente!', 2000, '', function(){ location.href = '/Administrador/ProgramaBecasRegistro.aspx'})";
                 }else
                 {
                     mensaje = "Materialize.toast('Error :(', 2000)";

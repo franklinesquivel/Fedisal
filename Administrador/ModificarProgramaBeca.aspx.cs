@@ -53,7 +53,7 @@ public partial class ModificarProgramaBeca : System.Web.UI.Page
                 programa = new ProgramaBeca(Request.QueryString["idPrograma"], txtName.Text, txtDescription.Text);
                 if (ProgramaBeca_Model.Modificar(programa))
                 {
-                    mensaje = "Materialize.toast('Modifiación exitosa!', 1000, '' ,function(){location.href = 'GestionProgramaBecas.aspx';})";
+                    mensaje = "Materialize.toast('Modifiación exitosa!', 1000, '' ,function(){location.href = '/Administrador/GestionProgramaBecas.aspx';})";
                 }
                 else
                 {

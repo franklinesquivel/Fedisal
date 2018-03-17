@@ -30,7 +30,7 @@
                         } else {
                             tr += `
                                 <td colspan='1'><a href='ModificarProgramaBeca.aspx?${r.d[i][0]}'>Modificar</a></td>
-                                <td colspan='1'><a href='#' id='eliminarModal'>Eliminar</a></td>
+                                <td colspan='1'><a href='#' class='eliminarModal'>Eliminar</a></td>
                             `;
                         }
                         tr += `</tr>`;
@@ -43,7 +43,7 @@
         });
     }
 
-    $(document).on('click', '#eliminarModal', function () {
+    $(document).on('click', '.eliminarModal', function () {
         $("#txtidPrograma").val($(this).parent().parent().attr('idPrograma'));
         $('#modalEliminar').modal('open');
     });

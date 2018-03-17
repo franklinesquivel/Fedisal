@@ -54,7 +54,7 @@ public partial class InformacionPersonalRegistro : System.Web.UI.Page
             {//Verificamos que no exista el dui en la BDD
                 if (Usuario_Model.Insertar(nuevoUsuario))
                 {
-                    mensaje = "Materialize.toast('Usuario registado exitosamente!', 2000, '', function(){ location.href = 'InformacionPersonalRegistro.aspx'})";
+                    mensaje = "Materialize.toast('Usuario registado exitosamente!', 2000, '', function(){ location.href = '/Administrador/InformacionPersonalRegistro.aspx'})";
                 }else
                 {
                     mensaje = "Materialize.toast('Error :(', 2000)";
