@@ -41,6 +41,35 @@
                 selectYears: 100 // Creates a dropdown of 15 years to control year
             });
         }
+
+        if ($('#user_nav').length > 0) {
+            $('#user_nav li a').each((i, el) => {
+                if ($(el).attr('href') == location.pathname) {
+                    if($(el).parent().parent().parent().hasClass('collapsible-body')){
+                        // $(el).parent().parent().parent().parent().parent().parent().trigger('click');
+                        // console.log($(el).parent().parent().parent().parent().onclick);
+                    }
+                    $(el).parent().addClass('active');   
+                }
+            })
+        }
+
+        if($(".btnUnlog").length > 0 ){
+            $(".btnUnlog").click(function(){
+                $.ajax({
+                    type: 'POST',
+                    url: '/Services/CerrarSesion.svc/Cerrar',
+                    cache: true,
+                    asyc: false,
+                    data: "{}",
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (r) {
+                        location.href = '/';
+                    }
+                })
+            })
+        }
         
     })
 

@@ -77,10 +77,10 @@ public static class Sesion
 
     public static void VerificarUsuario(String _id)
     {
+        String path = HttpContext.Current.Request.Url.AbsolutePath;
+        String accesandoA = path.Split('/')[1];
         if (Boolean.Parse(HttpContext.Current.Session["Logged"].ToString())){
             SqlDataReader data = DBConnection.GetData("SELECT* FROM " + tabla + " AS tbl " + (tipo == "Becario" ? "" : "INNER JOIN TipoUsuario AS tu ON tbl.idTipoUsuario = tu.idTipoUsuario") + " WHERE tbl." + CampoLlave + " = '" + _id + "';");
-            String path = HttpContext.Current.Request.Url.AbsolutePath;
-            String accesandoA = path.Split('/')[1];
 
             if (data != null)
             {
@@ -89,32 +89,42 @@ public static class Sesion
                     data.Read();
                     if (tipo == "Becario" && accesandoA != Tipo)
                     {
+                        data.Close();
                         HttpContext.Current.Response.Redirect("/Becario");
                     }
                     else
                     {
                         if (data["descripcion"].ToString() != accesandoA)
                         {
-                            HttpContext.Current.Response.Redirect("/" + data["descripcion"].ToString() + "/");
+                            String tipoUsuario = data["descripcion"].ToString(); 
+                            data.Close();
+                            HttpContext.Current.Response.Redirect("/" + tipoUsuario + "/");
                         }
                     }
                 }
                 else
                 {
-                    if (accesandoA != "Login.aspx")
+                    if (accesandoA != "" && accesandoA != "Login.aspx" && accesandoA != "Default.aspx")
                     {
+                        data.Close();
                         HttpContext.Current.Response.Redirect("/Login.aspx");
                     }
                 }
             }
             else
             {
-                if (accesandoA != "Login.aspx")
+                if (accesandoA != "" && accesandoA != "Login.aspx" && accesandoA != "Default.aspx")
                 {
+                    data.Close();
                     HttpContext.Current.Response.Redirect("/Login.aspx");
                 }
             }
 
+        }else{
+            if (accesandoA != "" && accesandoA != "Login.aspx" && accesandoA != "Default.aspx")
+            {
+                HttpContext.Current.Response.Redirect("/Login.aspx");
+            }
         }
     }
 }

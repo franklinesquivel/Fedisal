@@ -9,7 +9,9 @@ public partial class GestionProgramaBecas : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if(!IsPostBack){
+            
+        }
     }
 
     [System.Web.Services.WebMethod]

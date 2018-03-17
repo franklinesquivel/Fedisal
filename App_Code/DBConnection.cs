@@ -14,35 +14,32 @@ using System.Web.UI.WebControls;
 /// </summary>
 public class DBConnection
 {
-    private static ConnectionStringSettings mySetting = ConfigurationManager.ConnectionStrings["Fedisal_CS"];
-    private static string connectionString = mySetting.ConnectionString;
-    private static SqlConnection connection;
-    private static SqlCommand cmd;
-    private static SqlDataReader dr;
-    private static SqlDataAdapter da;
-
-    public DBConnection()
-    {
-
-    }
+    public static ConnectionStringSettings mySetting = ConfigurationManager.ConnectionStrings["Fedisal_CS"];
+    public static string connectionString = mySetting.ConnectionString;
+    public static SqlConnection connection;
+    public static SqlCommand cmd;
+    public static SqlDataReader dr;
+    public static SqlDataAdapter da;
 
     //ExecuteNonQuery, ExecuteReader, Execute Scalar
 
     public static bool QueryIUD(String query) //UPDATE, INSERT AND DELETE
     {
-        bool response = false;
-        try
+        using(SqlConnection conn = new SqlConnection(connectionString) )
         {
-            connection = new SqlConnection(connectionString);
-            cmd = new SqlCommand(query, connection);
-            cmd.Connection.Open();
-            response = (cmd.ExecuteNonQuery() > 0) ? true : false;
-            cmd.Connection.Close();
-            return response;
-        }
-        catch (Exception e)
-        {
-            return response;
+            bool response = false;
+            try
+            {
+                cmd = new SqlCommand(query, conn);
+                cmd.Connection.Open();
+                response = (cmd.ExecuteNonQuery() > 0) ? true : false;
+                cmd.Connection.Close();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return response;
+            }
         }
     }
 
@@ -71,6 +68,7 @@ public class DBConnection
             cmd = new SqlCommand(sql, connection);
             cmd.Connection.Open();
             dr = cmd.ExecuteReader();
+            // cmd.Connection.Close();
             if (dr.HasRows)
             {
                 return dr;

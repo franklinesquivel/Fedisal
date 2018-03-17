@@ -12,6 +12,7 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
     {
         if(!IsPostBack)
         {
+            
             SqlDataReader data = DBConnection.GetData("SELECT * FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + Request.QueryString["idUsuario"] + "';");
             data.Read();
 
@@ -21,6 +22,7 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
             txtFechaNac.Value = DateTime.Parse(data["fechaNacimiento"].ToString()).ToString("yyyy-MM-dd");
             txtEmail.Value = data["correoElectronico"].ToString();
             txtResidencia.Value = data["direccionResidencia"].ToString();
+            data.Close();
         }
     }
 }

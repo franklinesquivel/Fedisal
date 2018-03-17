@@ -10,7 +10,10 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Sesion.VerificarUsuario(Session["ID"].ToString());
+        if(!IsPostBack)
+        {
+            
+        }
     }
 
     protected void btnIngresar_Click(object sender, EventArgs e)
@@ -35,6 +38,7 @@ public partial class Login : System.Web.UI.Page
             {
                 //Inicializar variables de sesión
                 mensaje = "Materialize.toast('Usuario encontrado', 2000)";
+                Response.Redirect("/Login.aspx");
             }
             else
             {

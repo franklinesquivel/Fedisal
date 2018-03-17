@@ -37,6 +37,7 @@ public class Correo
         mensaje.Body += "<br><b>Contraseña: </b>" + becario.Contrasenna;
         mensaje.BodyEncoding = Encoding.UTF8;
         mensaje.To.Add((string)reader[0]);
+        reader.Close();
 
         //Configuración SMTPT
         SmtpClient clienteSMTP = new SmtpClient();

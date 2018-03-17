@@ -11,7 +11,7 @@ public partial class Becario_Default : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            Sesion.VerificarUsuario(Session["ID"].ToString());
+            
         }
     }
 }

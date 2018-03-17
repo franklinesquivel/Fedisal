@@ -11,6 +11,10 @@ public partial class ModificarProgramaBeca : System.Web.UI.Page
     private ProgramaBeca programa;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if(!IsPostBack){
+            
+        }
+        
         if (Request.QueryString["idPrograma"] != null && (!Page.IsPostBack))
         {
             if (ProgramaBeca_Model.VerificarCodigo(Request.QueryString["idPrograma"]) > 0)

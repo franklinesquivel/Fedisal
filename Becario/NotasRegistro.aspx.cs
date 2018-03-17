@@ -12,12 +12,12 @@ public partial class NotasRegistro : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            string becario = "ATDS20180001";//cambiar por variable de sesion del codigo
+            string becario = Session["ID"].ToString();
 
             DBConnection.FillCmb(ref ddlCiclo, "SELECT * FROM Ciclo WHERE idBecario='"+ becario +"'","nCiclo","idCiclo");
             ddlCiclo.Items.Insert(0, new ListItem("[Ciclo]", "0"));
             ddlTercioSuperior.Items.Insert(0, new ListItem("[Tercio Superior]","0"));
-            }
+        }
     }
     protected void btnRegistrar_Click(object sender, EventArgs e)
     {

@@ -11,8 +11,10 @@ public partial class ProgramaBecasRegistro : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        GenerarCodigo();
-        resultCode.InnerHtml = "<h5 class='center-align  deep-purple-text text-lighten-2'>Código: " + idNuevoPrograma+"</h5>";
+        if(!IsPostBack){
+            GenerarCodigo();
+            resultCode.InnerHtml = "<h5 class='center-align  deep-purple-text text-lighten-2'>Código: " + idNuevoPrograma+"</h5>";
+        }
     }
 
     protected void GenerarCodigo()

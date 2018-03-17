@@ -51,6 +51,7 @@ public class ProgramaBeca_Model
             ProgramaBeca nuevoPrograma = new ProgramaBeca(data["idPrograma"].ToString(), data["nombre"].ToString(), data["descripcion"].ToString());
             programa.Add(nuevoPrograma.DevolverDatos(Int32.Parse(data["NumBecarios"].ToString())));
         }
+        data.Close();
         return programa;
     }
 

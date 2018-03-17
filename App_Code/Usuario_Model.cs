@@ -78,6 +78,7 @@ public class Usuario_Model
             HttpContext.Current.Session["Logged"] = "true";
             HttpContext.Current.Session["ID"] = nombreUsuario;
             Sesion.SetearUsuario(data["descripcion"].ToString(), nombreUsuario, "Usuario", "idUsuario");
+            data.Close();
             return true;
         }
         else
