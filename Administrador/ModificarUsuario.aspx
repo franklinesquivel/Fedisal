@@ -63,6 +63,38 @@
             <asp:RequiredFieldValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Debe seleccionar un valor" ControlToValidate="ddlTipoUsuario" runat="server" />
         
         </div>
+        <div class="input-field col s12" id="verificarAccion" runat="server" visible="false">
+                        <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+                        <label for="txtUsername">Codigo de Usuario</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" 
+                            runat="server" 
+                            Display="Dynamic"
+                            ControlToValidate="txtUsername"
+                            CssClass="error-tag"
+                            ErrorMessage="Ingrese el codigo del usuario!"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" 
+                            runat="server" 
+                            ControlToValidate="txtUsername"
+                            CssClass="error-tag"
+                            ValidationExpression="^([C]{1}[0-9]{4})|([G]{1}[0-9]{4})$"
+                            ErrorMessage="Ingrese un valor válido!"></asp:RegularExpressionValidator>
+                    </div>
+        <div class="input-field col s12" id="verificarAcciones2" runat="server" visible="false">
+                        <asp:TextBox ID="txtNameUser" runat="server"></asp:TextBox>
+                        <label for="txtNameUser">Nombre de Usuario</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" 
+                            runat="server"
+                            Display="Dynamic"
+                            ControlToValidate="txtNameUser"
+                            CssClass="error-tag"
+                            ErrorMessage="Ingrese su username!"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" 
+                            runat="server" 
+                            ControlToValidate="txtNameUser"
+                            CssClass="error-tag"
+                            ValidationExpression="^[A-Za-zñÑáéíóú ]*$"
+                            ErrorMessage="Ingrese un valor válido!"></asp:RegularExpressionValidator>
+                    </div>
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
             <asp:Button Text="" CssClass="btn waves-effect waves-light" ID="btnUsuarios" OnClick="btnUsuarios_Click" runat="server" />
         </div>

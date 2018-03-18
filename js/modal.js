@@ -2,7 +2,7 @@
 
     $(document).ready(function () {
         $('.modal').modal(); //Declara el modal
-
+        $('selec').material_select();
         $(".btnIncidente").click(function () {
             
             $('#modal1').modal('open'); //Abre modal

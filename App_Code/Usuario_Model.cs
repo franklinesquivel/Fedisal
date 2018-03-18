@@ -36,7 +36,7 @@ public class Usuario_Model
         cmd.Parameters["@correo"].Value = usuario.Correo;
         return DBConnection.ExecuteCommandIUD(cmd);
     }
-    public static bool Insertar(Usuario usuario,string tipoUsuario,string idUsuario)
+    public static bool Insertar(Usuario usuario,string tipoUsuario,string idUsuario,string nombreU,string contra)
     {
         SqlCommand cmd = DBConnection.GetCommand("INSERT INTO InformacionPersonal(nombres, apellidos, dui, fechaNacimiento, direccionResidencia, telefono, correoElectronico) VALUES(@nombre, @apellido, @dui, @fecha, @residencia, @telefono, @correo)");
         cmd.Parameters.Add("@nombre", SqlDbType.Char);
@@ -54,10 +54,28 @@ public class Usuario_Model
         cmd.Parameters["@residencia"].Value = usuario.Residencia;
         cmd.Parameters["@telefono"].Value = usuario.Telefono;
         cmd.Parameters["@correo"].Value = usuario.Correo;
-        SqlDataReader data = DBConnection.GetData("SELECT idInformacion FROM InformacionPersonal WHERE dui = '"+ usuario.Dui +"'");
-        int idinfo = Convert.ToInt32(data["idInformacion"]);
-        SqlCommand cmd2 = DBConnection.GetCommand("INSERT INTO Usuario()");
         return DBConnection.ExecuteCommandIUD(cmd);
+    }
+    public static bool Insertar(string Dui,string correo, string tipoUsuario, string idUsuario, string nombreU, string contra) {
+
+        SqlDataReader data = DBConnection.GetData("SELECT * FROM InformacionPersonal WHERE dui = '" + Dui + "' or correoElectronico = '"+ correo +"'");
+        data.Read();
+        int idinfo = Convert.ToInt32(data["idInformacion"].ToString());
+        data.Close();
+        SqlCommand cmd2 = DBConnection.GetCommand("INSERT INTO Usuario(idUsuario,idInformacion,idTipoUsuario,nombreUsuario,contrasenna) VALUES(@idUser,@idInfo,@idTipoU,@nombreUser,@contra)");
+        cmd2.Parameters.Add("@idUser", SqlDbType.Char);
+        cmd2.Parameters.Add("@idInfo", SqlDbType.Int);
+        cmd2.Parameters.Add("@idTipoU", SqlDbType.Char);
+        cmd2.Parameters.Add("@nombreUser", SqlDbType.VarChar);
+        cmd2.Parameters.Add("@contra", SqlDbType.VarChar);
+
+        cmd2.Parameters["@idUser"].Value = idUsuario;
+        cmd2.Parameters["@idInfo"].Value = idinfo;
+        cmd2.Parameters["@idTipoU"].Value = tipoUsuario;
+        cmd2.Parameters["@nombreUser"].Value = nombreU;
+        cmd2.Parameters["@contra"].Value = contra;
+        
+        return DBConnection.ExecuteCommandIUD(cmd2);
     }
     public static bool Modificar(Usuario usuario,string idUsuario)
     {
@@ -124,6 +142,14 @@ public class Usuario_Model
         cmd.Parameters.Add("@id", SqlDbType.VarChar);
 
         cmd.Parameters["@id"].Value = idInformacion;
+        return Int32.Parse(DBConnection.QueryScalar(cmd));
+    }
+    public static int VerificarExistencia(string idUser)
+    {
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Usuario WHERE idUsuario = @id");
+        cmd.Parameters.Add("@id", SqlDbType.VarChar);
+
+        cmd.Parameters["@id"].Value = idUser;
         return Int32.Parse(DBConnection.QueryScalar(cmd));
     }
 

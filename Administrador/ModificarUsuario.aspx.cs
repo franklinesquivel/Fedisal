@@ -26,15 +26,19 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                 dataDDL.Read();
                 string ddlvalue = dataDDL["idTipoUsuario"].ToString();
                 ddlTipoUsuario.SelectedValue = ddlvalue;
+                verificarAccion.Visible = false;
+                verificarAcciones2.Visible = false;
                 dataDDL.Close();
             }
         }
         else
         {
-            ddlTipoUsuario.Items.Insert(0, new ListItem("[TipoUsuario]", "0"));
             tituloF.InnerHtml = "Registro de Usuario";
             btnUsuarios.Text = "Registrar";
-            DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario", "descripcion", "idTipoUsuario");
+            DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario WHERE descripcion = 'Contador' OR descripcion = 'GestorEducativo'", "descripcion", "idTipoUsuario");
+            ddlTipoUsuario.DataBind();
+            verificarAccion.Visible = true;
+            verificarAcciones2.Visible = true;
         }
     }
     protected void GenerarInformacion()
@@ -56,8 +60,6 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
 
     protected void btnUsuarios_Click(object sender, EventArgs e)
     {
-        SqlDataReader dataID = DBConnection.GetData("SELECT * FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + Request.QueryString["idUsuario"] + "';");
-        dataID.Read();
         string name = txtNombre.Value;
         string apellido = txtApellido.Value;
         string telefono = txtTel.Value;
@@ -66,13 +68,16 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
         DateTime fechaNac = DateTime.Parse(txtFechaNac.Value);
         string residencia = txtResidencia.Value;
         string tipoUser = ddlTipoUsuario.SelectedValue;
+        string codigoUser = txtUsername.Text;
+        string nombreUser = txtNameUser.Text;
         string mensaje = "";
-        
-        
-        string cadenaID = dataID["idInformacion"].ToString();
+
         if (Request.QueryString["idUsuario"] != null)
         {
-                if (Usuario_Model.Modificar(new Usuario(Int32.Parse(cadenaID), tipoUser,name,apellido,dui,fechaNac,residencia,telefono,email), Request.QueryString["idUsuario"]))
+            SqlDataReader dataObtenerID = DBConnection.GetData("SELECT * FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + Request.QueryString["idUsuario"] + "';");
+            dataObtenerID.Read();
+            string cadenaID = dataObtenerID["idInformacion"].ToString();
+            if (Usuario_Model.Modificar(new Usuario(Int32.Parse(cadenaID), tipoUser,name,apellido,dui,fechaNac,residencia,telefono,email), Request.QueryString["idUsuario"]))
                 {
                     mensaje = "Materialize.toast('Usuario modificado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
                 }
@@ -80,21 +85,26 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                 {
                     mensaje = "Materialize.toast('Error al modificar usuario', 2000)";
                 }
+            dataObtenerID.Close();
         }
         else
         {
-            if (Usuario_Model.VerificarExistencia(Int32.Parse(cadenaID)) == 0)
+            if (Usuario_Model.VerificarExistencia(codigoUser) == 0)
             {
+                string cadenaID = "0";
                 try
                 {
-                    if (Usuario_Model.Modificar(new Usuario(Int32.Parse(cadenaID),tipoUser, name, apellido, dui, fechaNac, residencia, telefono, email), Request.QueryString["idUsuario"]))
+                    if (Usuario_Model.Insertar(new Usuario(Int32.Parse(cadenaID),tipoUser, name, apellido, dui, fechaNac, residencia, telefono, email)))
                     {
-                        mensaje = "Materialize.toast('Usuario ingresado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
+                        if (Usuario_Model.Insertar(dui,email,tipoUser, codigoUser, nombreUser, GenerarContrasenna()))
+                        {
+                            mensaje = "Materialize.toast('Usuario ingresado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
+                        }
                     }
                 }
                 catch (Exception E)
                 {
-                    mensaje = "Materialize.toast('Error al modificar usuario', 2000)";
+                    mensaje = "Materialize.toast('Error al ingresar usuario', 2000)";
                 }
             }
             else
@@ -102,7 +112,18 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                 mensaje = "Materialize.toast('Usuario ya existe', 2000)";
             }
         }
-        dataID.Close();
+        
         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "confirmLog", mensaje, true);
+    }
+    protected string GenerarContrasenna()
+    {
+        Random rnd = new Random();
+        string contrasenna = "";
+        string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789abcdefghijklomnopqrstuvwxyz";
+        for (int i = 0; i < 9; i++)
+        {
+            contrasenna += caracteres.Substring(rnd.Next(0, caracteres.Length - 1), 1);
+        }
+        return contrasenna;
     }
 }
