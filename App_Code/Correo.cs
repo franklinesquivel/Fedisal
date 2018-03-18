@@ -77,7 +77,7 @@ public class Correo
 
         //Configuración SMTPT
         SmtpClient clienteSMTP = new SmtpClient();
-        clienteSMTP.Credentials = new NetworkCredential("ezic2017@gmail.com", "FusalHorasSocialesEstupida?...;noo.18");
+        clienteSMTP.Credentials = new NetworkCredential("", "");
         clienteSMTP.Port = 587;
         clienteSMTP.Host = "smtp.gmail.com";
         clienteSMTP.EnableSsl = true;
