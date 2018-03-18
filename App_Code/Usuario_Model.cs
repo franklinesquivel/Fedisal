@@ -61,23 +61,40 @@ public class Usuario_Model
     }
     public static bool Modificar(Usuario usuario,string idUsuario)
     {
-        SqlCommand cmd = DBConnection.GetCommand("INSERT INTO InformacionPersonal(nombres, apellidos, dui, fechaNacimiento, direccionResidencia, telefono, correoElectronico) VALUES(@nombre, @apellido, @dui, @fecha, @residencia, @telefono, @correo)");
-        cmd.Parameters.Add("@nombre", SqlDbType.Char);
-        cmd.Parameters.Add("@apellido", SqlDbType.VarChar);
-        cmd.Parameters.Add("@dui", SqlDbType.VarChar);
-        cmd.Parameters.Add("@fecha", SqlDbType.Date);
-        cmd.Parameters.Add("@residencia", SqlDbType.VarChar);
-        cmd.Parameters.Add("@telefono", SqlDbType.VarChar);
-        cmd.Parameters.Add("@correo", SqlDbType.VarChar);
+        SqlDataReader dataID = DBConnection.GetData("SELECT * FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + idUsuario + "';");
+        dataID.Read();
+        string cadenaID = dataID["idInformacion"].ToString();
 
-        cmd.Parameters["@nombre"].Value = usuario.Nombre;
-        cmd.Parameters["@apellido"].Value = usuario.Apellido;
-        cmd.Parameters["@dui"].Value = usuario.Dui;
-        cmd.Parameters["@fecha"].Value = usuario.FechaNacimiento;
-        cmd.Parameters["@residencia"].Value = usuario.Residencia;
-        cmd.Parameters["@telefono"].Value = usuario.Telefono;
-        cmd.Parameters["@correo"].Value = usuario.Correo;
-        return DBConnection.ExecuteCommandIUD(cmd);
+            SqlCommand cmd = DBConnection.GetCommand("UPDATE InformacionPersonal SET nombres = @nombre, apellidos = @apellido, dui = @dui, fechaNacimiento = @fecha, direccionResidencia = @residencia, telefono = @telefono , correoElectronico = @correo WHERE idInformacion = @idInfo");
+            cmd.Parameters.Add("@nombre", SqlDbType.Char);
+            cmd.Parameters.Add("@apellido", SqlDbType.VarChar);
+            cmd.Parameters.Add("@dui", SqlDbType.VarChar);
+            cmd.Parameters.Add("@fecha", SqlDbType.Date);
+            cmd.Parameters.Add("@residencia", SqlDbType.VarChar);
+            cmd.Parameters.Add("@telefono", SqlDbType.VarChar);
+            cmd.Parameters.Add("@correo", SqlDbType.VarChar);
+            cmd.Parameters.Add("@idInfo", SqlDbType.Int);
+
+
+            cmd.Parameters["@nombre"].Value = usuario.Nombre;
+            cmd.Parameters["@apellido"].Value = usuario.Apellido;
+            cmd.Parameters["@dui"].Value = usuario.Dui;
+            cmd.Parameters["@fecha"].Value = usuario.FechaNacimiento;
+            cmd.Parameters["@residencia"].Value = usuario.Residencia;
+            cmd.Parameters["@telefono"].Value = usuario.Telefono;
+            cmd.Parameters["@correo"].Value = usuario.Correo;
+            cmd.Parameters["@idInfo"].Value = cadenaID;
+            DBConnection.ExecuteCommandIUD(cmd);
+
+        
+        SqlCommand cmd2 = DBConnection.GetCommand("UPDATE Usuario SET idTipoUsuario = @idTipo WHERE idInformacion = @idInformacion");
+        cmd2.Parameters.Add("@idTipo", SqlDbType.VarChar);
+        cmd2.Parameters.Add("@idInformacion", SqlDbType.Int);
+        
+        cmd2.Parameters["@idTipo"].Value = usuario.TipoUsuario;
+        cmd2.Parameters["@idInformacion"].Value = cadenaID;
+        dataID.Close();
+        return DBConnection.ExecuteCommandIUD(cmd2);
     }
     public static int VerificarDui(string dui)
     {
@@ -89,6 +106,14 @@ public class Usuario_Model
 
         cmd.Parameters["@dui"].Value = dui;
         return Int32.Parse(DBConnection.QueryScalar(cmd));
+    }
+    public static Usuario ObtenerUsuario(string idUsuario,int idInformacion)
+    {
+        SqlDataReader data = DBConnection.GetData("SELECT * FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + idUsuario + "';");
+        data.Read();
+        Usuario _U = new Usuario(idInformacion,data["idTipoUsuario"].ToString(),data["nombres"].ToString(), data["apellidos"].ToString(), data["dui"].ToString(), DateTime.Parse(data["fechaNacimiento"].ToString()), data["direccionResidencia"].ToString(), data["telefono"].ToString(), data["correoElectronico"].ToString());
+        data.Close();
+        return _U;
     }
 
     public static int VerificarExistencia(int idInformacion)

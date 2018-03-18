@@ -10,6 +10,7 @@ public class Usuario
 {
     private String idUsuario;
     private string nombre;
+    private int idInfo;
     private string apellido;
     private string dui;
     private DateTime fechaNacimiento;
@@ -17,18 +18,6 @@ public class Usuario
     private string telefono;
     private string correo;
     private string tipoUsuario;
-    public String IdUsuario
-    {
-        get
-        {
-            return idUsuario;
-        }
-
-        set
-        {
-            idUsuario = value;
-        }
-    }
 
     public string Nombre
     {
@@ -134,6 +123,32 @@ public class Usuario
         }
     }
 
+    public int IdInfo
+    {
+        get
+        {
+            return idInfo;
+        }
+
+        set
+        {
+            idInfo = value;
+        }
+    }
+
+    public string IdUsuario
+    {
+        get
+        {
+            return idUsuario;
+        }
+
+        set
+        {
+            idUsuario = value;
+        }
+    }
+
     public Usuario(string nombre, string apellido, string dui, DateTime fechaNacimiento, string residencia, string telefono, string correo)
     {
         this.nombre = nombre;
@@ -144,7 +159,7 @@ public class Usuario
         this.telefono = telefono;
         this.correo = correo;
     }
-    public Usuario(string tipoUser,string nombre, string apellido, string dui, DateTime fechaNacimiento, string residencia, string telefono, string correo)
+    public Usuario(int idIn,string tipoUser,string nombre, string apellido, string dui, DateTime fechaNacimiento, string residencia, string telefono, string correo)
     {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -154,5 +169,6 @@ public class Usuario
         this.telefono = telefono;
         this.correo = correo;
         this.tipoUsuario = tipoUser;
+        this.idInfo = idIn;
     }
 }

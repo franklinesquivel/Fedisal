@@ -21,6 +21,7 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                 tituloF.InnerHtml = "Modificar Usuario";
                 btnUsuarios.Text = "Editar";
                 DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario AS TU INNER JOIN Usuario AS U ON U.idTipoUsuario = TU.idTipoUsuario AND idUsuario = '" + Request.QueryString["idUsuario"] + "';", "descripcion", "idTipoUsuario");
+
             }
         }
         else
@@ -33,16 +34,19 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
     }
     protected void GenerarInformacion()
     {
-        SqlDataReader data = DBConnection.GetData("SELECT * FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + Request.QueryString["idUsuario"] + "';");
-        data.Read();
-        txtNombre.Value = data["nombres"].ToString();
-        txtApellido.Value = data["apellidos"].ToString();
-        txtDui.Value = data["dui"].ToString();
-        txtTel.Value = data["telefono"].ToString();
-        txtFechaNac.Value = DateTime.Parse(data["fechaNacimiento"].ToString()).ToString("yyyy-MM-dd");
-        txtEmail.Value = data["correoElectronico"].ToString();
-        txtResidencia.Value = data["direccionResidencia"].ToString();
-        data.Close();
+        SqlDataReader dataID = DBConnection.GetData("SELECT * FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + Request.QueryString["idUsuario"] + "';");
+        dataID.Read();
+        int cadenaID = Int32.Parse(dataID["idInformacion"].ToString());
+        Usuario _u = Usuario_Model.ObtenerUsuario(Request.QueryString["idUsuario"],cadenaID);
+
+        txtNombre.Value = _u.Nombre.Trim();
+        txtApellido.Value = _u.Apellido.Trim();
+        txtDui.Value = _u.Dui.Trim();
+        txtTel.Value = _u.Telefono.Trim();
+        txtFechaNac.Value = DateTime.Parse(dataID["fechaNacimiento"].ToString()).ToString("yyyy-MM-dd");
+        txtEmail.Value = _u.Correo.Trim();
+        txtResidencia.Value = _u.Residencia.Trim();
+        dataID.Close();
     }
 
     protected void btnUsuarios_Click(object sender, EventArgs e)
@@ -63,21 +67,14 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
         string cadenaID = dataID["idInformacion"].ToString();
         if (Request.QueryString["idUsuario"] != null)
         {
-            if (Usuario_Model.VerificarExistencia(Int32.Parse(cadenaID)) == 0)
-            {
-                if (Usuario_Model.Modificar(new Usuario(tipoUser,name,apellido,dui,fechaNac,residencia,telefono,email), Request.QueryString["idUsuario"]))
+                if (Usuario_Model.Modificar(new Usuario(Int32.Parse(cadenaID), tipoUser,name,apellido,dui,fechaNac,residencia,telefono,email), Request.QueryString["idUsuario"]))
                 {
-                    mensaje = "Materialize.toast('Usuario modificado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuario.aspx'})";
+                    mensaje = "Materialize.toast('Usuario modificado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
                 }
                 else
                 {
                     mensaje = "Materialize.toast('Error al modificar usuario', 2000)";
                 }
-            }
-            else
-            {
-                mensaje = "Materialize.toast('Usuario ya existe', 2000)";
-            }
         }
         else
         {
@@ -85,9 +82,9 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
             {
                 try
                 {
-                    if (Usuario_Model.Modificar(new Usuario(tipoUser, name, apellido, dui, fechaNac, residencia, telefono, email), Request.QueryString["idUsuario"]))
+                    if (Usuario_Model.Modificar(new Usuario(Int32.Parse(cadenaID),tipoUser, name, apellido, dui, fechaNac, residencia, telefono, email), Request.QueryString["idUsuario"]))
                     {
-                        mensaje = "Materialize.toast('Usuario ingresado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuario.aspx'})";
+                        mensaje = "Materialize.toast('Usuario ingresado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
                     }
                 }
                 catch (Exception E)
