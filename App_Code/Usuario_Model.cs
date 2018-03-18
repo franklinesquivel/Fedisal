@@ -86,7 +86,6 @@ public class Usuario_Model
             cmd.Parameters["@idInfo"].Value = cadenaID;
             DBConnection.ExecuteCommandIUD(cmd);
 
-        
         SqlCommand cmd2 = DBConnection.GetCommand("UPDATE Usuario SET idTipoUsuario = @idTipo WHERE idInformacion = @idInformacion");
         cmd2.Parameters.Add("@idTipo", SqlDbType.VarChar);
         cmd2.Parameters.Add("@idInformacion", SqlDbType.Int);

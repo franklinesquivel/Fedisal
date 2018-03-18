@@ -15,13 +15,18 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
             SqlDataReader dataID = DBConnection.GetData("SELECT * FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + Request.QueryString["idUsuario"] + "';");
             dataID.Read();
             string cadenaID = dataID["idInformacion"].ToString();
+            dataID.Close();
             if (Usuario_Model.VerificarExistencia(Int32.Parse(cadenaID)) > 0)
             { 
                 GenerarInformacion();
                 tituloF.InnerHtml = "Modificar Usuario";
                 btnUsuarios.Text = "Editar";
-                DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario AS TU INNER JOIN Usuario AS U ON U.idTipoUsuario = TU.idTipoUsuario AND idUsuario = '" + Request.QueryString["idUsuario"] + "';", "descripcion", "idTipoUsuario");
-
+                DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario", "descripcion", "idTipoUsuario");
+                SqlDataReader dataDDL = DBConnection.GetData("SELECT idTipoUsuario FROM Usuario WHERE idUsuario = '" + Request.QueryString["idUsuario"] + "'");
+                dataDDL.Read();
+                string ddlvalue = dataDDL["idTipoUsuario"].ToString();
+                ddlTipoUsuario.SelectedValue = ddlvalue;
+                dataDDL.Close();
             }
         }
         else

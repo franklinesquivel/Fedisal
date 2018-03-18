@@ -36,7 +36,7 @@
                     <a class="collapsible-header waves-effect">Usuarios<i class="material-icons">person</i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="/Administrador/" class="waves-effect">Añadir<i class="material-icons">library_add</i></a></li>
+                            <li><a href="/Administrador/ModificarUsuario.aspx" class="waves-effect">Añadir<i class="material-icons">library_add</i></a></li>
                             <li><a href="/Administrador/GestionUsuarios.aspx" class="waves-effect">Gestionar<i class="material-icons">poll</i></a></li>
                         </ul>
                     </div>
