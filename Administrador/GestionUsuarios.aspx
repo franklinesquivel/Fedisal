@@ -23,9 +23,11 @@
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" SortExpression="Apellido" />
                         <asp:BoundField DataField="Tipo de Usuario" HeaderText="Tipo de Usuario" SortExpression="Tipo de Usuario" />
-                        <asp:CommandField AccessibleHeaderText="Acciones" ButtonType="Button" ControlStyle-CssClass="btn" SelectText="Editar" ShowSelectButton="True" HeaderText="Acciones">
-                            <ControlStyle CssClass="btn"></ControlStyle>
-                        </asp:CommandField>
+                        <asp:TemplateField AccessibleHeaderText="Acciones">
+                            <ItemTemplate>
+                                <asp:HyperLink NavigateUrl='<%# string.Concat("ModificarUsuario.aspx?idUsuario=", Eval("Código")) %>' ID="btnEditarGV" runat="server" Visible="true" CssClass="btnModificar waves-effect waves-light btn modal-trigger" Text='Editar' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
                 <asp:SqlDataSource ID="sdsUsuarios" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>" SelectCommand="SELECT u.idUsuario AS [Código], ip.nombres AS [Nombre], ip.apellidos AS [Apellido], tu.descripcion AS [Tipo de Usuario] FROM

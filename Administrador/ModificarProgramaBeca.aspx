@@ -1,21 +1,18 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ModificarProgramaBeca.aspx.cs" Inherits="ModificarProgramaBeca" %>
 
+<%@ Register Src="Header.ascx" TagPrefix="uc" TagName="Header" %>
+<%@ Register Src="Menu.ascx" TagPrefix="uc" TagName="Menu" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Fedisal - Modificar Programa de Becas</title>
-    <link href="css/materialize.min.css" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width" initial-scale="1.0" />
-    <link rel="shortcut icon" type="image/png" href="/img/favicon.ico"/>
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/init.js"></script>
-</head>
+    <uc:Header Titulo="Fedisal - Programa Becas" runat="server" ID="Header" />
 <body>
+    <header>
+            <uc:Menu Titulo="Registro de Programa de Becas" runat="server" ID="Menu" />
+        </header>
+    <main>
     <form id="frmMain" runat="server">
         <h3 class="center deep-purple-text text-lighten-2">Modificar Programa de Becas</h3>
         <div class="container row">
@@ -45,5 +42,6 @@
             </div>
         </div>
     </form>
+        </main>
 </body>
 </html>

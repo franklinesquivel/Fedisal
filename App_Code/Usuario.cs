@@ -16,7 +16,7 @@ public class Usuario
     private string residencia;
     private string telefono;
     private string correo;
-
+    private string tipoUsuario;
     public String IdUsuario
     {
         get
@@ -121,6 +121,19 @@ public class Usuario
         }
     }
 
+    public string TipoUsuario
+    {
+        get
+        {
+            return tipoUsuario;
+        }
+
+        set
+        {
+            tipoUsuario = value;
+        }
+    }
+
     public Usuario(string nombre, string apellido, string dui, DateTime fechaNacimiento, string residencia, string telefono, string correo)
     {
         this.nombre = nombre;
@@ -130,5 +143,16 @@ public class Usuario
         this.residencia = residencia;
         this.telefono = telefono;
         this.correo = correo;
+    }
+    public Usuario(string tipoUser,string nombre, string apellido, string dui, DateTime fechaNacimiento, string residencia, string telefono, string correo)
+    {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dui = dui;
+        this.fechaNacimiento = fechaNacimiento;
+        this.residencia = residencia;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.tipoUsuario = tipoUser;
     }
 }
