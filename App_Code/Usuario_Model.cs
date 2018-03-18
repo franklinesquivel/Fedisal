@@ -36,7 +36,7 @@ public class Usuario_Model
         cmd.Parameters["@correo"].Value = usuario.Correo;
         return DBConnection.ExecuteCommandIUD(cmd);
     }
-    public static bool Insertar(Usuario usuario,string tipoUsuario,string idUsuario,string nombreU,string contra)
+    public static bool Insertar(Usuario usuario, string tipoUsuario, string idUsuario, string nombreU, string contra)
     {
         SqlCommand cmd = DBConnection.GetCommand("INSERT INTO InformacionPersonal(nombres, apellidos, dui, fechaNacimiento, direccionResidencia, telefono, correoElectronico) VALUES(@nombre, @apellido, @dui, @fecha, @residencia, @telefono, @correo)");
         cmd.Parameters.Add("@nombre", SqlDbType.Char);
@@ -74,7 +74,9 @@ public class Usuario_Model
         cmd2.Parameters["@idTipoU"].Value = tipoUsuario;
         cmd2.Parameters["@nombreUser"].Value = nombreU;
         cmd2.Parameters["@contra"].Value = contra;
-        
+        Usuario correoUser = new Usuario(correo, nombreU, contra,idinfo);
+        Correo.EnviarCorreoUsuario(correoUser);
+
         return DBConnection.ExecuteCommandIUD(cmd2);
     }
     public static bool Modificar(Usuario usuario,string idUsuario)

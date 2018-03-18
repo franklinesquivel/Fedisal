@@ -56,4 +56,40 @@ public class Correo
         }
         return response;
     }
+    public static bool EnviarCorreoUsuario(Usuario usuario)
+    {
+        bool response = true;
+        //Obtener correo, contraseña y usuario
+        SqlDataReader reader = DBConnection.GetData("SELECT correoElectronico FROM InformacionPersonal WHERE idInformacion = " + usuario.IdInfo + "");
+        reader.Read();
+
+        //Configuración del mensaje
+        MailMessage mensaje = new MailMessage();
+        mensaje.From = new MailAddress("ezic2017@gmail.com");
+        mensaje.Subject = "FEDISAL - Nuevo Usuario";
+        mensaje.IsBodyHtml = true;
+        mensaje.Body = "";
+        mensaje.Body += "<b>Usuario: </b>" + usuario.Nombre;
+        mensaje.Body += "<br><b>Contraseña: </b>" + usuario.Contrasenna;
+        mensaje.BodyEncoding = Encoding.UTF8;
+        mensaje.To.Add((string)reader[0]);
+        reader.Close();
+
+        //Configuración SMTPT
+        SmtpClient clienteSMTP = new SmtpClient();
+        clienteSMTP.Credentials = new NetworkCredential("ezic2017@gmail.com", "FusalHorasSocialesEstupida?...;noo.18");
+        clienteSMTP.Port = 587;
+        clienteSMTP.Host = "smtp.gmail.com";
+        clienteSMTP.EnableSsl = true;
+        try
+        {
+            clienteSMTP.Send(mensaje);
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e.Message);
+            response = false;
+        }
+        return response;
+    }
 }

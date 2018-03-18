@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -60,6 +61,8 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
 
     protected void btnUsuarios_Click(object sender, EventArgs e)
     {
+        string patternG = "([G]{1}[0-9]{4})";
+        string patternC = "([C]{1}[0-9]{4})";
         string name = txtNombre.Value;
         string apellido = txtApellido.Value;
         string telefono = txtTel.Value;
@@ -67,8 +70,16 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
         string email = txtEmail.Value;
         DateTime fechaNac = DateTime.Parse(txtFechaNac.Value);
         string residencia = txtResidencia.Value;
-        string tipoUser = ddlTipoUsuario.SelectedValue;
+        string tipoUser = "";
         string codigoUser = txtUsername.Text;
+        if (Regex.IsMatch(codigoUser.ToUpper(), patternC))
+        {
+            tipoUser = "C";
+        }
+        else if(Regex.IsMatch(codigoUser.ToUpper(), patternG))
+        {
+            tipoUser = "G";
+        }
         string nombreUser = txtNameUser.Text;
         string mensaje = "";
 
@@ -77,6 +88,16 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
             SqlDataReader dataObtenerID = DBConnection.GetData("SELECT * FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + Request.QueryString["idUsuario"] + "';");
             dataObtenerID.Read();
             string cadenaID = dataObtenerID["idInformacion"].ToString();
+            string idUser = dataObtenerID["idUsuario"].ToString();
+
+            if (Regex.IsMatch(idUser.ToUpper(), patternC))
+            {
+                tipoUser = "C";
+            }
+            else if (Regex.IsMatch(idUser.ToUpper(), patternG))
+            {
+                tipoUser = "G";
+            }
             if (Usuario_Model.Modificar(new Usuario(Int32.Parse(cadenaID), tipoUser,name,apellido,dui,fechaNac,residencia,telefono,email), Request.QueryString["idUsuario"]))
                 {
                     mensaje = "Materialize.toast('Usuario modificado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
@@ -114,6 +135,7 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
         }
         
         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "confirmLog", mensaje, true);
+        
     }
     protected string GenerarContrasenna()
     {

@@ -18,7 +18,7 @@ public class Usuario
     private string telefono;
     private string correo;
     private string tipoUsuario;
-
+    private string contrasenna;
     public string Nombre
     {
         get
@@ -149,6 +149,26 @@ public class Usuario
         }
     }
 
+    public string Contrasenna
+    {
+        get
+        {
+            return contrasenna;
+        }
+
+        set
+        {
+            contrasenna = value;
+        }
+    }
+
+    public Usuario(string correo,string nombre,string contra,int idInfo)
+    {
+        this.correo = correo;
+        this.nombre = nombre;
+        this.contrasenna = contra;
+        this.idInfo = idInfo;
+    }
     public Usuario(string nombre, string apellido, string dui, DateTime fechaNacimiento, string residencia, string telefono, string correo)
     {
         this.nombre = nombre;
