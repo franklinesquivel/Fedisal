@@ -8,39 +8,57 @@ using System.Web;
 /// </summary>
 public class NivelEducativo
 {
-    public int idNivelEducativo;
-    public String nombre;
-    public String descripcion;
+    private int idNivelEducativo;
+    private String nombre;
+    private String descripcion;
 
-    private int Id
+    public int IdNivelEducativo
     {
-        get {
+        get
+        {
             return idNivelEducativo;
         }
-        set {
+
+        set
+        {
             idNivelEducativo = value;
         }
     }
-    private String Nombre {
-        get {
+
+    public string Nombre
+    {
+        get
+        {
             return nombre;
         }
-        set {
-            Nombre = value;
+
+        set
+        {
+            nombre = value;
         }
     }
-    private String Descripcion {
-        get {
+
+    public string Descripcion
+    {
+        get
+        {
             return descripcion;
         }
-        set {
+
+        set
+        {
             descripcion = value;
         }
     }
 
     public NivelEducativo(int id, String Nombre, String descripcion) {
-        this.Id = id;
-        this.Nombre = Nombre;
-        this.Descripcion = descripcion;
+        this.idNivelEducativo = id;
+        this.nombre = Nombre;
+        this.descripcion = descripcion;
+    }
+
+    public NivelEducativo(String Nombre, String descripcion) {
+        this.nombre = Nombre;
+        this.descripcion = descripcion;
     }
 }

@@ -2,6 +2,8 @@
 
     $(document).ready(function () {
 
+        Materialize.updateTextFields();
+
         if ($('.slider').length > 0) {
             $('.slider').slider();
         }

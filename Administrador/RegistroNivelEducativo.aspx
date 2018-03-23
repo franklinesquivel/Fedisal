@@ -13,12 +13,13 @@
         <main>
             <div class="row">
                 <form id="frmMain" runat="server">
+                    <asp:HiddenField ID="idNivel" runat="server" />
                 <h3 class="center deep-purple-text text-lighten-2" runat="server" id="title">Registro de Nivel Educativo</h3>
                 <div class="container row">
                     <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
                         
-                        <p>ingrese nombre:</p><asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                         <asp:Label ID="lblName" AssociatedControlID="txtName" runat="server" Text="Nombre"></asp:Label>
+                        <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                             ControlToValidate="txtName"
                             CssClass="error-tag"
@@ -27,9 +28,8 @@
                     </div>
 
                     <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
-                        
-                        <p>ingrese descripcion:</p><asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
                         <asp:Label ID="lblDescripcion" AssociatedControlID="txtDescripcion" runat="server" Text="Descripcion"></asp:Label>
+                        <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                             ControlToValidate="txtDescripcion"
                             CssClass="error-tag"

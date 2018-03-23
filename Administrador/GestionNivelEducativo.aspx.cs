@@ -12,11 +12,12 @@ public partial class Administrador_GestionNivelEducativo : System.Web.UI.Page
 
     }
     [System.Web.Services.WebMethod]
-    public static object EliminarNivelEducativo(string idNivelEducativo)
+    public static object EliminarNivel(String idNivel)
     {
         try
         {
-            return NivelEducativo_Model.Eliminar(Int32.Parse(idNivelEducativo.ToString()));
+
+            return NivelEducativo_Model.Eliminar(Int32.Parse(idNivel.ToString()));
         }
         catch (Exception e)
         {

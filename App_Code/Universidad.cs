@@ -8,50 +8,71 @@ using System.Web;
 /// </summary>
 public class Universidad
 {
-    public int idUniversidad;
-    public string nombre;
-    public string direccion;
-    public int telefono;
+    private int idUniversidad;
+    private String nombre;
+    private String direccion;
+    private String telefono;
 
-    private int Id {
-        get {
+    public int IdUniversidad
+    {
+        get
+        {
             return idUniversidad;
         }
-        set {
+
+        set
+        {
             idUniversidad = value;
         }
     }
 
-    private String Nombre {
-        get {
+    public string Nombre
+    {
+        get
+        {
             return nombre;
         }
-        set {
+
+        set
+        {
             nombre = value;
         }
     }
 
-    private String Direccion{
-        get {
+    public string Direccion
+    {
+        get
+        {
             return direccion;
         }
-        set {
+
+        set
+        {
             direccion = value;
         }
     }
 
-    private int Telefono {
-        get {
+    public string Telefono
+    {
+        get
+        {
             return telefono;
         }
-        set {
+
+        set
+        {
             telefono = value;
         }
     }
 
-
-    public Universidad(int id, string nombre, string direccion, int telefono) {
+    public Universidad(int id, String nombre, String direccion, String telefono) {
         this.idUniversidad = id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+    }
+
+    public Universidad(String nombre, String direccion, String telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;

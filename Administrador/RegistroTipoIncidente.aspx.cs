@@ -15,6 +15,10 @@ public partial class Administrador_RegistroTipoIncidente : System.Web.UI.Page
             { //Se verifica la existencia de la carrera a modificar
                 EstablecerInformacion();
             }
+            else
+            {
+                Response.Redirect("GestionTipoIncidente.aspx");
+            }
         }
         else
         {
@@ -39,7 +43,7 @@ public partial class Administrador_RegistroTipoIncidente : System.Web.UI.Page
             {
                 if (TipoIncidente_Model.Insertar(new TipoIncidente(nombre, descripcion))) //Proceso para agregar nuevo tipo incidente
                 {
-                    mensaje = "Materialize.toast('Tipo de Incidente registrado con exito', 1000, '', function(){ location.href = '/Administrador/RegistroTipoIncidente.aspx'})";
+                    mensaje = "Materialize.toast('Tipo de Incidente registrado con exito', 1000, '', function(){ location.href = '/Administrador/GestionTipoIncidente.aspx'})";
                 }
                 else
                 {

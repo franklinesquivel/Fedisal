@@ -34,6 +34,9 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                     verificarAcciones2.Visible = false;
                     dataDDL.Close();
                 }
+            }else
+            {
+                Response.Redirect("GestionUsuarios.aspx");
             }
         }
         else

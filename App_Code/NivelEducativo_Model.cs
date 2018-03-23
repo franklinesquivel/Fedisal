@@ -16,23 +16,7 @@ public class NivelEducativo_Model
         // TODO: Add constructor logic here
         //
     }
-    public static int VerificarExistencia(int id)
-    { //Verifica la existencia por id
-        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM NivelEducativo WHERE idNivelEducativo = @id");
-        cmd.Parameters.Add("@id", SqlDbType.Int);
 
-        cmd.Parameters["@id"].Value = id;
-        return Int32.Parse(DBConnection.QueryScalar(cmd));
-    }
-
-    public static int VerificarExistencia(string nombre)
-    { //Verifica la existencia por nombre
-        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(LOWER(nombre)) FROM NivelEducativo WHERE Nombre = LOWER(@nombre)");
-        cmd.Parameters.Add("@nombre", SqlDbType.Int);
-
-        cmd.Parameters["@nombre"].Value = nombre;
-        return Int32.Parse(DBConnection.QueryScalar(cmd));
-    }
 
     public static bool Insertar(NivelEducativo _c)
     {
@@ -40,7 +24,8 @@ public class NivelEducativo_Model
         cmd.Parameters.Add("@nombre", SqlDbType.VarChar);
         cmd.Parameters.Add("@descripcion", SqlDbType.VarChar);
 
-        cmd.Parameters["@nombre"].Value = _c.nombre;
+        cmd.Parameters["@nombre"].Value = _c.Nombre;
+        cmd.Parameters["@descripcion"].Value = _c.Descripcion;
         if (DBConnection.ExecuteCommandIUD(cmd)) //Registramos en tabla NivelEducativo
         {
             return true;
@@ -55,23 +40,37 @@ public class NivelEducativo_Model
     {//Obtiene los datos de la carrera segun id
         string sql = "SELECT * FROM NivelEducativo WHERE idNivelEducativo = " + id + ";";
         SqlDataReader data = DBConnection.GetData(sql);
-        data.Read();
-        NivelEducativo _c = new NivelEducativo(Int32.Parse(data["idNivelEducativo"].ToString()), data["nombre"].ToString(), data["descripcion"].ToString());
-        data.Close();
-        return _c;
+        if (data != null)
+        {
+            if (data.HasRows)
+            {
+                data.Read();
+                NivelEducativo _c = new NivelEducativo(Int32.Parse(data["idNivelEducativo"].ToString()), data["nombre"].ToString(), data["descripcion"].ToString());
+                data.Close();
+                return _c;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public static Boolean Modificar(NivelEducativo _c)
     {
-        SqlCommand cmd = DBConnection.GetCommand("UPDATE NivelEducativo SET nombre = @nombre WHERE idNivelEducativo = @id");
+        SqlCommand cmd = DBConnection.GetCommand("UPDATE NivelEducativo SET nombre = @nombre, descripcion = @d WHERE idNivelEducativo = @id");
         cmd.Parameters.Add("@id", SqlDbType.Int);
         cmd.Parameters.Add("@nombre", SqlDbType.VarChar);
-        cmd.Parameters.Add("@descripcion", SqlDbType.VarChar);
+        cmd.Parameters.Add("@d", SqlDbType.VarChar);
       
 
-        cmd.Parameters["@id"].Value = _c.idNivelEducativo;
-        cmd.Parameters["@nombre"].Value = _c.nombre;
-        cmd.Parameters["@descripcion"].Value = _c.descripcion;
+        cmd.Parameters["@id"].Value = _c.IdNivelEducativo;
+        cmd.Parameters["@nombre"].Value = _c.Nombre;
+        cmd.Parameters["@d"].Value = _c.Descripcion;
         return DBConnection.ExecuteCommandIUD(cmd);
     }
 

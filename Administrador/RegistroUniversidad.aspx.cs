@@ -14,23 +14,22 @@ public partial class Administrador_RegistroUniversidad : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            GenerarCodigo();
-            resultCode.InnerHtml = "<h5 class='center-align  deep-purple-text text-lighten-2'>Código: " + idNuevaUniversidad + "</h5>";
-        }
-    }
-
-    protected void GenerarCodigo()
-    {//Generamos un codigo aleatorio
-        Random rnd = new Random();
-        string letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //Cadena ocupada para generar un código aleatorio
-        do
-        {
-            idNuevaUniversidad = "BE";
-            for (int i = 0; i < 2; i++)
+            if(Request.QueryString["idUniversidad"] != null)
             {
-                idNuevaUniversidad += letras.Substring(rnd.Next(0, letras.Length - 1), 1); //Guardamos la letra seleccionada
+                Universidad _n = Universidad_Model.ObtenerUniversidad(int.Parse(Request.QueryString["idUniversidad"]));
+                if(_n != null)
+                {
+                    idUniversidad.Value = _n.IdUniversidad.ToString();
+                    txtName.Text = _n.Nombre;
+                    txtDireccion.Text = _n.Direccion;
+                    txtTelefono.Text = _n.Telefono;
+                }
+                else
+                {
+                    Response.Redirect("GestionUniversidad.aspx");
+                }
             }
-        } while (NivelEducativo_Model.VerificarExistencia(idNuevaUniversidad) > 0);
+        }
     }
 
     protected void btnRegister_Click(object sender, EventArgs e)
@@ -38,12 +37,13 @@ public partial class Administrador_RegistroUniversidad : System.Web.UI.Page
         if (Page.IsValid)
         {
             string mensaje;
-            Universidad universidad = new Universidad(Int32.Parse(idNuevaUniversidad), txtName.Text, txtDireccion.Text,Int32.Parse(txtTelefono.Text));
-            if (Universidad_Model.VerificarExistencia(universidad.idUniversidad) == 0) //Volvemos a verificar codigo
+            Universidad universidad = new Universidad(txtName.Text, txtDireccion.Text, txtTelefono.Text);
+            if(idUniversidad.Value.Trim().Length > 0)
             {
-                if (ProgramaBeca_Model.Insertar(Universidad))
+                universidad.IdUniversidad = int.Parse(idUniversidad.Value);
+                if (Universidad_Model.Modificar(universidad))
                 {
-                    mensaje = "Materialize.toast('Nivel registado exitosamente!', 2000, '', function(){ location.href = '/Administrador/RegistroNivelEducativo.aspx'})";
+                    mensaje = "Materialize.toast('Universidad modificada exitosamente!', 2000, '', function(){ location.href = '/Administrador/GestionUniversidad.aspx'})";
                 }
                 else
                 {
@@ -52,7 +52,14 @@ public partial class Administrador_RegistroUniversidad : System.Web.UI.Page
             }
             else
             {
-                mensaje = "Materialize.toast('Código ya existe. Recargar e intentar', 2000)";
+                if (Universidad_Model.Insertar(universidad))
+                {
+                    mensaje = "Materialize.toast('Universidad registrada exitosamente!', 2000, '', function(){ location.href = '/Administrador/GestionUniversidad.aspx'})";
+                }
+                else
+                {
+                    mensaje = "Materialize.toast('Error :(', 2000)";
+                }
             }
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "confirmLog", mensaje, true);
         }

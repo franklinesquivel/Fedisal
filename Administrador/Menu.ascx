@@ -46,7 +46,7 @@
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li>
-                    <a class="collapsible-header waves-effect">Carreras<i class="material-icons">school</i></a>
+                    <a class="collapsible-header waves-effect">Carreras<i class="material-icons">directions_walk</i></a>
                     <div class="collapsible-body">
                         <ul>
                             <li><a href="/Administrador/RegistroCarrera.aspx" class="waves-effect">Añadir<i class="material-icons">library_add</i></a></li>
@@ -59,7 +59,7 @@
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li>
-                    <a class="collapsible-header waves-effect">Nivel Educativo<i class="material-icons">school</i></a>
+                    <a class="collapsible-header waves-effect">Nivel Educativo<i class="material-icons">local_library</i></a>
                     <div class="collapsible-body">
                         <ul>
                             <li><a href="/Administrador/RegistroNivelEducativo.aspx" class="waves-effect">Añadir<i class="material-icons">library_add</i></a></li>

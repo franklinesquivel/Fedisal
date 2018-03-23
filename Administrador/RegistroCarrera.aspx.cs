@@ -11,10 +11,16 @@ public partial class Administrador_RegistroCarrera : System.Web.UI.Page
     {
         if ((!Page.IsPostBack) && Request.QueryString["id"] != null)
         {
-            if (Carrera_Model.VerificarExistencia(Int32.Parse(Request.QueryString["id"])) > 0) { //Se verifica la existencia de la carrera a modificar
+            if (Carrera_Model.VerificarExistencia(Int32.Parse(Request.QueryString["id"])) > 0)
+            { //Se verifica la existencia de la carrera a modificar
                 EstablecerInformacion();
             }
-        }else
+            else
+            {
+                Response.Redirect("GestionCarreras.aspx");
+            }
+        }
+        else
         {
             title.InnerHtml = "Registro Carrera";
         }

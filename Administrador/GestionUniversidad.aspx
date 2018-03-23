@@ -18,27 +18,24 @@
                         DataSourceID="sqlDataS"
                         AutoGenerateColumns="False">
                         <Columns>
-                            <asp:BoundField DataField="idUniversidad" HeaderText="ID" SortExpression="ID"/>
-                            <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
-                            <asp:BoundField DataField="direccion" HeaderText="Direccion" SortExpression="Direccion" />
-                            <asp:BoundField DataField="telefono" HeaderText="telefono" SortExpression="telefono" />
-                            <asp:TemplateField HeaderText="Modificar" SortExpression="idTipoIncidente">
+                            <asp:BoundField HeaderStyle-CssClass="center" DataField="idUniversidad" HeaderText="ID" SortExpression="ID"/>
+                            <asp:BoundField HeaderStyle-CssClass="center" DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
+                            <asp:BoundField HeaderStyle-CssClass="center" DataField="direccion" HeaderText="Direccion" SortExpression="Direccion" />
+                            <asp:BoundField HeaderStyle-CssClass="center" DataField="telefono" HeaderText="telefono" SortExpression="telefono" />
+                            <asp:TemplateField HeaderStyle-CssClass="center" HeaderText="Acciones" SortExpression="idTipoIncidente">
                                 <ItemTemplate>
-                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/Administrador/GestionUniversidad.aspx?id=", Eval("idUniversidad")) %>' ID="btnModificarGV" runat="server" Visible="true" CssClass="btnModificar waves-effect waves-light btn modal-trigger" Text='Modificar' />
+                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/Administrador/RegistroUniversidad.aspx?idUniversidad=", Eval("idUniversidad")) %>' ID="btnModificarGV" runat="server" Visible="true" CssClass="blue blue-text text-darken-4 btnModificar waves-effect waves-light btn modal-trigger" Text='Modificar' />
+                                    <asp:HyperLink NavigateUrl="#mdlEliminar" ID="btnEliminarGV" runat="server" idUniversidad='<%# Eval("idUniversidad") %>' CssClass="btnEliminar waves-effect waves-light btn red red-text text-darken-4 modal-trigger" Text='Eliminar' />
                                 </ItemTemplate>
                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Eliminar" SortExpression="idUniversidad">
-                                <ItemTemplate>
-                                    <asp:HyperLink NavigateUrl="#mdlEliminar" ID="btnEliminarGV" runat="server" idUniversidad='<%# Eval("idUniversidad") %>' Visible='<%# (Convert.ToInt32(Eval("UniversidadRegistrada")) > 0) ? false : true %>' CssClass="eliminarModal waves-effect waves-light btn modal-trigger" Text='Eliminar' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
 
                     <asp:SqlDataSource ID="sqlDataS" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>"
                         SelectCommand="
-                            SELECT T.idUniversidad, T.nombre, T.direccion, T.telefono COUNT(B.idBitacora) AS [UniversidadRegistrada]  FROM Universidad T FULL JOIN BitacoraIncidentes B
-                            ON T.idUniversidad = B.idUniversidad GROUP BY T.idUniversidad, T.nombre, T.direccion, T.telefono ORDER BY T.nombre; ">
+                            SELECT T.idUniversidad, T.nombre, T.direccion, T.telefono
+                            FROM Universidad T
+                            ORDER BY T.nombre; ">
                     </asp:SqlDataSource>
                 </form>
             </div>
@@ -50,7 +47,7 @@
                 <input type="hidden" value="" runat="server" id="txtIdUniversidad" />
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-action waves-effect waves-green btn-flat" id="btnEliminar">Eliminar</a>
+                <a href="#!" class="modal-action waves-effect waves-green btn-flat" id="btnMdlEliminar">Eliminar</a>
                 <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
             </div>
         </div>

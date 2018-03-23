@@ -15,6 +15,7 @@
                 if (r.d == true) {
                     $('#mdlEliminar').modal('close');
                     Materialize.toast('Eliminación exitosa!', 1000, '', "function(){ location.href = '/Administrador/GestionTipoIncidente.aspx'}");
+                    location.reload();
                 } else {
                     Materialize.toast('Ocurrio un Error :(!', 1000);
                 }

@@ -11,8 +11,9 @@ public partial class Administrador_GestionUniversidad : System.Web.UI.Page
     {
 
     }
+
     [System.Web.Services.WebMethod]
-    public static object EliminarUniversidad(string idUniversidad)
+    public static object EliminarUniversidad(String idUniversidad)
     {
         try
         {

@@ -14,45 +14,47 @@ public partial class Administrador_RegistroNivelEducativo : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            GenerarCodigo();
-            resultCode.InnerHtml = "<h5 class='center-align  deep-purple-text text-lighten-2'>Código: " + idNuevoNivel + "</h5>";
-        }
-    }
-
-    protected void GenerarCodigo()
-    {//Generamos un codigo aleatorio
-        Random rnd = new Random();
-        string letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //Cadena ocupada para generar un código aleatorio
-        do
-        {
-            idNuevoNivel = "BE";
-            for (int i = 0; i < 2; i++)
+            if(Request.QueryString["idNivel"] != null)
             {
-                idNuevoNivel += letras.Substring(rnd.Next(0, letras.Length - 1), 1); //Guardamos la letra seleccionada
+                NivelEducativo _n = NivelEducativo_Model.ObtenerNivelEducativo(int.Parse(Request.QueryString["idNivel"]));
+                if(_n != null)
+                {
+                    idNivel.Value = _n.IdNivelEducativo.ToString();
+                    txtName.Text = _n.Nombre;
+                    txtDescripcion.Text = _n.Descripcion;
+                }else
+                {
+                    Response.Redirect("GestionNivelEducativo.aspx");
+                }
             }
-        } while (NivelEducativo_Model.VerificarExistencia(idNuevoNivel) > 0);
+        }
     }
 
     protected void btnRegister_Click(object sender, EventArgs e)
     {
         if (Page.IsValid)
         {
-            string mensaje;
-            NivelEducativo nivel = new NivelEducativo(Int32.Parse(idNuevoNivel), txtName.Text, txtDescripcion.Text);
-            if (NivelEducativo_Model.VerificarExistencia(nivel.idNivelEducativo) == 0) //Volvemos a verificar codigo
-            {
-                if (ProgramaBeca_Model.Insertar(nivel))
+            string mensaje = "";
+            NivelEducativo nivel = new NivelEducativo(txtName.Text, txtDescripcion.Text);
+            if(idNivel.Value.Trim().Length > 0){
+                nivel.IdNivelEducativo = int.Parse(idNivel.Value);
+                if (NivelEducativo_Model.Modificar(nivel))
                 {
-                    mensaje = "Materialize.toast('Nivel registado exitosamente!', 2000, '', function(){ location.href = '/Administrador/RegistroNivelEducativo.aspx'})";
+                    mensaje = "Materialize.toast('Nivel modificado exitosamente!', 1000, '', function(){ location.href = '/Administrador/GestionNivelEducativo.aspx'})";
                 }
                 else
                 {
                     mensaje = "Materialize.toast('Error :(', 2000)";
                 }
-            }
-            else
-            {
-                mensaje = "Materialize.toast('Código ya existe. Recargar e intentar', 2000)";
+            }else{
+                if (NivelEducativo_Model.Insertar(nivel))
+                {
+                    mensaje = "Materialize.toast('Nivel registado exitosamente!', 1000, '', function(){ location.href = '/Administrador/GestionNivelEducativo.aspx'})";
+                }
+                else
+                {
+                    mensaje = "Materialize.toast('Error :(', 2000)";
+                }
             }
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "confirmLog", mensaje, true);
         }
