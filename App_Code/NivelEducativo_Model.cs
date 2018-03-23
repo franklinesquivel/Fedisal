@@ -51,34 +51,33 @@ public class NivelEducativo_Model
         }
     }
 
-    public static Universidad ObtenerNivelEducativo(int id)
+    public static NivelEducativo ObtenerNivelEducativo(int id)
     {//Obtiene los datos de la carrera segun id
-        string sql = "SELECT * FROM Universidad WHERE idUniversidad = " + id + ";";
+        string sql = "SELECT * FROM NivelEducativo WHERE idNivelEducativo = " + id + ";";
         SqlDataReader data = DBConnection.GetData(sql);
         data.Read();
-        Universidad _c = new Universidad(Int32.Parse(data["idUniversidad"].ToString()), data["nombre"].ToString(), data["direccion"].ToString(), Int32.Parse(data["telefono"].ToString()));
+        NivelEducativo _c = new NivelEducativo(Int32.Parse(data["idNivelEducativo"].ToString()), data["nombre"].ToString(), data["descripcion"].ToString());
         data.Close();
         return _c;
     }
 
-    public static Boolean Modificar(Universidad _c)
+    public static Boolean Modificar(NivelEducativo _c)
     {
-        SqlCommand cmd = DBConnection.GetCommand("UPDATE Universidad SET nombre = @nombre WHERE idUniversidad = @id");
+        SqlCommand cmd = DBConnection.GetCommand("UPDATE NivelEducativo SET nombre = @nombre WHERE idNivelEducativo = @id");
         cmd.Parameters.Add("@id", SqlDbType.Int);
         cmd.Parameters.Add("@nombre", SqlDbType.VarChar);
-        cmd.Parameters.Add("@direccion", SqlDbType.VarChar);
-        cmd.Parameters.Add("@telefono", SqlDbType.Int);
+        cmd.Parameters.Add("@descripcion", SqlDbType.VarChar);
+      
 
-        //cmd.Parameters["@id"].Value = _c.id;
-        //cmd.Parameters["@nombre"].Value = _c.Nombre;
-        cmd.Parameters["@direccion"].Value = _c.direccion;
-        cmd.Parameters["@telefono"].Value = _c.telefono;
+        cmd.Parameters["@id"].Value = _c.idNivelEducativo;
+        cmd.Parameters["@nombre"].Value = _c.nombre;
+        cmd.Parameters["@descripcion"].Value = _c.descripcion;
         return DBConnection.ExecuteCommandIUD(cmd);
     }
 
     public static Boolean Eliminar(int id)
     {
-        SqlCommand cmd = DBConnection.GetCommand("DELETE FROM Universidad WHERE idUniversidad = @id");
+        SqlCommand cmd = DBConnection.GetCommand("DELETE FROM NivelEducativo WHERE idNivelEducativo = @id");
         cmd.Parameters.Add("@id", SqlDbType.Int);
 
         cmd.Parameters["@id"].Value = id;

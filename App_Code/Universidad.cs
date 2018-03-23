@@ -8,17 +8,17 @@ using System.Web;
 /// </summary>
 public class Universidad
 {
-    public int id;
+    public int idUniversidad;
     public string nombre;
     public string direccion;
     public int telefono;
 
     private int Id {
         get {
-            return id;
+            return idUniversidad;
         }
         set {
-            id = value;
+            idUniversidad = value;
         }
     }
 
@@ -51,7 +51,7 @@ public class Universidad
 
 
     public Universidad(int id, string nombre, string direccion, int telefono) {
-        this.id = id;
+        this.idUniversidad = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
