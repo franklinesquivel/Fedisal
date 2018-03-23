@@ -14,7 +14,6 @@
         </header>
         <main>
             <form id="frmMain" runat="server">
-                <h3 class="center deep-purple-text text-lighten-2">Registro de Programa de Becas</h3>
                 <div class="container row">
                     <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3" id="resultCode" runat="server">
                     </div>

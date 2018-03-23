@@ -22,14 +22,12 @@ public partial class Administrador_RegistroCarrera : System.Web.UI.Page
         }
         else
         {
-            title.InnerHtml = "Registro Carrera";
         }
     }
 
     protected void EstablecerInformacion() {//Recupera y establece la informacion en los campos
         Carrera _c = Carrera_Model.ObtenerCarrera(Int32.Parse(Request.QueryString["id"]));
         txtName.Text = _c.Nombre;
-        title.InnerHtml = "Modificar Carrera";
     }
 
     protected void btnRegister_Click(object sender, EventArgs e)

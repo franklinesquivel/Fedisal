@@ -9,7 +9,7 @@
 <uc:Header Titulo="Gestión de Usuarios" runat="server" ID="Header" />
 <body>
     <header>
-        <uc:Menu Titulo="Administrador" runat="server" ID="Menu" />
+        <uc:Menu Titulo="Usuarios" runat="server" ID="Menu" />
     </header>
     <main>
         <form id="form1" runat="server">

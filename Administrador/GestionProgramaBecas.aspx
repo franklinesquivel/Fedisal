@@ -10,7 +10,7 @@
     <script src="../js/gestionProgramas.js"></script>
     <body>
         <header>
-            <uc:Menu Titulo="Registro de Programa de Becas" runat="server" ID="Menu" />
+            <uc:Menu Titulo="Programas de Becas" runat="server" ID="Menu" />
         </header>
         <main>
             <div class="row">

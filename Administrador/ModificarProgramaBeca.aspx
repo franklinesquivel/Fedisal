@@ -10,7 +10,7 @@
     <uc:Header Titulo="Fedisal - Programa Becas" runat="server" ID="Header" />
 <body>
     <header>
-            <uc:Menu Titulo="Registro de Programa de Becas" runat="server" ID="Menu" />
+            <uc:Menu Titulo="Modificar de Programa de Becas" runat="server" ID="Menu" />
         </header>
     <main>
     <form id="frmMain" runat="server">

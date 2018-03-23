@@ -27,7 +27,7 @@ public partial class Administrador_Header : System.Web.UI.UserControl
         if (!IsPostBack)
         {
             Sesion.VerificarUsuario(HttpContext.Current.Session["ID"].ToString());
-            titleTag.Text = "Fedisal (Administrador)" + Titulo;
+            titleTag.Text = "[Administrador]" + Titulo;
         }
     }
 }

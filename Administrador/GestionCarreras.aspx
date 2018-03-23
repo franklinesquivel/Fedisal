@@ -8,7 +8,7 @@
     <script src="../js/gestionCarrera.js"></script>
     <body>
         <header>
-            <uc:Menu Titulo="Gestión de Carreras" runat="server" ID="Menu" />
+            <uc:Menu Titulo="Carreras" runat="server" ID="Menu" />
         </header>
         <main class="container">
             <div class="row col l10 offset-l1">

@@ -13,7 +13,6 @@
         <main>
             <div class="row">
                 <form id="frmMain" runat="server">
-                <h3 class="center deep-purple-text text-lighten-2" runat="server" id="title">Registro</h3>
                 <div class="container row">
                     <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
                         <asp:TextBox ID="txtName" runat="server"></asp:TextBox>

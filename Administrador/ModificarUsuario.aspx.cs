@@ -22,7 +22,6 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                 if (Usuario_Model.VerificarExistencia(Int32.Parse(cadenaID)) > 0)
                 {
                     GenerarInformacion();
-                    tituloF.InnerHtml = "Modificar Usuario";
                     btnUsuarios.Text = "Editar";
                     DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario", "descripcion", "idTipoUsuario");
                     SqlDataReader dataDDL = DBConnection.GetData("SELECT idTipoUsuario FROM Usuario WHERE idUsuario = '" + Request.QueryString["idUsuario"] + "'");
@@ -41,7 +40,6 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
         }
         else
         {
-            tituloF.InnerHtml = "Registro de Usuario";
             btnUsuarios.Text = "Registrar";
             DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario WHERE descripcion = 'Contador' OR descripcion = 'GestorEducativo'", "descripcion", "idTipoUsuario");
             ddlTipoUsuario.DataBind();

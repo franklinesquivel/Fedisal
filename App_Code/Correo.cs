@@ -13,8 +13,8 @@ using System.Web;
 /// </summary>
 public class Correo
 {
-    static String hostMail = "ezic2017@gmail.com";
-    static String hostPass = "Est3rnOcl35tOma5toid30";
+    static String hostMail = "";
+    static String hostPass = "";
 
     public Correo()
     {

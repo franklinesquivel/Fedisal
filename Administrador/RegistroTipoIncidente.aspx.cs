@@ -22,7 +22,6 @@ public partial class Administrador_RegistroTipoIncidente : System.Web.UI.Page
         }
         else
         {
-            title.InnerHtml = "Registro";
         }
     }
 
@@ -30,7 +29,6 @@ public partial class Administrador_RegistroTipoIncidente : System.Web.UI.Page
         TipoIncidente _t = TipoIncidente_Model.ObtenerTipo(Int32.Parse(Request.QueryString["id"]));
         txtName.Text = _t.Nombre;
         txtDescription.Text = _t.Descripcion;
-        title.InnerHtml = "Modificar";
     }
 
     protected void btnRegister_Click(object sender, EventArgs e)
