@@ -13,6 +13,9 @@ using System.Web;
 /// </summary>
 public class Correo
 {
+    static String hostMail = "ezic2017@gmail.com";
+    static String hostPass = "Est3rnOcl35tOma5toid30";
+
     public Correo()
     {
         //
@@ -23,6 +26,7 @@ public class Correo
     public static bool EnviarCorreoBecario(Becario becario)
     {
         bool response = true;
+        
         //Obtener correo, contraseña y usuario
         SqlDataReader reader = DBConnection.GetData("SELECT correoElectronico FROM InformacionPersonal WHERE idInformacion = "+ becario.IdInformacion +"");
         reader.Read();
@@ -41,7 +45,7 @@ public class Correo
 
         //Configuración SMTPT
         SmtpClient clienteSMTP = new SmtpClient();
-        clienteSMTP.Credentials = new NetworkCredential("", ""); //Correo y contraseña del emisor
+        clienteSMTP.Credentials = new NetworkCredential(Correo.hostMail, Correo.hostPass); //Correo y contraseña del emisor
         clienteSMTP.Port = 587;
         clienteSMTP.Host = "smtp.gmail.com";
         clienteSMTP.EnableSsl = true;
@@ -77,7 +81,7 @@ public class Correo
 
         //Configuración SMTPT
         SmtpClient clienteSMTP = new SmtpClient();
-        clienteSMTP.Credentials = new NetworkCredential("", "");
+        clienteSMTP.Credentials = new NetworkCredential(Correo.hostMail, Correo.hostPass);
         clienteSMTP.Port = 587;
         clienteSMTP.Host = "smtp.gmail.com";
         clienteSMTP.EnableSsl = true;

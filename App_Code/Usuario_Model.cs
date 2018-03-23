@@ -79,32 +79,33 @@ public class Usuario_Model
 
         return DBConnection.ExecuteCommandIUD(cmd2);
     }
-    public static bool Modificar(Usuario usuario,string idUsuario)
+    public static bool Modificar(Usuario usuario, string idUsuario)
     {
-        SqlDataReader dataID = DBConnection.GetData("SELECT * FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + idUsuario + "';");
+        SqlDataReader dataID = DBConnection.GetData("SELECT ip.idInformacion FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + idUsuario + "';");
         dataID.Read();
         string cadenaID = dataID["idInformacion"].ToString();
+        dataID.Close();
 
-            SqlCommand cmd = DBConnection.GetCommand("UPDATE InformacionPersonal SET nombres = @nombre, apellidos = @apellido, dui = @dui, fechaNacimiento = @fecha, direccionResidencia = @residencia, telefono = @telefono , correoElectronico = @correo WHERE idInformacion = @idInfo");
-            cmd.Parameters.Add("@nombre", SqlDbType.Char);
-            cmd.Parameters.Add("@apellido", SqlDbType.VarChar);
-            cmd.Parameters.Add("@dui", SqlDbType.VarChar);
-            cmd.Parameters.Add("@fecha", SqlDbType.Date);
-            cmd.Parameters.Add("@residencia", SqlDbType.VarChar);
-            cmd.Parameters.Add("@telefono", SqlDbType.VarChar);
-            cmd.Parameters.Add("@correo", SqlDbType.VarChar);
-            cmd.Parameters.Add("@idInfo", SqlDbType.Int);
+        SqlCommand cmd = DBConnection.GetCommand("UPDATE InformacionPersonal SET nombres = @nombre, apellidos = @apellido, dui = @dui, fechaNacimiento = @fecha, direccionResidencia = @residencia, telefono = @telefono , correoElectronico = @correo WHERE idInformacion = @idInfo");
+        cmd.Parameters.Add("@nombre", SqlDbType.Char);
+        cmd.Parameters.Add("@apellido", SqlDbType.VarChar);
+        cmd.Parameters.Add("@dui", SqlDbType.VarChar);
+        cmd.Parameters.Add("@fecha", SqlDbType.Date);
+        cmd.Parameters.Add("@residencia", SqlDbType.VarChar);
+        cmd.Parameters.Add("@telefono", SqlDbType.VarChar);
+        cmd.Parameters.Add("@correo", SqlDbType.VarChar);
+        cmd.Parameters.Add("@idInfo", SqlDbType.Int);
 
 
-            cmd.Parameters["@nombre"].Value = usuario.Nombre;
-            cmd.Parameters["@apellido"].Value = usuario.Apellido;
-            cmd.Parameters["@dui"].Value = usuario.Dui;
-            cmd.Parameters["@fecha"].Value = usuario.FechaNacimiento;
-            cmd.Parameters["@residencia"].Value = usuario.Residencia;
-            cmd.Parameters["@telefono"].Value = usuario.Telefono;
-            cmd.Parameters["@correo"].Value = usuario.Correo;
-            cmd.Parameters["@idInfo"].Value = cadenaID;
-            DBConnection.ExecuteCommandIUD(cmd);
+        cmd.Parameters["@nombre"].Value = usuario.Nombre;
+        cmd.Parameters["@apellido"].Value = usuario.Apellido;
+        cmd.Parameters["@dui"].Value = usuario.Dui;
+        cmd.Parameters["@fecha"].Value = usuario.FechaNacimiento;
+        cmd.Parameters["@residencia"].Value = usuario.Residencia;
+        cmd.Parameters["@telefono"].Value = usuario.Telefono;
+        cmd.Parameters["@correo"].Value = usuario.Correo;
+        cmd.Parameters["@idInfo"].Value = cadenaID;
+        DBConnection.ExecuteCommandIUD(cmd);
 
         SqlCommand cmd2 = DBConnection.GetCommand("UPDATE Usuario SET idTipoUsuario = @idTipo WHERE idInformacion = @idInformacion");
         cmd2.Parameters.Add("@idTipo", SqlDbType.VarChar);
@@ -112,9 +113,32 @@ public class Usuario_Model
         
         cmd2.Parameters["@idTipo"].Value = usuario.TipoUsuario;
         cmd2.Parameters["@idInformacion"].Value = cadenaID;
-        dataID.Close();
         return DBConnection.ExecuteCommandIUD(cmd2);
     }
+
+    public static bool Eliminar(String idUsuario)
+    {
+        SqlDataReader infoId = DBConnection.GetData("SELECT ip.idInformacion FROM Usuario AS u INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + idUsuario + "';");
+        infoId.Read();
+        String idInformacion = infoId["idInformacion"].ToString();
+        infoId.Close();
+
+        SqlCommand cmdInfo = DBConnection.GetCommand("DELETE FROM InformacionPersonal WHERE idInformacion = @idInformacion");
+        SqlCommand cmdUser = DBConnection.GetCommand("DELETE FROM Usuario WHERE idUsuario = @idUsuario");
+
+        cmdInfo.Parameters.Add("@idInformacion", SqlDbType.Int);
+        cmdUser.Parameters.Add("@idUsuario", SqlDbType.Char);
+
+        cmdInfo.Parameters["@idInformacion"].Value = idInformacion;
+        cmdUser.Parameters["@idUsuario"].Value = idUsuario;
+        
+        if(DBConnection.ExecuteCommandIUD(cmdUser)){
+            return DBConnection.ExecuteCommandIUD(cmdInfo);
+        }else{
+            return false;
+        }
+    }
+
     public static int VerificarDui(string dui)
     {
         /* Descripción de método

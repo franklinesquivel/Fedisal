@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<uc:Header Titulo="" runat="server" ID="Header" />
+<uc:Header Titulo="Gestión de Usuarios" runat="server" ID="Header" />
 <body>
     <header>
         <uc:Menu Titulo="Administrador" runat="server" ID="Menu" />
@@ -19,13 +19,15 @@
                     AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="Código"
                     DataSourceID="sdsUsuarios">
                     <Columns>
-                        <asp:BoundField DataField="Código" HeaderText="Código" ReadOnly="True" SortExpression="Código" />
-                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
-                        <asp:BoundField DataField="Apellido" HeaderText="Apellido" SortExpression="Apellido" />
-                        <asp:BoundField DataField="Tipo de Usuario" HeaderText="Tipo de Usuario" SortExpression="Tipo de Usuario" />
-                        <asp:TemplateField AccessibleHeaderText="Acciones">
+                        <asp:BoundField DataField="Código" HeaderStyle-CssClass="center" HeaderText="Código" ReadOnly="True" SortExpression="Código" />
+                        <asp:BoundField DataField="Nombre" HeaderStyle-CssClass="center" HeaderText="Nombre" SortExpression="Nombre" />
+                        <asp:BoundField DataField="Apellido" HeaderStyle-CssClass="center" HeaderText="Apellido" SortExpression="Apellido" />
+                        <asp:BoundField DataField="Tipo de Usuario" HeaderStyle-CssClass="center" HeaderText="Tipo de Usuario" SortExpression="Tipo de Usuario" />
+                        <asp:TemplateField HeaderText="Acciones" HeaderStyle-CssClass="center">
                             <ItemTemplate>
-                                <asp:HyperLink NavigateUrl='<%# string.Concat("ModificarUsuario.aspx?idUsuario=", Eval("Código")) %>' ID="btnEditarGV" runat="server" Visible="true" CssClass="btnModificar waves-effect waves-light btn modal-trigger" Text='Editar' />
+                                <%-- NavigateUrl='<%# string.Concat("EliminarUsuario.aspx?idUsuario=", Eval("Código")) %>' --%>
+                                <asp:HyperLink NavigateUrl='<%# string.Concat("ModificarUsuario.aspx?idUsuario=", Eval("Código")) %>' ID="btnEditarGV" runat="server" Visible="true" CssClass="btnModificar waves-effect waves-light btn" Text='Editar' />
+                                <asp:HyperLink ID="btnEliminarGV" runat="server" Visible="true" CssClass="btnEliminar waves-effect waves-light btn red red-text text-darken-4 modal-trigger" href="#mdlEliminar" idUser='<%# Eval("Código") %>' Text='Eliminar' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -37,5 +39,49 @@ INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion;"></a
             </div>
         </form>
     </main>
+
+    <div id="mdlEliminar" class="modal">
+        <div class="modal-content">
+            <h4 class="center-align">Eliminación de Usuario</h4>
+            <p class="center-align">¿Desea eliminar este usuario?</p>
+            <input type="hidden" value="" runat="server" id="txtUser" />
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action waves-effect waves-green btn-flat" id="btnMdlEliminar">Eliminar</a>
+            <a class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            let id;
+            $(".btnEliminar").click(function () {
+                id = $(this).attr("iduser");
+            })
+
+            $("#btnMdlEliminar").click(function () {
+                if(id != undefined){
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Administrador/GestionUsuarios.aspx/EliminarUsuario',
+                        data: JSON.stringify({ idUsuario: id }),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        success: function(r){
+                            r = r.d;
+                            if(r == true){
+                                    Materialize.toast('El usuario ha sido eliminado éxitosamente!', 2000, '', function(){
+                                    location.reload();
+                                });
+
+                            }else{
+                                Materialize.toast('Ha ocurrido un error :$', 2000);
+                            }
+                        }
+                    })
+                }
+            })
+        })
+    </script>
 </body>
 </html>

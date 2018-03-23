@@ -13,6 +13,7 @@
     </header>
     <main class="container"><br />
     <form id="form1" runat="server">
+        <asp:HiddenField ID="idUsuario" runat="server" />
         <h3 class="center deep-purple-text text-lighten-2" runat="server" id="tituloF">Registro de Usuarios</h3>
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
             <label for="txtNombre">Nombres</label>

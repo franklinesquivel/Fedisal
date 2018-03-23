@@ -477,13 +477,6 @@ INSERT INTO [InformacionPersonal] VALUES
 
 INSERT INTO [Usuario] VALUES
 ('A0001', 1, 'A', 'FAEG', '20150126'),
-('A0002', 2, 'A', 'OJPB', '54321');
-USE [Fedisal];
-GO
-SELECT * FROM Universidad;
-SELECT * FROM Usuario;
-SELECT * FROM NivelEducativo;
-SELECT * FROM [BitacoraIncidentes];
 
 INSERT INTO [Universidad] VALUES
 (1, 'Universidad Don Bosco', 'Calle plan del pino, km. 1 1/2, Ciudadela Don Bosco, Soyapango, El Salvador, C.A. Apdo. Postal 2874', '2251-8200');

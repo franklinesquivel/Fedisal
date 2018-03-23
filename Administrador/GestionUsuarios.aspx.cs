@@ -13,4 +13,17 @@ public partial class Administrador_GestionUsuarios : System.Web.UI.Page
             
         }
     }
+
+    [System.Web.Services.WebMethod]
+    public static object EliminarUsuario(string idUsuario)
+    {
+        try
+        {
+            return Usuario_Model.Eliminar(idUsuario.ToString());
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
 }

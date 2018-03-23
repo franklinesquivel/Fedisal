@@ -6,6 +6,10 @@
             $('.slider').slider();
         }
 
+        if($('.modal').length > 0){
+            $('.modal').modal();
+        }
+
         if ($(".button-collapse").length > 0) {
             $(".button-collapse").sideNav();
         }
