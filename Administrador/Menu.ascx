@@ -59,6 +59,32 @@
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li>
+                    <a class="collapsible-header waves-effect">Nivel Educativo<i class="material-icons">school</i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="/Administrador/RegistroNivelEducativo.aspx" class="waves-effect">Añadir<i class="material-icons">library_add</i></a></li>
+                            <li><a href="/Administrador/GestionNivelEducativo.aspx" class="waves-effect">Gestionar<i class="material-icons">poll</i></a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li>
+                    <a class="collapsible-header waves-effect">Universidad<i class="material-icons">school</i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="/Administrador/RegistroUniversidad.aspx" class="waves-effect">Añadir<i class="material-icons">library_add</i></a></li>
+                            <li><a href="/Administrador/GestionUniversidad.aspx" class="waves-effect">Gestionar<i class="material-icons">poll</i></a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li>
                     <a class="collapsible-header waves-effect">Tipos de Incidente<i class="material-icons">warning</i></a>
                     <div class="collapsible-body">
                         <ul>

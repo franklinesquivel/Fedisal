@@ -12,7 +12,7 @@ public partial class Login : System.Web.UI.Page
     {
         if(!IsPostBack)
         {
-            
+            Sesion.VerificarUsuario(HttpContext.Current.Session["ID"].ToString());
         }
     }
 
@@ -44,6 +44,8 @@ public partial class Login : System.Web.UI.Page
             {
                 mensaje = "Materialize.toast('Usuario no encontrado', 2000)";
             }
+        }else{
+            mensaje = "Materialize.toast('Hola', 2000)";
         }
         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "confirmLog", mensaje, true);
     }

@@ -53,7 +53,7 @@ GO
 CREATE TABLE [Universidad] (
     [idUniversidad] INTEGER IDENTITY(1,1) NOT NULL,
     [nombre] VARCHAR(80),
-    [direccion] VARCHAR(80),
+    [direccion] VARCHAR(100),
     [telefono] VARCHAR(9),
     CONSTRAINT [PK_Universidad] PRIMARY KEY ([idUniversidad])
 )
@@ -476,4 +476,14 @@ INSERT INTO [InformacionPersonal] VALUES
 (NULL, 'Franklin Armando', 'Esquivel Guevara', '00307070-5', '1998-09-26', 'Col. Santa Lucía, PJE H, Casa # 150', '76702869', 'frank.esquivel115@gmail.com');
 
 INSERT INTO [Usuario] VALUES
-('A0001', 1, 'A', 'FAEG', '20150126');
+('A0001', 1, 'A', 'FAEG', '20150126'),
+('A0002', 2, 'A', 'OJPB', '54321');
+USE [Fedisal];
+GO
+SELECT * FROM Universidad;
+SELECT * FROM Usuario;
+SELECT * FROM NivelEducativo;
+SELECT * FROM [BitacoraIncidentes];
+
+INSERT INTO [Universidad] VALUES
+(1, 'Universidad Don Bosco', 'Calle plan del pino, km. 1 1/2, Ciudadela Don Bosco, Soyapango, El Salvador, C.A. Apdo. Postal 2874', '2251-8200');
