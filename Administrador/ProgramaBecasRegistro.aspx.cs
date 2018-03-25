@@ -11,8 +11,9 @@ public partial class ProgramaBecasRegistro : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack){
+        if(!Page.IsPostBack){
             GenerarCodigo();
+            idProgramaBeca.Value = idNuevoPrograma;
             resultCode.InnerHtml = "<h5 class='center-align  deep-purple-text text-lighten-2'>Código: " + idNuevoPrograma+"</h5>";
         }
     }
@@ -36,7 +37,7 @@ public partial class ProgramaBecasRegistro : System.Web.UI.Page
         if (Page.IsValid)
         {
             string mensaje;
-            ProgramaBeca programa = new ProgramaBeca(idNuevoPrograma, txtName.Text, txtDescription.Text);
+            ProgramaBeca programa = new ProgramaBeca(idProgramaBeca.Value, txtName.Text, txtDescription.Text);
             if (ProgramaBeca_Model.VerificarCodigo(programa.IdPrograma) == 0) //Volvemos a verificar codigo
             {
                 if (ProgramaBeca_Model.Insertar(programa))
