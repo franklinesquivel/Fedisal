@@ -36,5 +36,18 @@ public class Notas_Model
         }
     }
 
+    public static List<Notas> ObtenerNotas(int idCiclo) { //Obtiene notas por Ciclo
+        string sql = "SELECT * FROM Nota WHERE idCiclo = "+ idCiclo +"";
+        SqlDataReader reader = DBConnection.GetData(sql);
+        List<Notas> notas = new List<Notas>();
+
+        if (reader != null) { 
+            while (reader.Read()) {
+                notas.Add(new Notas(Int32.Parse(reader["idNota"].ToString()), reader["nombreMateria"].ToString(), Decimal.Parse(reader["nota"].ToString()), Int32.Parse(reader["idCiclo"].ToString())));
+            }
+            reader.Close();
+        }
+        return notas;
+    }
 
 }

@@ -94,4 +94,13 @@ public class Becario_Model
             return false;
         }
     }
+
+    public static int VerificarExistencia(string id)
+    {
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Becario WHERE idBecario = @id");
+        cmd.Parameters.Add("@id", SqlDbType.NVarChar);
+
+        cmd.Parameters["@id"].Value = id;
+        return Int32.Parse(DBConnection.QueryScalar(cmd));
+    }
 }

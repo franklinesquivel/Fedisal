@@ -14,9 +14,24 @@
         </header>
         <main>
             <form id="frmMain" runat="server">
-                <asp:HiddenField ID="idProgramaBeca" runat="server" />
+                <!-- <asp:HiddenField ID="idProgramaBeca" runat="server" />-->
                 <div class="container row">
                     <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3" id="resultCode" runat="server">
+                    </div>
+                    <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
+                        <asp:TextBox ID="txtIdPrograma" runat="server"></asp:TextBox>
+                        <asp:Label ID="lblIdProgramaBeca" AssociatedControlID="txtIdPrograma" runat="server" Text="Código de Programa de Beca [AAAA]"></asp:Label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+                            ControlToValidate="txtIdPrograma"
+                            CssClass="error-tag"
+                            Display="Dynamic"
+                            ErrorMessage="Debes ingresar un código!"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                            Display="Dynamic" 
+                             CssClass="error-tag"
+                            ControlToValidate="txtIdPrograma"
+                            ValidationExpression="^[A-Z]{4}$"
+                            ErrorMessage="Debes ingresar un formato válido para el código!"></asp:RegularExpressionValidator>
                     </div>
                     <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
                         <asp:TextBox ID="txtName" runat="server"></asp:TextBox>

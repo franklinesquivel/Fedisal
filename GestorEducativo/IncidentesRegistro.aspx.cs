@@ -18,16 +18,15 @@ public partial class IncidentesRegistro : System.Web.UI.Page
         }
     }
     [System.Web.Services.WebMethod]
-    public static bool InsertarIncidente(Incidentes incidentes)
+    public static Boolean InsertarIncidente(int idTipo, string idBecario)
     {
+        Incidentes incidente = new Incidentes(idBecario, idTipo);
         SqlCommand comando = DBConnection.GetCommand("INSERT INTO BitacoraIncidentes(idTipoIncidente,idBecario) VALUES(@idTipo,@idBeca)");
         comando.Parameters.Add("@idTipo", SqlDbType.Int);
         comando.Parameters.Add("@idBeca", SqlDbType.VarChar);
 
-        comando.Parameters["@idTipo"].Value = incidentes.IdTipoIncidente;
-        comando.Parameters["@idBeca"].Value = incidentes.IdBecario;
-        
-
+        comando.Parameters["@idTipo"].Value = incidente.IdTipoIncidente;
+        comando.Parameters["@idBeca"].Value = incidente.IdBecario;
         if (DBConnection.ExecuteCommandIUD(comando))
         {
             return true;
@@ -38,27 +37,9 @@ public partial class IncidentesRegistro : System.Web.UI.Page
         }
     }
 
-    protected void btnAplicar_Click(object sender, EventArgs e)
+    protected void btnBuscar_Click(object sender, EventArgs e)
     {
-        string idBecario;
-        idBecario = txtIdBecario.Text;
-
-        Page.Validate();
-        if (Page.IsValid)
-        {
-            string msg;
-
-            Incidentes incidente = new Incidentes(idBecario , int.Parse(ddlIncidentes.SelectedValue));
-
-            if (InsertarIncidente(incidente))
-            {
-                msg = "Materialize.toast('Incidente aplicado con exito', 2000, '')";
-            }
-            else
-            {
-                msg = "Materialize.toast('Ha ocurrido un Error',2000)";
-            }
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "confirmLog", msg, true);
-        }
+        SqlDataSource1.SelectCommand = "SELECT InformacionPersonal.nombres, InformacionPersonal.apellidos, ProgramaBecas.nombre, Becario.idBecario FROM Becario INNER JOIN InformacionPersonal ON Becario.idInformacion = InformacionPersonal.idInformacion INNER JOIN ProgramaBecas ON Becario.idPrograma = ProgramaBecas.idPrograma WHERE "+ cmbBuscador.SelectedValue +" LIKE '%"+ txtBuscar.Text +"%'";
+        DGV.DataBind();
     }
 }

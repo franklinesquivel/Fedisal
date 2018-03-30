@@ -14,6 +14,7 @@ using System.Diagnostics;
 /// </summary>
 public class Notas
 {
+    private int idNota;
     private string nombreMat;
     private decimal nota;
     private byte tercioSuperior;
@@ -27,6 +28,13 @@ public class Notas
         this.nota = nota;
         this.tercioSuperior = tercioSuperior;
         this.idCiclo = ideCiclo;
+    }
+
+    public Notas(int idNota, string nombre, decimal nota, int idCiclo) {
+        this.idNota = idNota;
+        this.nota = nota;
+        this.nombreMat = nombre;
+        this.idCiclo = idCiclo;
     }
     public byte TercioSuperior
     {
@@ -77,6 +85,19 @@ public class Notas
         set
         {
             nombreMat = value;
+        }
+    }
+
+    public int IdNota
+    {
+        get
+        {
+            return idNota;
+        }
+
+        set
+        {
+            idNota = value;
         }
     }
 }
