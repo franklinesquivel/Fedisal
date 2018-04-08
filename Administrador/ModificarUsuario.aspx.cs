@@ -23,7 +23,8 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                 {
                     GenerarInformacion();
                     btnUsuarios.Text = "Editar";
-                    DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario", "descripcion", "idTipoUsuario");
+                    Menu.Titulo = "Modificar Usuario";
+                    DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario WHERE descripcion = 'Contador' OR descripcion = 'GestorEducativo'", "descripcion", "idTipoUsuario");
                     SqlDataReader dataDDL = DBConnection.GetData("SELECT idTipoUsuario FROM Usuario WHERE idUsuario = '" + Request.QueryString["idUsuario"] + "'");
                     dataDDL.Read();
                     string ddlvalue = dataDDL["idTipoUsuario"].ToString();

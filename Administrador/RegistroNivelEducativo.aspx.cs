@@ -17,6 +17,8 @@ public partial class Administrador_RegistroNivelEducativo : System.Web.UI.Page
             if(Request.QueryString["idNivel"] != null)
             {
                 NivelEducativo _n = NivelEducativo_Model.ObtenerNivelEducativo(int.Parse(Request.QueryString["idNivel"]));
+                Menu.Titulo = "Modificar Nivel Educativo";
+                btnRegister.Text = "Modificar";
                 if(_n != null)
                 {
                     idNivel.Value = _n.IdNivelEducativo.ToString();

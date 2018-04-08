@@ -473,10 +473,10 @@ INSERT INTO [TipoUsuario] VALUES
 ('G', 'GestorEducativo');
 
 INSERT INTO [InformacionPersonal] VALUES
-(NULL, 'Franklin Armando', 'Esquivel Guevara', '00307070-5', '1998-09-26', 'Col. Santa Lucía, PJE H, Casa # 150', '76702869', 'frank.esquivel115@gmail.com');
+('Franklin Armando', 'Esquivel Guevara', '00307070-5', '1998-09-26', 'Col. Santa Lucía, PJE H, Casa # 150', '76702869', 'frank.esquivel115@gmail.com');
 
 INSERT INTO [Usuario] VALUES
 ('A0001', 1, 'A', 'FAEG', '20150126');
 
 INSERT INTO [Universidad] VALUES
-(1, 'Universidad Don Bosco', 'Calle plan del pino, km. 1 1/2, Ciudadela Don Bosco, Soyapango, El Salvador, C.A. Apdo. Postal 2874', '2251-8200');
+('Universidad Don Bosco', 'Calle plan del pino, km. 1 1/2, Ciudadela Don Bosco, Soyapango, El Salvador, C.A. Apdo. Postal 2874', '2251-8200');

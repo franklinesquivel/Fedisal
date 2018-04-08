@@ -11,8 +11,10 @@ public partial class Administrador_RegistroTipoIncidente : System.Web.UI.Page
     {
         if ((!Page.IsPostBack) && Request.QueryString["id"] != null)
         {
-            if (TipoIncidente_Model.VerificarExistencia(Int32.Parse(Request.QueryString["id"])) > 0)
+            if (TipoIncidente_Model.VerificarExistencia(Int32.Parse(Request.QueryString["id"])) > 0)                
             { //Se verifica la existencia de la carrera a modificar
+                Menu.Titulo = "Modificar Tipo de Incidente";
+                btnRegister.Text = "Modificar";
                 EstablecerInformacion();
             }
             else

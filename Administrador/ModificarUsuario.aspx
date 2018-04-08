@@ -18,13 +18,13 @@
             <label for="txtNombre">Nombres</label>
             <input type="text" name="txtNombre" runat="server" id="txtNombre"/>
             <asp:RequiredFieldValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Debe ingresar un nombre" ControlToValidate="txtNombre" runat="server" />
-            <asp:RegularExpressionValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Ingrese solo letras y sus dos nombres, Ejemplo: Pedro Jose" ValidationExpression="^[A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú]* [A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú]*$" ControlToValidate="txtNombre" runat="server" />
+            <asp:RegularExpressionValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Ingrese solo letras y sus dos nombres, Ejemplo: Pedro Jose" ValidationExpression="^[A-ZÑÁÉÍÓÚ]{1}[A-Za-zñáéíóú ]*$" ControlToValidate="txtNombre" runat="server" />
         </div>
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
             <label for="txtApellido">Apellidos</label>
             <input type="text" name="txtApellido" id="txtApellido" runat="server"/>
             <asp:RequiredFieldValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Debe ingresar un apellido" ControlToValidate="txtApellido" runat="server" />
-            <asp:RegularExpressionValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Ingrese solo letras y sus dos apellidos, Ejemplo: Lopez Hernandez" ValidationExpression="^[A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú]* [A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú]*$" ControlToValidate="txtApellido" runat="server" />
+            <asp:RegularExpressionValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Ingrese solo letras y sus dos apellidos, Ejemplo: Lopez Hernandez" ValidationExpression="^[A-ZÑÁÉÍÓÚ]{1}[A-Za-zñáéíóú ]*$" ControlToValidate="txtApellido" runat="server" />
         </div>
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
             <label for="txtDui">DUI</label>

@@ -13,6 +13,8 @@ public partial class Administrador_RegistroCarrera : System.Web.UI.Page
         {
             if (Carrera_Model.VerificarExistencia(Int32.Parse(Request.QueryString["id"])) > 0)
             { //Se verifica la existencia de la carrera a modificar
+                Menu.Titulo = "Modificar Carreras";
+                btnRegister.Text = "Modificar";
                 EstablecerInformacion();
             }
             else
