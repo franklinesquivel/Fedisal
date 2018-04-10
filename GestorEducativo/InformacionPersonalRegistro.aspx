@@ -1,22 +1,17 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="InformacionPersonalRegistro.aspx.cs" Inherits="InformacionPersonalRegistro" %>
-
+<%@ Register Src="Header.ascx" TagPrefix="uc" TagName="Header" %>
+<%@ Register Src="Menu.ascx" TagPrefix="uc" TagName="Menu" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Fedisal - Registrar Información Personal</title>
-    <link href="css/materialize.min.css" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width" initial-scale="1.0" />
-    <link rel="shortcut icon" type="image/png" href="/img/favicon.ico"/>
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+ <uc:Header Titulo="" runat="server" ID="Header"/>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/init.js"></script>
-</head>
 <body>
+     <header>
+            <uc:Menu Titulo="Gestor Educativo" runat="server" ID="Menu" />
+        </header>
+        <main class="container">
     <form id="frmMain" runat="server">
         <h3 class="center deep-purple-text text-lighten-2">Registro de Información Personal</h3>
         <div class="container row">
@@ -113,5 +108,6 @@
             </div>
         </div>
     </form>
+    </main>
 </body>
 </html>
