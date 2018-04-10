@@ -42,7 +42,7 @@
             <label for="txtFechaNac">Fecha de Nacimiento</label>
             <input type="date" class="datepicker" name="txtFechaNac" id="txtFechaNac" runat="server"/>
             <asp:RequiredFieldValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Debe ingresar su fecha de nacimiento" ControlToValidate="txtFechaNac" runat="server" />
-            <asp:RegularExpressionValidator ErrorMessage="El usuario debe ser mayor de edad" ValidationExpression="^199[0-9]-[0-9][0-9]-[0-9][0-9]$" ControlToValidate="txtFechaNac" runat="server" />
+            <asp:RegularExpressionValidator ErrorMessage="El usuario debe ser mayor de edad y no debe sobrepasar los 30 años" ValidationExpression="^199[0-9]-[0-9][0-9]-[0-9][0-9]$" ControlToValidate="txtFechaNac" runat="server" />
         </div>
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
             <label for="txtEmail">Correo Electrónico</label>

@@ -21,11 +21,10 @@
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function (r) {
-                    console.log(r);
                     if (r.d != false) {
-                        console.log("Registro hecho");
+                        Materialize.toast("Incidente aplicado exitosamente!", 2000, '', "function () { location.href = 'IncidentesRegistro.aspx' }");
                     } else {
-                        console.log("no se realizo el registro")
+                        Materialize.toast('Ocurrio un Error :(!', 1000);
                     }
                 }, error: function (e) {
                     console.log(e);

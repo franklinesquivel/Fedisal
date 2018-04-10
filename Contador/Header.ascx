@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Header.ascx.cs" Inherits="GestorEducativo_Header" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Header.ascx.cs" Inherits="Contador_Header" %>
 
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -16,6 +16,4 @@
     <script src="../js/materialize.min.js"></script>
     <script src="../js/init.js"></script>
     <script src="../js/modal.js"></script>
-    <script src="../js/VerExpediente.js"></script>
-    <script src="../js/controlDesembolso.js"></script>
 </head>
