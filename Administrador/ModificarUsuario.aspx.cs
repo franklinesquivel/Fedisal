@@ -101,9 +101,9 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
             if (Usuario_Model.VerificarExistencia(codigoUser) == 0)
             {
                 try
-                {;
+                {
                     string codiGen = "";
-                    codigoUser = ddlTipoUsuario.SelectedValue.ToString();
+                    codigoUser = ddlTipoUsuario.SelectedItem.Value;
                     if (codigoUser == "C") { codiGen = Usuario_Model.genCodigo("Contador"); }
                     else if (codigoUser == "G") { codiGen = Usuario_Model.genCodigo("GestorEducativo"); }
                     if (Usuario_Model.Insertar(new Usuario(0,codiGen, name, apellido, dui, fechaNac, residencia, telefono, email)))

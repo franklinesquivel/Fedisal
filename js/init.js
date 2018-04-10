@@ -3,10 +3,9 @@
     $(document).ready(function () {
 
         Materialize.updateTextFields();
-        $('select').material_select();
 
         $('#ddlTipoUsuario').change(function () {
-            console.log($('#ddlTipoUsuario').val());
+            $('#ddlTipoUsuario').material_select();
         })
 
         if ($('.slider').length > 0) {
