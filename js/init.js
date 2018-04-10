@@ -3,6 +3,11 @@
     $(document).ready(function () {
 
         Materialize.updateTextFields();
+        $('select').material_select();
+
+        $('#ddlTipoUsuario').change(function () {
+            console.log($('#ddlTipoUsuario').val());
+        })
 
         if ($('.slider').length > 0) {
             $('.slider').slider();
@@ -19,7 +24,7 @@
         if ($('select').length > 0) {
             $('select').material_select();
         }
-
+        
         if ($('.dropdown-button').length > 0) {
             $('.dropdown-button').dropdown({
                 constrainWidth: false, // Does not change width of dropdown to that of the activator

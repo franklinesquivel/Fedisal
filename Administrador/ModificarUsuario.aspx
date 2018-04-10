@@ -42,6 +42,7 @@
             <label for="txtFechaNac">Fecha de Nacimiento</label>
             <input type="date" class="datepicker" name="txtFechaNac" id="txtFechaNac" runat="server"/>
             <asp:RequiredFieldValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Debe ingresar su fecha de nacimiento" ControlToValidate="txtFechaNac" runat="server" />
+            <asp:RegularExpressionValidator ErrorMessage="El usuario debe ser mayor de edad" ValidationExpression="^199[0-9]-[0-9][0-9]-[0-9][0-9]$" ControlToValidate="txtFechaNac" runat="server" />
         </div>
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
             <label for="txtEmail">Correo Electrónico</label>
@@ -63,22 +64,6 @@
             <asp:RequiredFieldValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Debe seleccionar un valor" ControlToValidate="ddlTipoUsuario" runat="server" />
         
         </div>
-        <div class="input-field col s12" id="verificarAccion" runat="server" visible="false">
-                        <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
-                        <label for="txtUsername">Codigo de Usuario</label>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" 
-                            runat="server" 
-                            Display="Dynamic"
-                            ControlToValidate="txtUsername"
-                            CssClass="error-tag"
-                            ErrorMessage="Ingrese el codigo del usuario!"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" 
-                            runat="server" 
-                            ControlToValidate="txtUsername"
-                            CssClass="error-tag"
-                            ValidationExpression="^([C]{1}[0-9]{4})|([G]{1}[0-9]{4})$"
-                            ErrorMessage="Ingrese un valor válido!"></asp:RegularExpressionValidator>
-                    </div>
         <div class="input-field col s12" id="verificarAcciones2" runat="server" visible="false">
                         <asp:TextBox ID="txtNameUser" runat="server"></asp:TextBox>
                         <label for="txtNameUser">Nombre de Usuario</label>

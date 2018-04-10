@@ -27,10 +27,10 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                     DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario WHERE descripcion = 'Contador' OR descripcion = 'GestorEducativo'", "descripcion", "idTipoUsuario");
                     SqlDataReader dataDDL = DBConnection.GetData("SELECT idTipoUsuario FROM Usuario WHERE idUsuario = '" + Request.QueryString["idUsuario"] + "'");
                     dataDDL.Read();
+                    ddlTipoUsuario.Enabled = false;
                     string ddlvalue = dataDDL["idTipoUsuario"].ToString();
                     ddlTipoUsuario.SelectedValue = ddlvalue;
                     idUsuario.Value = Request.QueryString["idUsuario"];
-                    verificarAccion.Visible = false;
                     verificarAcciones2.Visible = false;
                     dataDDL.Close();
                 }
@@ -44,8 +44,8 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
             btnUsuarios.Text = "Registrar";
             DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario WHERE descripcion = 'Contador' OR descripcion = 'GestorEducativo'", "descripcion", "idTipoUsuario");
             ddlTipoUsuario.DataBind();
-            verificarAccion.Visible = true;
             verificarAcciones2.Visible = true;
+            ddlTipoUsuario.Enabled = true;
         }
     }
     protected void GenerarInformacion()
@@ -67,9 +67,6 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
 
     protected void btnUsuarios_Click(object sender, EventArgs e)
     {
-        string patternG = "(G[0-9]{4})";
-        string patternC = "(C[0-9]{4})";
-        string patternA = "(A[0-9]{4})";
         string name = txtNombre.Value;
         string apellido = txtApellido.Value;
         string telefono = txtTel.Value;
@@ -78,22 +75,9 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
         DateTime fechaNac = DateTime.Parse(txtFechaNac.Value);
         string residencia = txtResidencia.Value;
         string tipoUser = "";
-        string codigoUser = Request.QueryString["idUsuario"] != null ? idUsuario.Value : txtUsername.Text;
-        if (Regex.IsMatch(codigoUser.ToUpper(), patternC))
-        {
-            tipoUser = "C";
-        }
-        else if(Regex.IsMatch(codigoUser.ToUpper(), patternG))
-        {
-            tipoUser = "G";
-        }
-        else if (Regex.IsMatch(codigoUser.ToUpper(), patternA))
-        {
-            tipoUser = "A";
-        }
-
         string nombreUser = txtNameUser.Text;
         string mensaje = "";
+        string codigoUser = Request.QueryString["idUsuario"];
 
         if (Request.QueryString["idUsuario"] != null)
         {
@@ -101,15 +85,7 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
             dataObtenerID.Read();
             string cadenaID = dataObtenerID["idInformacion"].ToString();
             string idUser = dataObtenerID["idUsuario"].ToString();
-
-            if (Regex.IsMatch(idUser.ToUpper(), patternC))
-            {
-                tipoUser = "C";
-            }
-            else if (Regex.IsMatch(idUser.ToUpper(), patternG))
-            {
-                tipoUser = "G";
-            }
+            tipoUser = ddlTipoUsuario.SelectedValue.ToString();
             if (Usuario_Model.Modificar(new Usuario(Int32.Parse(cadenaID), tipoUser, name,apellido,dui,fechaNac,residencia,telefono,email), Request.QueryString["idUsuario"]))
                 {
                     mensaje = "Materialize.toast('Usuario modificado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
@@ -124,12 +100,15 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
         {
             if (Usuario_Model.VerificarExistencia(codigoUser) == 0)
             {
-                string cadenaID = "0";
                 try
-                {
-                    if (Usuario_Model.Insertar(new Usuario(Int32.Parse(cadenaID),tipoUser, name, apellido, dui, fechaNac, residencia, telefono, email)))
+                {;
+                    string codiGen = "";
+                    codigoUser = ddlTipoUsuario.SelectedValue.ToString();
+                    if (codigoUser == "C") { codiGen = Usuario_Model.genCodigo("Contador"); }
+                    else if (codigoUser == "G") { codiGen = Usuario_Model.genCodigo("GestorEducativo"); }
+                    if (Usuario_Model.Insertar(new Usuario(0,codiGen, name, apellido, dui, fechaNac, residencia, telefono, email)))
                     {
-                        if (Usuario_Model.Insertar(dui, email, tipoUser, codigoUser, nombreUser, GenerarContrasenna()))
+                        if (Usuario_Model.Insertar(dui, email, codigoUser, codiGen, nombreUser, GenerarContrasenna()))
                         {
                             mensaje = "Materialize.toast('Usuario ingresado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
                         }

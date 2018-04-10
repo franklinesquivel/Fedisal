@@ -76,7 +76,6 @@ public class Usuario_Model
         cmd2.Parameters["@contra"].Value = contra;
         Usuario correoUser = new Usuario(correo, nombreU, contra,idinfo);
         Correo.EnviarCorreoUsuario(correoUser);
-
         return DBConnection.ExecuteCommandIUD(cmd2);
     }
     public static bool Modificar(Usuario usuario, string idUsuario)
@@ -115,7 +114,61 @@ public class Usuario_Model
         cmd2.Parameters["@idInformacion"].Value = cadenaID;
         return DBConnection.ExecuteCommandIUD(cmd2);
     }
-
+    public static string genCodigo(string tipouser) {
+        string _id = "";
+        if (tipouser == "GestorEducativo") {
+            SqlDataReader cuenta = DBConnection.GetData("SELECT COUNT(idUsuario) AS cuenta FROM Usuario AS u WHERE idUsuario LIKE '%G%'");
+            cuenta.Read();
+            if (cuenta["cuenta"].ToString() != null)
+            {
+                int countF = Convert.ToInt32(cuenta["cuenta"].ToString()) + 1;
+                if (countF < 10) {
+                    _id = "G000" + countF;
+                } else if (countF >= 10 && countF < 100) {
+                    _id = "G00" + countF;
+                } else if (countF >= 100 && countF < 1000)
+                {
+                    _id = "G0" + countF;
+                } else {
+                    _id = "G" + countF;
+                }
+            } else {
+                _id = "G0001";
+            }
+            cuenta.Close();
+            return _id;
+        } else if (tipouser == "Contador") {
+            SqlDataReader cuenta2 = DBConnection.GetData("SELECT COUNT(idUsuario) AS cuenta FROM Usuario AS u WHERE idUsuario LIKE '%C%'");
+            cuenta2.Read();
+            if (cuenta2["cuenta"].ToString() != null)
+            {
+                int countF = Convert.ToInt32(cuenta2["cuenta"].ToString()) + 1;
+                if (countF < 10)
+                {
+                    _id = "C000" + countF;
+                }
+                else if (countF >= 10 && countF < 100)
+                {
+                    _id = "C00" + countF;
+                }
+                else if (countF >= 100 && countF < 1000)
+                {
+                    _id = "C0" + countF;
+                }
+                else
+                {
+                    _id = "C" + countF;
+                }
+            }
+            else
+            {
+                _id = "C0001";
+            }
+            cuenta2.Close();
+            return _id;
+        }
+        return null;
+    }
     public static bool Eliminar(String idUsuario)
     {
         SqlDataReader infoId = DBConnection.GetData("SELECT ip.idInformacion FROM Usuario AS u INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + idUsuario + "';");
