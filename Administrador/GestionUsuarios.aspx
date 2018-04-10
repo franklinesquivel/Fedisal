@@ -13,6 +13,7 @@
     </header>
     <main>
         <form id="form1" runat="server">
+        <asp:TextBox runat="server" name="idH" id="idH" Visible="false" />
             <div class="container">
                 <asp:GridView
                     ID="gvUsuarios" CssClass="centered" runat="server"
@@ -31,10 +32,11 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="sdsUsuarios" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>" SelectCommand="SELECT u.idUsuario AS [Código], ip.nombres AS [Nombre], ip.apellidos AS [Apellido], tu.descripcion AS [Tipo de Usuario] FROM
-Usuario AS u
-INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario
-INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion;"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="sdsUsuarios" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>" SelectCommand="SELECT u.idUsuario AS Código, ip.nombres AS Nombre, ip.apellidos AS Apellido, tu.descripcion AS [Tipo de Usuario] FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE (u.idUsuario &lt;&gt; @idUser)">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="idH" DefaultValue="0" Name="idUser" PropertyName="Text" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
             </div>
         </form>
     </main>

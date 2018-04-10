@@ -60,6 +60,7 @@
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
             
             <asp:DropDownList CssClass="form-control" ID="ddlTipoUsuario" runat="server">
+
             </asp:DropDownList>
             <asp:RequiredFieldValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Debe seleccionar un valor" ControlToValidate="ddlTipoUsuario" runat="server" />
         

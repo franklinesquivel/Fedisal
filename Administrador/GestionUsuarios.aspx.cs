@@ -10,7 +10,7 @@ public partial class Administrador_GestionUsuarios : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if(!IsPostBack){
-            
+            idH.Text = HttpContext.Current.Session["ID"].ToString();
         }
     }
 

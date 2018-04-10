@@ -41,11 +41,14 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
         }
         else
         {
-            btnUsuarios.Text = "Registrar";
-            DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario WHERE descripcion = 'Contador' OR descripcion = 'GestorEducativo'", "descripcion", "idTipoUsuario");
-            ddlTipoUsuario.DataBind();
-            verificarAcciones2.Visible = true;
-            ddlTipoUsuario.Enabled = true;
+            if (!Page.IsPostBack)
+            {
+                btnUsuarios.Text = "Registrar";
+                DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario WHERE descripcion = 'Contador' OR descripcion = 'GestorEducativo'", "descripcion", "idTipoUsuario");
+                ddlTipoUsuario.DataBind();
+                verificarAcciones2.Visible = true;
+                ddlTipoUsuario.Enabled = true;
+            }
         }
     }
     protected void GenerarInformacion()
