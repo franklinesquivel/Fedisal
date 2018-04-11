@@ -18,7 +18,7 @@
         <div class="container row">
 
             <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
-                <asp:DropDownList ID="ddlScholar" runat="server"></asp:DropDownList>
+                <%--<asp:DropDownList ID="ddlScholar" runat="server"></asp:DropDownList>
                 <asp:Label AssociatedControlID="ddlScholar" Text="Selecciona un becario" runat="server"></asp:Label>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                     InitialValue = "0"
@@ -26,7 +26,9 @@
                     ControlToValidate="ddlScholar"
                     ErrorMessage="Debes seleccionar un becario!"
                     Display="Dynamic">
-                </asp:RequiredFieldValidator>
+                </asp:RequiredFieldValidator>--%>
+                <asp:HiddenField ID="idBecario" runat="server" />
+                <asp:HiddenField ID="idCiclo" runat="server" />
             </div>
 
             <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">

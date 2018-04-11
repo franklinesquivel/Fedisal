@@ -38,4 +38,12 @@ public class Presupuesto_Model
 
         return DBConnection.ExecuteCommandIUD(cmd);
     }
+
+    public static Presupuesto Obetener(string idBecario) //Obtiene el presupuesto en base al idBecario
+    {
+        string sql = "SELECT libro, colegiatura, manuntencion, matricula, otros, trabajoGraduacion FROM PresupuestoBeca WHERE idBecario= '"+ idBecario +"'";
+        SqlDataReader reader = DBConnection.GetData(sql);
+        Presupuesto presupuesto = new Presupuesto(reader.GetDouble(0), reader.GetDouble(1), reader.GetDouble(2), reader.GetDouble(3), reader.GetDouble(4), reader.GetDouble(5), idBecario);
+        return presupuesto;
+    }
 }

@@ -12,7 +12,7 @@ public class Desembolso
     private double monto;
     private String fecha;
     private int idTipoDesembolso;
-    private String idBecario;
+    private int idCiclo;
 
     public int IdDesembolso
     {
@@ -66,26 +66,26 @@ public class Desembolso
         }
     }
 
-    public string IdBecario
+    public int IdCiclo
     {
         get
         {
-            return idBecario;
+            return idCiclo;
         }
 
         set
         {
-            idBecario = value;
+            idCiclo = value;
         }
     }
 
-    public Desembolso(int id, double monto, String fecha, int idTipo, String idBecario)
+    public Desembolso(int id, double monto, String fecha, int idTipo, int idCiclo)
     {
         this.idDesembolso = id;
         this.monto = monto;
         this.fecha = fecha;
         this.idTipoDesembolso = idTipo;
-        this.idBecario = idBecario;
+        this.idCiclo = idCiclo;
     }
 
 

@@ -103,4 +103,17 @@ public class Becario_Model
         cmd.Parameters["@id"].Value = id;
         return Int32.Parse(DBConnection.QueryScalar(cmd));
     }
+
+    public static int ExistenciaCiclo(string idCiclo, string idBecario)
+    { //verifica que un becario poseaa un ciclo con un presupuesto por aprobar
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM Ciclo C INNER JOIN Becario B ON C.idBecario = B.idBecario WHERE C.idBecario = @idBecario AND C.idCiclo = @idCiclo AND C.evidenciaNotas = @evidencia");
+        cmd.Parameters.Add("@idBecario", SqlDbType.NVarChar);
+        cmd.Parameters.Add("@idCiclo", SqlDbType.Int);
+        cmd.Parameters.Add("@evidencia", SqlDbType.Int);
+
+        cmd.Parameters["@idBecario"].Value = idBecario;
+        cmd.Parameters["@idCiclo"].Value = idCiclo;
+        cmd.Parameters["@evidencia"].Value = 1;
+        return Int32.Parse(DBConnection.QueryScalar(cmd));
+    }
 }
