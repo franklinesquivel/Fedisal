@@ -13,8 +13,8 @@ using System.Web;
 /// </summary>
 public class Correo
 {
-    static String hostMail = "ezic2017@gmail.com";
-    static String hostPass = "ksakzzccxasxmkcq";
+    static String hostMail = "";
+    static String hostPass = "";
 
     public Correo()
     {
@@ -33,7 +33,7 @@ public class Correo
 
         //Configuración del mensaje
         MailMessage mensaje = new MailMessage();
-        mensaje.From = new MailAddress("ezic2017@gmail.com");
+        mensaje.From = new MailAddress(Correo.hostMail);
         mensaje.Subject = "FEDISAL - Becario";
         mensaje.IsBodyHtml = true;
         mensaje.Body = "";
@@ -70,7 +70,7 @@ public class Correo
 
         //Configuración del mensaje
         MailMessage mensaje = new MailMessage();
-        mensaje.From = new MailAddress("ezic2017@gmail.com");
+        mensaje.From = new MailAddress(Correo.hostMail);
         mensaje.Subject = "FEDISAL - Nuevo Usuario";
         mensaje.IsBodyHtml = true;
         mensaje.Body = "";
