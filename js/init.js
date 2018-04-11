@@ -31,6 +31,14 @@
         if($(".eliminarModal").length > 0){
             $(".eliminarModal").html("<i class='material-icons delete'>delete</i>");
         }
+
+        if($(".iconSee").length > 0){
+            $(".iconSee").html("<i class='material-icons'>visibility</i>");
+        }
+
+        if ($(".btnIncidente")) {
+            $(".btnIncidente").html("<i class='material-icons'>done_all</i>");
+        }
         
         if ($('.dropdown-button').length > 0) {
             $('.dropdown-button').dropdown({

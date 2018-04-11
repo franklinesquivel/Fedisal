@@ -54,7 +54,7 @@
                                     <asp:Label ID="lblBeca" runat="server" Text='<%# Eval("idBecario") %>'></asp:Label>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:HyperLink NavigateUrl="#modal1" ID="lblBeca" runat="server" IdBecario='<%# Eval("idBecario") %>' CssClass="btnIncidente waves-effect waves-light btn modal-trigger" Text="Aplicar" />
+                                    <asp:HyperLink NavigateUrl="#modal1" ID="lblBeca" runat="server" IdBecario='<%# Eval("idBecario") %>' CssClass="btnIncidente waves-effect modal-trigger" Text="Aplicar" />
                                 </ItemTemplate>
                             </asp:TemplateField>   
                              <asp:TemplateField HeaderText="Incidentes" SortExpression="idBecario">
@@ -62,18 +62,18 @@
                                     <asp:Label ID="lblBeca" runat="server" Text='<%# Eval("idBecario") %>'></asp:Label>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/GestorEducativo/VerIncidentes.aspx?id=", Eval("idBecario")) %>' ID="lblBeca" runat="server" CssClass="waves-effect waves-light btn" Text="Ver" />
+                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/GestorEducativo/VerIncidentes.aspx?id=", Eval("idBecario")) %>' ID="lblBeca" runat="server" CssClass="iconSee waves-effect" Text="Ver" />
                                 </ItemTemplate>
                                  
                             </asp:TemplateField>  
                             <asp:TemplateField HeaderText="Expediente" SortExpression="idBecario">
                                 <ItemTemplate>
-                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/GestorEducativo/VerExpediente.aspx?id=", Eval("idBecario")) %>' ID="lblBeca" runat="server" CssClass="waves-effect waves-light btn" Text="Ver" />
+                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/GestorEducativo/VerExpediente.aspx?id=", Eval("idBecario")) %>' ID="lblBeca" runat="server" CssClass="iconSee waves-effect" Text="Ver" />
                                 </ItemTemplate>
                             </asp:TemplateField>  
                              <asp:TemplateField HeaderText="Historial Presupuesto" SortExpression="idBecario">
                                 <ItemTemplate>
-                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/GestorEducativo/HistorialPresupuesto.aspx?id=", Eval("idBecario")) %>' ID="lblBeca" runat="server" CssClass="waves-effect waves-light btn" Text="Ver" />
+                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/GestorEducativo/HistorialPresupuesto.aspx?id=", Eval("idBecario")) %>' ID="lblBeca" runat="server" CssClass="iconSee waves-effect" Text="Ver" />
                                 </ItemTemplate>
                             </asp:TemplateField>                 
                         </Columns>

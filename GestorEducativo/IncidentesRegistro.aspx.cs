@@ -39,7 +39,15 @@ public partial class IncidentesRegistro : System.Web.UI.Page
 
     protected void btnBuscar_Click(object sender, EventArgs e)
     {
-        SqlDataSource1.SelectCommand = "SELECT InformacionPersonal.nombres, InformacionPersonal.apellidos, ProgramaBecas.nombre, Becario.idBecario FROM Becario INNER JOIN InformacionPersonal ON Becario.idInformacion = InformacionPersonal.idInformacion INNER JOIN ProgramaBecas ON Becario.idPrograma = ProgramaBecas.idPrograma WHERE "+ cmbBuscador.SelectedValue +" LIKE '%"+ txtBuscar.Text +"%'";
-        DGV.DataBind();
+        try
+        {
+            SqlDataSource1.SelectCommand = "SELECT InformacionPersonal.nombres, InformacionPersonal.apellidos, ProgramaBecas.nombre, Becario.idBecario FROM Becario INNER JOIN InformacionPersonal ON Becario.idInformacion = InformacionPersonal.idInformacion INNER JOIN ProgramaBecas ON Becario.idPrograma = ProgramaBecas.idPrograma WHERE " + cmbBuscador.SelectedValue + " LIKE '%" + txtBuscar.Text + "%'";
+            DGV.DataBind();
+        }
+        catch (Exception err)
+        {
+            SqlDataSource1.SelectCommand = "SELECT InformacionPersonal.nombres, InformacionPersonal.apellidos, ProgramaBecas.nombre, Becario.idBecario FROM Becario INNER JOIN InformacionPersonal ON Becario.idInformacion = InformacionPersonal.idInformacion INNER JOIN ProgramaBecas ON Becario.idPrograma = ProgramaBecas.idPrograma";
+            DGV.DataBind();
+        }
     }
 }
