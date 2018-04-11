@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ModificarUsuario.aspx.cs" Inherits="Administrador_ModificarUsuario" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Configuracion.aspx.cs" Inherits="GestorEducativo_Configuracion" %>
 
 <%@ Register Src="Header.ascx" TagPrefix="uc" TagName="Header" %>
 <%@ Register Src="Menu.ascx" TagPrefix="uc" TagName="Menu" %>
@@ -6,13 +6,14 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<uc:Header Titulo="" runat="server" ID="Header" />
+<uc:Header Titulo="[Gestor Educativo]" runat="server" ID="Header" />
 <body>
     <header>
-        <uc:Menu Titulo="Registro de Usuarios" runat="server" ID="Menu" />
+        <uc:Menu Titulo="Configuración" runat="server" ID="Menu" />
     </header>
-    <main class="container"><br />
-    <form id="form1" runat="server">
+    <main class="container">
+        <br />
+        <form id="form1" runat="server">
         <asp:HiddenField ID="idUsuario" runat="server" />
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
             <label for="txtNombre">Nombres</label>
@@ -56,28 +57,19 @@
             <asp:RequiredFieldValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Debe ingresar su residencia" ControlToValidate="txtResidencia" runat="server" />
             <asp:RegularExpressionValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Ingrese solo letras y numeros" ControlToValidate="txtResidencia" ValidationExpression="^[A-Za-zñÑ.#,áéíóú 0-9-]*$" runat="server" />
         </div>
-        <label for="ddlTipoUsuario">Tipo de usuario</label>
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
-            
-            <asp:DropDownList CssClass="form-control" ID="ddlTipoUsuario" runat="server">
-
-            </asp:DropDownList>
-            <asp:RequiredFieldValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Debe seleccionar un valor" ControlToValidate="ddlTipoUsuario" runat="server" />
-        
+            <label for="txtcontra1">Contraseña</label>
+            <input type="text" name="txtcontra1" id="txtcontra1" runat="server"/>
         </div>
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
-            <asp:Button Text="" CssClass="btn waves-effect waves-light" ID="btnUsuarios" OnClick="btnUsuarios_Click" runat="server" />
+            <label for="txtcontra2">Confirmar Contraseña</label>
+            <input type="text" name="txtcontra2" id="txtcontra2" runat="server"/>
+            <asp:CustomValidator CssClass="error-tag" Display="Dynamic" ErrorMessage="Las contraseñas no coinciden" ID="cv1" OnServerValidate="cv1_ServerValidate" ControlToValidate="txtcontra2" runat="server" />
+        </div>
+        <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
+            <asp:Button Text="Modificar Datos" CssClass="btn waves-effect waves-light" ID="btnUsuarios" OnClick="btnUsuarios_Click" runat="server" />
         </div>
         <div class="clearfix"><br /></div>
-        <asp:SqlDataSource ID="sdsDataUsuario" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>" SelectCommand="SELECT * FROM
-Usuario AS u
-INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario
-INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion
-WHERE u.idUsuario = @idTipoUsuario;">
-            <SelectParameters>
-                <asp:QueryStringParameter DefaultValue="null" Name="idTipoUsuario" QueryStringField="idUsuario" />
-            </SelectParameters>
-        </asp:SqlDataSource>
     </form>
     </main>
 </body>

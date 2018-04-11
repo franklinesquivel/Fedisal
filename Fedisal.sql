@@ -1,4 +1,4 @@
-/* ---------------------------------------------------------------------- */
+﻿/* ---------------------------------------------------------------------- */
 /* Script generated with: DeZign for Databases V10.0.1                    */
 /* Target DBMS:           MS SQL Server 2016                              */
 /* Project file:          LP2.Catedra.dez                                 */
@@ -379,7 +379,7 @@ CREATE TABLE [Usuario] (
     [idUsuario] char(5) NOT NULL,
     [idInformacion] INTEGER NOT NULL,
     [idTipoUsuario] CHAR(1) NOT NULL,
-	[nombreUsuario] VARCHAR(12) NOT NULL,
+	[nombreUsuario] VARCHAR(12) NULL,
     [contrasenna] VARCHAR(200) NOT NULL,
     CONSTRAINT [PK_Usuario] PRIMARY KEY ([idUsuario])
 )

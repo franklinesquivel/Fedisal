@@ -114,6 +114,52 @@ public class Usuario_Model
         cmd2.Parameters["@idInformacion"].Value = cadenaID;
         return DBConnection.ExecuteCommandIUD(cmd2);
     }
+    public static string obtenerCon(string idUsuario) {
+        try {
+            SqlDataReader dataID = DBConnection.GetData("SELECT contrasenna FROM Usuario WHERE idUsuario = '" + idUsuario + "'");
+            dataID.Read();
+            string contra = dataID["contrasenna"].ToString();
+            dataID.Close();
+            return contra;
+        } catch (SqlException ex) {
+            return null;
+        }
+    }
+    public static bool modificarCuenta(Usuario usuario,string idUser,string contra) {
+        SqlDataReader dataID = DBConnection.GetData("SELECT ip.idInformacion FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE u.idUsuario = '" + idUser + "';");
+        dataID.Read();
+        string cadenaID = dataID["idInformacion"].ToString();
+        dataID.Close();
+
+        SqlCommand cmd = DBConnection.GetCommand("UPDATE InformacionPersonal SET nombres = @nombre, apellidos = @apellido, dui = @dui, fechaNacimiento = @fecha, direccionResidencia = @residencia, telefono = @telefono , correoElectronico = @correo WHERE idInformacion = @idInfo");
+        cmd.Parameters.Add("@nombre", SqlDbType.Char);
+        cmd.Parameters.Add("@apellido", SqlDbType.VarChar);
+        cmd.Parameters.Add("@dui", SqlDbType.VarChar);
+        cmd.Parameters.Add("@fecha", SqlDbType.Date);
+        cmd.Parameters.Add("@residencia", SqlDbType.VarChar);
+        cmd.Parameters.Add("@telefono", SqlDbType.VarChar);
+        cmd.Parameters.Add("@correo", SqlDbType.VarChar);
+        cmd.Parameters.Add("@idInfo", SqlDbType.Int);
+
+
+        cmd.Parameters["@nombre"].Value = usuario.Nombre;
+        cmd.Parameters["@apellido"].Value = usuario.Apellido;
+        cmd.Parameters["@dui"].Value = usuario.Dui;
+        cmd.Parameters["@fecha"].Value = usuario.FechaNacimiento;
+        cmd.Parameters["@residencia"].Value = usuario.Residencia;
+        cmd.Parameters["@telefono"].Value = usuario.Telefono;
+        cmd.Parameters["@correo"].Value = usuario.Correo;
+        cmd.Parameters["@idInfo"].Value = cadenaID;
+        DBConnection.ExecuteCommandIUD(cmd);
+
+        SqlCommand cmd2 = DBConnection.GetCommand("UPDATE Usuario SET contrasenna = @contra WHERE idUsuario = @idUser");
+        cmd2.Parameters.Add("@contra", SqlDbType.VarChar);
+        cmd2.Parameters.Add("@idUser", SqlDbType.VarChar);
+
+        cmd2.Parameters["@contra"].Value = contra;
+        cmd2.Parameters["@idUser"].Value = idUser;
+        return DBConnection.ExecuteCommandIUD(cmd2);
+    }   
     public static string genCodigo(string tipouser) {
         string _id = "";
         if (tipouser == "GestorEducativo") {

@@ -96,7 +96,7 @@
             </ul>
         </li>
         <li><a class="subheader">Cuenta</a></li>
-        <li><a href="#!" class="waves-effect">Configuración<i class="material-icons">settings</i></a></li>
+        <li><a href="/Administrador/Configuracion.aspx" class="waves-effect">Configuración<i class="material-icons">settings</i></a></li>
         <li>
             <div class="divider"></div>
         </li>

@@ -31,7 +31,6 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                     string ddlvalue = dataDDL["idTipoUsuario"].ToString();
                     ddlTipoUsuario.SelectedValue = ddlvalue;
                     idUsuario.Value = Request.QueryString["idUsuario"];
-                    verificarAcciones2.Visible = false;
                     dataDDL.Close();
                 }
             }else
@@ -46,7 +45,6 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                 btnUsuarios.Text = "Registrar";
                 DBConnection.FillCmb(ref ddlTipoUsuario, "SELECT * FROM TipoUsuario WHERE descripcion = 'Contador' OR descripcion = 'GestorEducativo'", "descripcion", "idTipoUsuario");
                 ddlTipoUsuario.DataBind();
-                verificarAcciones2.Visible = true;
                 ddlTipoUsuario.Enabled = true;
             }
         }
@@ -78,7 +76,7 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
         DateTime fechaNac = DateTime.Parse(txtFechaNac.Value);
         string residencia = txtResidencia.Value;
         string tipoUser = "";
-        string nombreUser = txtNameUser.Text;
+        string nombreUser = "";
         string mensaje = "";
         string codigoUser = Request.QueryString["idUsuario"];
 
