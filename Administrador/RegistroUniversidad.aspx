@@ -23,6 +23,7 @@
                             CssClass="error-tag"
                             Display="Dynamic"
                             ErrorMessage="Debes ingresar un nombre!"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator CssClass="error-tag" ErrorMessage="Ingrese solo letras" ControlToValidate="txtName" ValidationExpression="^[A-Za-zñÑ áéíóú]*$" runat="server" />
                     </div>
 
                     <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
@@ -32,9 +33,9 @@
                             ControlToValidate="txtDireccion"
                             CssClass="error-tag"
                             Display="Dynamic"
-                            ErrorMessage="Debes ingresar direccion"></asp:RequiredFieldValidator>
+                            ErrorMessage="Debes ingresar una direccion"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Algunos caracteres no estan permitidos" ControlToValidate="txtDireccion" ValidationExpression="^[a-zA-Z0-9áéíóú #.ñÑ,-]*$" runat="server" />
                     </div>
-
                     <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
                         <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
                         <asp:Label ID="lblTelefono" AssociatedControlID="txtTelefono" runat="server" Text="Telefono"></asp:Label>
@@ -43,6 +44,7 @@
                             CssClass="error-tag"
                             Display="Dynamic"
                             ErrorMessage="Debes ingresar numero telefonico"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator Display="Dynamic" CssClass="error-tag" ErrorMessage="Ingrese un numero de telefono valido: 7777 7777 ó 7777-7777" ValidationExpression="^[276]{1}[0-9]{3}[- ]{1}[0-9]{4}$" ControlToValidate="txtTelefono" runat="server" />
                     </div>
 
                     <div class="input-field col s12 center-align">

@@ -99,30 +99,36 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
         }
         else
         {
-            if (Usuario_Model.VerificarExistencia(codigoUser) == 0)
+            if (Usuario_Model.verificarCorreo(email))
             {
-                try
+                if (Usuario_Model.VerificarExistencia(codigoUser) == 0)
                 {
-                    string codiGen = "";
-                    codigoUser = ddlTipoUsuario.SelectedItem.Value;
-                    if (codigoUser == "C") { codiGen = Usuario_Model.genCodigo("Contador"); }
-                    else if (codigoUser == "G") { codiGen = Usuario_Model.genCodigo("GestorEducativo"); }
-                    if (Usuario_Model.Insertar(new Usuario(0,codiGen, name, apellido, dui, fechaNac, residencia, telefono, email)))
+                    try
                     {
-                        if (Usuario_Model.Insertar(dui, email, codigoUser, codiGen, nombreUser, GenerarContrasenna()))
+                        string codiGen = "";
+                        codigoUser = ddlTipoUsuario.SelectedItem.Value;
+                        if (codigoUser == "C") { codiGen = Usuario_Model.genCodigo("Contador"); }
+                        else if (codigoUser == "G") { codiGen = Usuario_Model.genCodigo("GestorEducativo"); }
+                        if (Usuario_Model.Insertar(new Usuario(0, codiGen, name, apellido, dui, fechaNac, residencia, telefono, email)))
                         {
-                            mensaje = "Materialize.toast('Usuario ingresado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
+                            if (Usuario_Model.Insertar(dui, email, codigoUser, codiGen, nombreUser, GenerarContrasenna()))
+                            {
+                                mensaje = "Materialize.toast('Usuario ingresado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
+                            }
                         }
                     }
+                    catch (Exception E)
+                    {
+                        mensaje = "Materialize.toast('Error al ingresar usuario', 2000)";
+                    }
                 }
-                catch (Exception E)
+                else
                 {
-                    mensaje = "Materialize.toast('Error al ingresar usuario', 2000)";
+                    mensaje = "Materialize.toast('Usuario ya existe', 2000)";
                 }
             }
-            else
-            {
-                mensaje = "Materialize.toast('Usuario ya existe', 2000)";
+            else {
+                mensaje = "Materialize.toast('Usuario ya existe con ese correo', 2000)";
             }
         }
         

@@ -41,6 +41,7 @@
                             CssClass="error-tag"
                             Display="Dynamic"
                             ErrorMessage="Debes ingresar un nombre!"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator CssClass="error-tag" ErrorMessage="Ingrese solo letras" ValidationExpression="^[A-Za-zñÑáéíóú ]*$" ControlToValidate="txtName" runat="server" />
                     </div>
                     <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
                         <asp:TextBox ID="txtDescription" TextMode="MultiLine" CssClass="materialize-textarea" runat="server"></asp:TextBox>
@@ -50,6 +51,7 @@
                             CssClass="error-tag"
                             Display="Dynamic"
                             ErrorMessage="Debes ingresar una descripción!"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator CssClass="error-tag" ErrorMessage="Algunos caracteres no estan permitidos" ValidationExpression="^[A-Za-zñÑáéíóú0-9 -,#!.;:]*$" ControlToValidate="txtDescription" runat="server" />
                     </div>
                     <div class="input-field col s12 center-align">
                         <asp:Button Text="Registrar" ID="btnRegister" OnClick="btnRegister_Click" CssClass="btn waves-effect waves-light" runat="server" />

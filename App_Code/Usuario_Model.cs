@@ -257,7 +257,17 @@ public class Usuario_Model
         data.Close();
         return _U;
     }
-
+    public static bool verificarCorreo(string correo) {
+        SqlDataReader data = DBConnection.GetData("SELECT COUNT(correoElectronico) AS cuenta FROM InformacionPersonal WHERE correoElectronico = '"+ correo +"'");
+        data.Read();
+        int conteo = Convert.ToInt32(data["cuenta"].ToString());
+        data.Close();
+        if (conteo == 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     public static int VerificarExistencia(int idInformacion)
     {
         /* Descripción de método

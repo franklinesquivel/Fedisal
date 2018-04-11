@@ -42,7 +42,7 @@ public partial class ProgramaBecasRegistro : System.Web.UI.Page
             {
                 if (ProgramaBeca_Model.Insertar(programa))
                 {
-                    mensaje = "Materialize.toast('Programa registado exitosamente!', 2000, '', function(){ location.href = '/Administrador/ProgramaBecasRegistro.aspx'})";
+                    mensaje = "Materialize.toast('Programa registado exitosamente!', 2000, '', function(){ location.href = '/Administrador/GestionProgramaBecas.aspx'})";
                 }else
                 {
                     mensaje = "Materialize.toast('Error :(', 2000)";

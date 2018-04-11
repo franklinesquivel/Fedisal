@@ -11,6 +11,7 @@
             <uc:Menu Titulo="Registro de Nivel Educativo" runat="server" ID="Menu" />
         </header>
         <main>
+        <br />
             <div class="row">
                 <form id="frmMain" runat="server">
                     <asp:HiddenField ID="idNivel" runat="server" />
@@ -24,6 +25,7 @@
                             CssClass="error-tag"
                             Display="Dynamic"
                             ErrorMessage="Debes ingresar un nombre"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator CssClass="error-tag" ErrorMessage="Ingrese solo letras" ValidationExpression="^[A-Za-zñÑáéíóú0-9 º.]*$" ControlToValidate="txtName" runat="server" />
                     </div>
 
                     <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
@@ -34,6 +36,7 @@
                             CssClass="error-tag"
                             Display="Dynamic"
                             ErrorMessage="Debes ingresar descripcion"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator CssClass="error-tag" ErrorMessage="Algunos caracteres no estan permitidos" ValidationExpression="^[A-Za-zñÑáéíóú0-9 -,#!.;:]*$" ControlToValidate="txtDescripcion" runat="server" />
                     </div>
                     <div class="input-field col s12 center-align">
                         <asp:Button Text="Registrar" ID="btnRegister" OnClick="btnRegister_Click" CssClass="btn waves-effect waves-light" runat="server" />

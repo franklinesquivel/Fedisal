@@ -11,6 +11,7 @@
             <uc:Menu Titulo="Registro de Carreras" runat="server" ID="Menu" />
         </header>
         <main>
+        <br />
             <div class="row">
                 <form id="frmMain" runat="server">
                 <div class="container row">
@@ -22,6 +23,7 @@
                             CssClass="error-tag"
                             Display="Dynamic"
                             ErrorMessage="Debes ingresar un nombre!"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator CssClass="error-tag" ErrorMessage="Ingrese solo letras" ValidationExpression="^[A-Za-zñÑáéíóú ]*$" ControlToValidate="txtName" runat="server" />
                     </div>
                     <div class="input-field col s12 center-align">
                         <asp:Button Text="Registrar" ID="btnRegister" OnClick="btnRegister_Click" CssClass="btn waves-effect waves-light" runat="server" />

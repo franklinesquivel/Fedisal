@@ -42,7 +42,7 @@ public partial class Administrador_RegistroCarrera : System.Web.UI.Page
             {
                 if (Carrera_Model.Insertar(new Carrera(nombre))) //Proceso para agregar nueva carrea
                 {
-                    mensaje = "Materialize.toast('Carrera Registrada con exito', 1000, '', function(){ location.href = 'RegistroCarrera.aspx'})";
+                    mensaje = "Materialize.toast('Carrera Registrada con exito', 1000, '', function(){ location.href = '/Administrador/GestionCarreras.aspx'})";
                 }
                 else
                 {

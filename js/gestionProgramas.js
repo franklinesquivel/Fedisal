@@ -26,10 +26,10 @@
                                 <td>${r.d[i][3]}</td>
                             `;
                         if(r.d[i][3] > 0){
-                            tr += `<td colspan='2'><a href='ModificarProgramaBeca.aspx?idPrograma=${r.d[i][0]}'>Modificar</a></td>`;
+                            tr += `<td colspan='2'><a href='/Administrador/ModificarProgramaBeca.aspx?idPrograma=${r.d[i][0]}'>Modificar</a></td>`;
                         } else {
                             tr += `
-                                <td colspan='1'><a href='ModificarProgramaBeca.aspx?${r.d[i][0]}'>Modificar</a></td>
+                                <td colspan='1'><a href='/Administrador/ModificarProgramaBeca.aspx?idPrograma=${r.d[i][0]}'>Modificar</a></td>
                                 <td colspan='1'><a href='#' class='eliminarModal'>Eliminar</a></td>
                             `;
                         }
