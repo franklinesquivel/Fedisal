@@ -63,7 +63,12 @@ public partial class Administrador_Configuracion : System.Web.UI.Page
                 contra = txtcontra2.Value;
                 if (Usuario_Model.modificarCuenta(new Usuario(name, apellido, dui, fechaNac, residencia, telefono, email), HttpContext.Current.Session["ID"].ToString(), contra))
                 {
-                    mensaje = "Materialize.toast('Tu usuario fue modificado con exito', 2000, '', function(){ location.href = '/Administrador/'})";
+                    if (Correo.EnviarCorreoUsuario(new Usuario(email,name,contra,Usuario_Model.obtenerId(HttpContext.Current.Session["ID"].ToString())))) {
+                        mensaje = "Materialize.toast('Tu usuario fue modificado con exito', 2000, '', function(){ location.href = '/Administrador/'})";
+                    } else {
+                        mensaje = "Materialize.toast('Error al modificar tu usuario', 2000)";
+                    }
+                    
                 }
                 else
                 {

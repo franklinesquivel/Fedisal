@@ -28,7 +28,7 @@
                     CssClass="error-tag"
                     Display="Dynamic"
                     ErrorMessage="Debes ingresar un nombre!"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Ingrese un nombre valido" ControlToValidate="txtName" ValidationExpression="^[A-Z][a-zA-Záéíóúñ ]$" runat="server" />
+                <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Ingrese un nombre valido" ControlToValidate="txtName" ValidationExpression="^[A-Z][a-zA-Záéíóúñ ]*$" runat="server" />
             </div>
             <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
                 <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
@@ -38,7 +38,7 @@
                     CssClass="error-tag"
                     Display="Dynamic"
                     ErrorMessage="Debes ingresar un apellido!"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Ingrese un apellido valido" ControlToValidate="txtLastName" ValidationExpression="^[A-Z][a-zA-Záéíóúñ ]$" runat="server" />
+                    <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Ingrese un apellido valido" ControlToValidate="txtLastName" ValidationExpression="^[A-Z][a-zA-Záéíóúñ ]*$" runat="server" />
             </div>
             <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
                 <asp:TextBox ID="txtDUI" runat="server"></asp:TextBox>

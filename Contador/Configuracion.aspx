@@ -59,11 +59,11 @@
         </div>
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
             <label for="txtcontra1">Contraseña</label>
-            <input type="text" name="txtcontra1" id="txtcontra1" runat="server"/>
+            <input type="password" name="txtcontra1" id="txtcontra1" runat="server"/>
         </div>
         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
             <label for="txtcontra2">Confirmar Contraseña</label>
-            <input type="text" name="txtcontra2" id="txtcontra2" runat="server"/>
+            <input type="password" name="txtcontra2" id="txtcontra2" runat="server"/>
             <asp:CustomValidator CssClass="error-tag" Display="Dynamic" ErrorMessage="Las contraseñas no coinciden" ID="cv1" OnServerValidate="cv1_ServerValidate" ControlToValidate="txtcontra2" runat="server" />
         </div>
         <div class="center-align col s10 m6 l6 offset-s1 offset-m3 offset-l3">

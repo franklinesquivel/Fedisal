@@ -257,6 +257,13 @@ public class Usuario_Model
         data.Close();
         return _U;
     }
+    public static int obtenerId(string idUsuario) {
+        SqlDataReader data = DBConnection.GetData("SELECT idInformacion FROM Usuario WHERE idUsuario = '"+ idUsuario +"'");
+        data.Read();
+        int idInfo = Convert.ToInt32(data["idInformacion"].ToString());
+        data.Close();
+        return idInfo;
+    }
     public static bool verificarCorreo(string correo) {
         SqlDataReader data = DBConnection.GetData("SELECT COUNT(correoElectronico) AS cuenta FROM InformacionPersonal WHERE correoElectronico = '"+ correo +"'");
         data.Read();
