@@ -41,9 +41,20 @@ public class Presupuesto_Model
 
     public static Presupuesto Obetener(string idBecario) //Obtiene el presupuesto en base al idBecario
     {
-        string sql = "SELECT libro, colegiatura, manuntencion, matricula, otros, trabajoGraduacion FROM PresupuestoBeca WHERE idBecario= '"+ idBecario +"'";
+        string sql = "SELECT libro, colegiatura, manutencion, matricula, otros, trabajoGraduacion FROM PresupuestoBecas WHERE idBecario= '"+ idBecario +"'";
         SqlDataReader reader = DBConnection.GetData(sql);
-        Presupuesto presupuesto = new Presupuesto(reader.GetDouble(0), reader.GetDouble(1), reader.GetDouble(2), reader.GetDouble(3), reader.GetDouble(4), reader.GetDouble(5), idBecario);
+        reader.Read();
+        Presupuesto presupuesto = new Presupuesto(Convert.ToDouble(reader.GetDecimal(0)), Convert.ToDouble(reader.GetDecimal(1)), Convert.ToDouble(reader.GetDecimal(2)), Convert.ToDouble(reader.GetDecimal(3)), Convert.ToDouble(reader.GetDecimal(4)), Convert.ToDouble(reader.GetDecimal(5)), idBecario);
+        reader.Close();
         return presupuesto;
+    }
+
+    public static int VerificarExistencia(string idBecario) //Verifica que exista un presupuesto en dicho becario
+    {
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(*) FROM PresupuestoBecas WHERE idBecario= @idBecario");
+        cmd.Parameters.Add("@idBecario", SqlDbType.NVarChar);
+
+        cmd.Parameters["@idBecario"].Value = idBecario;
+        return Int32.Parse(DBConnection.QueryScalar(cmd));
     }
 }

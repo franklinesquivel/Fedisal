@@ -29,4 +29,17 @@ public class Desembolso_Model
         cmd.Parameters["@idBecario"].Value = _d.IdCiclo;
         return DBConnection.ExecuteCommandIUD(cmd);
     }
+
+    public static double ObtenerSaldo(int idCiclo, int idTipo)
+    {
+        //Obtiene la suma de otos los desembolsos segun ciclo y tipo
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COALESCE( SUM(monto), 0) AS [Monto] FROM Desembolso WHERE idCiclo = @idCiclo AND idTipoDesembolso = @idDesembolso");
+        cmd.Parameters.Add("@idCiclo", SqlDbType.Int);
+        cmd.Parameters.Add("@idDesembolso", SqlDbType.Int);
+
+        cmd.Parameters["@idCiclo"].Value = idCiclo;
+        cmd.Parameters["@idDesembolso"].Value = idTipo;
+        return Double.Parse(DBConnection.QueryScalar(cmd));
+
+    }
 }

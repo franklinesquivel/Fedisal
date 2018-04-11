@@ -11,8 +11,8 @@ public partial class PresupuestoRegistro : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            string sql = "SELECT Becario.idBecario, CONCAT(InformacionPersonal.apellidos, ', ', InformacionPersonal.nombres) AS display FROM(Becario INNER JOIN InformacionPersonal ON InformacionPersonal.idInformacion = Becario.idInformacion)"
-            + " INNER JOIN PresupuestoBecas PB ON Becario.idBecario = PB.idBecario WHERE PB.idBecario IS NULL";
+            string sql = "SELECT Becario.idBecario FROM Becario" 
+            +" LEFT JOIN PresupuestoBecas PB ON Becario.idBecario = PB.idBecario WHERE PB.idBecario IS NULL";
             DBConnection.FillCmb(ref ddlScholar, sql, "idBecario", "idBecario");
             ddlScholar.Items.Insert(0, new ListItem("[Becario]", "0"));
         }
@@ -23,16 +23,21 @@ public partial class PresupuestoRegistro : System.Web.UI.Page
         if (Page.IsValid)
         {
             String scriptstring;
-            Presupuesto _p = new Presupuesto(double.Parse(txtLibro.Text), double.Parse(txtColegiatura.Text), double.Parse(txtManutencion.Text), double.Parse(txtMatricula.Text), double.Parse(txtOtros.Text), double.Parse(txtGraduacion.Text), ddlScholar.SelectedValue);
+            if (Presupuesto_Model.VerificarExistencia(ddlScholar.SelectedValue) == 0) {
+                Presupuesto _p = new Presupuesto(double.Parse(txtLibro.Text), double.Parse(txtColegiatura.Text), double.Parse(txtManutencion.Text), double.Parse(txtMatricula.Text), double.Parse(txtOtros.Text), double.Parse(txtGraduacion.Text), ddlScholar.SelectedValue);
 
-            if (Presupuesto_Model.Insert(_p))
+                if (Presupuesto_Model.Insert(_p))
+                {
+                    scriptstring = "Materialize.toast('El presupuesto ha sido registrado éxitosamente', 2000, '', function(){location.href = 'PresupuestoRegistro.aspx'});";
+                }
+                else
+                {
+                    scriptstring = "Materialize.toast('Ha ocurrido un error :(', 2000);";
+                }
+               
+            }else
             {
-                scriptstring = "Materialize.toast('El presupuesto ha sido registrado éxitosamente', 2000, '', function(){location.href = 'PresupuestoRegistro.aspx'});";
-            }
-            else
-            {
-                scriptstring = "Materialize.toast(Ha ocurrido un error :(', 2000);";
-
+                scriptstring = "Materialize.toast('Becario ya posee presupuesto', 2000);";
             }
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "confirmLog", scriptstring, true);
         }

@@ -37,8 +37,8 @@ public partial class GestorEducativo_HistorialPresupuesto : System.Web.UI.Page
 
     private void RecuperarInformacion(string id) {
         SqlDataSource1.SelectCommand = "SELECT D.idDesembolso, D.fecha, D.monto, TD.nombre FROM Desembolso D "
-                +" INNER JOIN TipoDesembolso TD ON D.idTipoDesembolso = TD.idTipoDesembolso"
-                +" WHERE D.idBecario = '"+ id +"' ORDER BY fecha DESC ";
+                +" INNER JOIN TipoDesembolso TD ON D.idTipoDesembolso = TD.idTipoDesembolso INNER JOIN Ciclo C ON D.idCiclo = C.idBecario"
+                +" WHERE C.idBecario = '"+ id +"' ORDER BY fecha DESC ";
         DGV.DataBind();
     }
 }

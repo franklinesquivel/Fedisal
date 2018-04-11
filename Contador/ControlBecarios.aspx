@@ -1,13 +1,18 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ControlBecarios.aspx.cs" Inherits="Contador_ControlBecarios" %>
 
+
+<%@ Register Src="Header.ascx" TagPrefix="uc" TagName="Header" %>
+<%@ Register Src="Menu.ascx" TagPrefix="uc" TagName="Menu" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
+<uc:Header Titulo="Control de Becarios" runat="server" ID="Header" />
 <body>
+    <header>
+        <uc:Menu Titulo="Usuarios" runat="server" ID="Menu" />
+    </header>
+    <br />
     <main class="container">
         <form runat="server" id="frmControl">
             <div class="row">
@@ -39,7 +44,7 @@
                         <asp:BoundField DataField="nCiclo" HeaderText="N° Ciclo" SortExpression="nCiclo" />
                         <asp:TemplateField HeaderText="Registrar Desembolso" SortExpression="idBecario">
                             <ItemTemplate>
-                                <asp:HyperLink NavigateUrl='<%#  string.Concat(string.Concat("/Contador/DesembolosRegistro.aspx?idCiclo=", Eval("idCiclo")), string.Concat("&idBecario=", Eval("idBecario"))) %>' ID="lblCiclo" runat="server" CssClass="waves-effect waves-light btn" Text="Ver" />
+                                <asp:HyperLink NavigateUrl='<%#  string.Concat(string.Concat("/Contador/DesembolsoRegistro.aspx?idCiclo=", Eval("idCiclo")), string.Concat("&idBecario=", Eval("idBecario"))) %>' ID="lblCiclo" runat="server" CssClass="waves-effect waves-light btn" Text="Ver" />
                              </ItemTemplate>
                         </asp:TemplateField>  
                     </Columns>

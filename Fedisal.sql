@@ -480,3 +480,8 @@ INSERT INTO [Usuario] VALUES
 
 INSERT INTO [Universidad] VALUES
 ('Universidad Don Bosco', 'Calle plan del pino, km. 1 1/2, Ciudadela Don Bosco, Soyapango, El Salvador, C.A. Apdo. Postal 2874', '2251-8200');
+
+ALTER TABLE Desembolso DROP CONSTRAINT Becario_Desembolso;
+ALTER TABLE Desembolso DROP COLUMN idBecario;
+ALTER TABLE Desembolso ADD idCiclo int NOT NULL;
+ALTER TABLE Desembolso ADD CONSTRAINT fk_desembolso_ciclo FOREIGN KEY (idCiclo) REFERENCES Ciclo(idCiclo);

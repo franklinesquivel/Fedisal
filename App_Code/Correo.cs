@@ -13,8 +13,8 @@ using System.Web;
 /// </summary>
 public class Correo
 {
-    static String hostMail = "";
-    static String hostPass = "";
+    static String hostMail = "ezic2017@gmail.com";
+    static String hostPass = "ksakzzccxasxmkcq";
 
     public Correo()
     {
@@ -46,7 +46,7 @@ public class Correo
 
         //Configuración SMTPT
         SmtpClient clienteSMTP = new SmtpClient();
-        clienteSMTP.Credentials = new NetworkCredential("", ""); //Correo y contraseña del emisor
+        clienteSMTP.Credentials = new NetworkCredential(Correo.hostMail, Correo.hostPass);
         clienteSMTP.Port = 587;
         clienteSMTP.Host = "smtp.gmail.com";
         clienteSMTP.EnableSsl = true;
