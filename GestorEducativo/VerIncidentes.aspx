@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="row">
-                <asp:GridView ID="DGV" runat="server" cssClass="centered highlight" AllowPaging="true" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="idBitacora">
+                <asp:GridView ID="DGV" EmptyDataText="No hay incidentes registrados" runat="server" cssClass="centered highlight" AllowPaging="true" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="idBitacora">
                     <Columns>
                         <asp:BoundField DataField="TipoIncidente" HeaderText="Tipo de Incidente" SortExpression="TipoIncidente" />
                         <asp:BoundField DataField="descripcion" HeaderText="Descripción" SortExpression="descripcion" />

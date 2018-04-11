@@ -52,8 +52,8 @@ public partial class GestorEducativo_VerIncidentes : System.Web.UI.Page
         carreraB.InnerHtml = "Carrera: " + reader["Carrera"];
         universidadB.InnerHtml = "Universidad: " + reader["Universidad"];
         programaB.InnerHtml = "Programa de Beca: " + reader["Programa"];
-        fechaInicioB.InnerHtml = "Inicio de Beca: " + reader["InicioBeca"];
-        fechaFinB.InnerHtml = "Fin de Beca: " + reader["FinBeca"];
+        fechaInicioB.InnerHtml = "Inicio de Beca: " + String.Format("{0:yyyy/MM/dd}", reader["InicioBeca"]);
+        fechaFinB.InnerHtml = "Fin de Beca: " + String.Format("{0:yyyy/MM/dd}", reader["FinBeca"]);
         reader.Close();
         
         //Obtenemos información y la asociamos al datagridview

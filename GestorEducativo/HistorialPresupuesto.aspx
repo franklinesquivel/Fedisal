@@ -22,11 +22,11 @@
             </div>
             <div class="row">
                 <asp:GridView runat="server" ID="DGV" AllowPaging="true"
-                     AutoGenerateColumns="False" CssClass="centered highlight" DataSourceID="SqlDataSource1" DataKeyNames="idDesembolso">
+                     AutoGenerateColumns="False" CssClass="centered highlight" EmptyDataText="No hay desembolsos registrados" DataSourceID="SqlDataSource1" DataKeyNames="idDesembolso">
                     <Columns>
                         <asp:BoundField DataField="nombre" HeaderText="Tipo de Desembolso" SortExpression="nombre"/>
-                        <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha"/>
-                        <asp:BoundField DataField="monto" HeaderText="Monto ($)" SortExpression="monto"/>
+                        <asp:BoundField DataField="fecha" DataFormatString="{0:yyyy-MM-dd}" HeaderText="Fecha" SortExpression="fecha"/>
+                        <asp:BoundField DataField="monto" DataFormatString="{0:0.00}"  HeaderText="Monto ($)" SortExpression="monto"/>
                     </Columns>
                 </asp:GridView>
             </div>

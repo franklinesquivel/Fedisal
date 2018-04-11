@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="row">
-                <asp:GridView ID="DGV" runat="server" cssClass="centered highlight" AllowPaging="true" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="idCiclo">
+                <asp:GridView ID="DGV" runat="server" EmptyDataText="No hay ciclos registrados" cssClass="centered highlight" AllowPaging="true" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="idCiclo">
                     <Columns>
                         <asp:BoundField DataField="Anio" HeaderText="Año" SortExpression="Anio" />
                         <asp:BoundField DataField="nCiclo" HeaderText="N° de Ciclo" SortExpression="ciclo" />
