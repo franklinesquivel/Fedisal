@@ -48,7 +48,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Ver más">
                             <ItemTemplate>
-                                <asp:HyperLink NavigateUrl="#mdlDetalle" ID="btnVerDetalles" runat="server" idCiclo='<%# Eval("idCiclo") %>' CssClass="waves btnMdlDetalle text-darken-4 waves-effect waves-light btn modal-trigger" Text='Ver Detalles' />
+                                <asp:HyperLink NavigateUrl="#mdlDetalle" ID="btnVerDetalles" runat="server" idCiclo='<%# Eval("idCiclo") %>' CssClass="btnMdlDetalle waves-effect modal-trigger" Text='Ver Detalles' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

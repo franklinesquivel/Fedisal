@@ -39,6 +39,11 @@
         if ($(".btnIncidente")) {
             $(".btnIncidente").html("<i class='material-icons'>done_all</i>");
         }
+
+        if ($(".btnMdlDetalle").length > 0) {
+            $(".btnMdlDetalle").html("<i class='material-icons'>visibility</i>");
+        }
+
         
         if ($('.dropdown-button').length > 0) {
             $('.dropdown-button').dropdown({

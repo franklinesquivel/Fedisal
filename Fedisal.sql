@@ -465,7 +465,9 @@ GO
 INSERT INTO [TipoDesembolso] VALUES
 ('Manutención'),
 ('Matricula'),
-('Colegitura');
+('Colegitura'),
+('Otros'),
+('Trabajo de Graduación');
 
 INSERT INTO [TipoUsuario] VALUES
 ('A', 'Administrador'),
