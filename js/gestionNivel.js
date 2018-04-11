@@ -1,7 +1,7 @@
 (function () {
     $(document).ready(function (){
         let id;
-        $(".btnEliminar").click(function () {
+        $(".eliminarModal").click(function () {
             id = $(this).attr("idnivel");
         })
 

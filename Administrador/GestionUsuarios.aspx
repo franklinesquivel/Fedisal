@@ -27,8 +27,8 @@
                         <asp:BoundField DataField="Tipo de Usuario" HeaderStyle-CssClass="center" HeaderText="Tipo de Usuario" SortExpression="Tipo de Usuario" />
                         <asp:TemplateField HeaderText="Acciones" HeaderStyle-CssClass="center">
                             <ItemTemplate>
-                                <asp:HyperLink NavigateUrl='<%# string.Concat("ModificarUsuario.aspx?idUsuario=", Eval("Código")) %>' ID="btnEditarGV" runat="server" Visible="true" CssClass="blue blue-text text-darken-4 btnModificar waves-effect waves-light btn" Text='Editar' />
-                                <asp:HyperLink ID="btnEliminarGV" runat="server" Visible="true" CssClass="btnEliminar waves-effect waves-light btn red red-text text-darken-4 modal-trigger" href="#mdlEliminar" idUser='<%# Eval("Código") %>' Text='Eliminar' />
+                                <asp:HyperLink NavigateUrl='<%# string.Concat("ModificarUsuario.aspx?idUsuario=", Eval("Código")) %>' ID="btnEditarGV" runat="server" Visible="true" CssClass="btnModificar waves-effect " Text='Editar' />
+                                <asp:HyperLink ID="btnEliminarGV" runat="server" Visible="true" CssClass="eliminarModal waves-effect modal-trigger" href="#mdlEliminar" idUser='<%# Eval("Código") %>' Text='Eliminar' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

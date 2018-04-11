@@ -22,22 +22,27 @@
                             <asp:BoundField DataField="idNivelEducativo" HeaderStyle-CssClass="center" HeaderText="ID" SortExpression="ID"/>
                             <asp:BoundField DataField="nombre" HeaderStyle-CssClass="center" HeaderText="Nombre" SortExpression="nombre" />
                             <asp:BoundField DataField="descripcion" HeaderStyle-CssClass="center" HeaderText="Descripcion" SortExpression="descripcion" />
-                            <asp:TemplateField HeaderText="Modificar" HeaderStyle-CssClass="center" SortExpression="idNivelEducativo">
+                            <asp:BoundField DataField="NumBecario" HeaderStyle-CssClass="center" HeaderText="Nº de Becarios" SortExpression="NumBecario" />
+                            <asp:TemplateField HeaderText="Acciones (Modificar / Eliminar)" HeaderStyle-CssClass="center" SortExpression="idNivelEducativo">
                                 <ItemTemplate>
-                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/Administrador/RegistroNivelEducativo.aspx?idNivel=", Eval("idNivelEducativo")) %>' ID="btnModificarGV" runat="server" Visible="true" CssClass="blue blue-text text-darken-4 btnModificar waves-effect waves-light btn modal-trigger" Text='Modificar' />
+                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/Administrador/RegistroNivelEducativo.aspx?idNivel=", Eval("idNivelEducativo")) %>' ID="btnModificarGV" runat="server" Visible="true" CssClass="btnModificar waves-effect modal-trigger"/>
+                                    <asp:HyperLink Visible='<%# (Convert.ToInt32(Eval("NumBecario")) > 0) ? false : true %>' NavigateUrl="#mdlEliminar" ID="btnEliminarGV" runat="server" idnivel='<%# Eval("idNivelEducativo") %>' CssClass="eliminarModal waves-effect modal-trigger"/>
                                 </ItemTemplate>
                            </asp:TemplateField>
-                            <asp:TemplateField HeaderStyle-CssClass="center" HeaderText="Eliminar" SortExpression="idNivelEducativo">
+                            <%--<asp:TemplateField HeaderStyle-CssClass="center" HeaderText="Eliminar" SortExpression="idNivelEducativo">
                                 <ItemTemplate>
                                     <asp:HyperLink NavigateUrl="#mdlEliminar" ID="btnEliminarGV" runat="server" idnivel='<%# Eval("idNivelEducativo") %>' CssClass="btnEliminar waves-effect waves-light btn red red-text text-darken-4 modal-trigger" Text='Eliminar' />
                                 </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
                         </Columns>
                     </asp:GridView>
 
                     <asp:SqlDataSource ID="sqlDataS" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>"
                         SelectCommand="
-                            SELECT T.idNivelEducativo, T.nombre, T.descripcion FROM NivelEducativo T GROUP BY T.idNivelEducativo, T.nombre, T.descripcion ORDER BY T.nombre; ">
+                            SELECT COUNT(B.idBecario) AS [NumBecario], T.idNivelEducativo, T.nombre, T.descripcion 
+                            FROM NivelEducativo T 
+                            FULL JOIN Becario B ON T.idNivelEducativo = B.idNivelEducativo
+                            GROUP BY T.idNivelEducativo, T.nombre, T.descripcion ORDER BY T.nombre; ">
                     </asp:SqlDataSource>
                 </form>
             </div>

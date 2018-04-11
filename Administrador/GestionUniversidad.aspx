@@ -18,14 +18,15 @@
                         DataSourceID="sqlDataS"
                         AutoGenerateColumns="False">
                         <Columns>
-                            <asp:BoundField HeaderStyle-CssClass="center" DataField="idUniversidad" HeaderText="ID" SortExpression="ID"/>
+                            <%--<asp:BoundField HeaderStyle-CssClass="center" DataField="idUniversidad" HeaderText="ID" SortExpression="ID"/>--%>
                             <asp:BoundField HeaderStyle-CssClass="center" DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
                             <asp:BoundField HeaderStyle-CssClass="center" DataField="direccion" HeaderText="Direccion" SortExpression="Direccion" />
                             <asp:BoundField HeaderStyle-CssClass="center" DataField="telefono" HeaderText="telefono" SortExpression="telefono" />
+                            <asp:BoundField HeaderStyle-CssClass="center" DataField="NumBecarios" HeaderText="Nº de Becarios" SortExpression="NumBecarios" />
                             <asp:TemplateField HeaderStyle-CssClass="center" HeaderText="Acciones" SortExpression="idTipoIncidente">
                                 <ItemTemplate>
-                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/Administrador/RegistroUniversidad.aspx?idUniversidad=", Eval("idUniversidad")) %>' ID="btnModificarGV" runat="server" Visible="true" CssClass="blue blue-text text-darken-4 btnModificar waves-effect waves-light btn modal-trigger" Text='Modificar' />
-                                    <asp:HyperLink NavigateUrl="#mdlEliminar" ID="btnEliminarGV" runat="server" idUniversidad='<%# Eval("idUniversidad") %>' CssClass="btnEliminar waves-effect waves-light btn red red-text text-darken-4 modal-trigger" Text='Eliminar' />
+                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/Administrador/RegistroUniversidad.aspx?idUniversidad=", Eval("idUniversidad")) %>' ID="btnModificarGV" runat="server" Visible="true" CssClass="waves-effect btnModificar modal-trigger" Text='Modificar' />
+                                    <asp:HyperLink Visible='<%# (Convert.ToInt32(Eval("NumBecarios")) > 0) ? false : true %>' NavigateUrl="#mdlEliminar" ID="btnEliminarGV" runat="server" idUniversidad='<%# Eval("idUniversidad") %>' CssClass="eliminarModal waves-effect modal-trigger" Text='Eliminar' />
                                 </ItemTemplate>
                            </asp:TemplateField>
                         </Columns>
@@ -33,9 +34,11 @@
 
                     <asp:SqlDataSource ID="sqlDataS" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>"
                         SelectCommand="
-                            SELECT T.idUniversidad, T.nombre, T.direccion, T.telefono
+                            SELECT COUNT(B.idBecario) AS [NumBecarios], T.idUniversidad, T.nombre, T.direccion, T.telefono
                             FROM Universidad T
-                            ORDER BY T.nombre; ">
+                            FULL JOIN Becario B ON T.idUniversidad = B.idUniversidad
+                            GROUP BY T.idUniversidad, T.nombre, T.direccion, T.telefono
+                            ORDER BY T.nombre;">
                     </asp:SqlDataSource>
                 </form>
             </div>

@@ -23,8 +23,8 @@
                             <asp:BoundField HeaderStyle-CssClass="center" DataField="descripcion" HeaderText="Descripcion" SortExpression="descripcion" />
                             <asp:TemplateField HeaderStyle-CssClass="center" HeaderText="Acciones" SortExpression="idTipoIncidente">
                                 <ItemTemplate>
-                                        <asp:HyperLink NavigateUrl='<%# string.Concat("/Administrador/RegistroTipoIncidente.aspx?id=", Eval("idTipoIncidente")) %>' ID="btnModificarGV" runat="server" Visible="true" CssClass="blue blue-text text-darken-4 btnModificar waves-effect waves-light btn modal-trigger" Text='Modificar' />
-                                        <asp:HyperLink NavigateUrl="#mdlEliminar" ID="btnEliminarGV" runat="server" idTipoInicidente='<%# Eval("idTipoIncidente") %>' Visible='<%# (Convert.ToInt32(Eval("InicidentesRegistrados")) > 0) ? false : true %>' CssClass="red red-text text-darken-4 eliminarModal waves-effect waves-light btn modal-trigger" Text='Eliminar' />
+                                        <asp:HyperLink NavigateUrl='<%# string.Concat("/Administrador/RegistroTipoIncidente.aspx?id=", Eval("idTipoIncidente")) %>' ID="btnModificarGV" runat="server" Visible="true" CssClass="btnModificar waves-effect modal-trigger" />
+                                        <asp:HyperLink NavigateUrl="#mdlEliminar" ID="btnEliminarGV" runat="server" idTipoInicidente='<%# Eval("idTipoIncidente") %>' Visible='<%# (Convert.ToInt32(Eval("InicidentesRegistrados")) > 0) ? false : true %>' CssClass="eliminarModal waves-effect modal-trigger" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

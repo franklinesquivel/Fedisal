@@ -21,10 +21,10 @@
                         <Columns>
                             <asp:BoundField HeaderStyle-CssClass="center" DataField="nombre" HeaderText="Nombre" SortExpression="nombre" />
                             <asp:BoundField HeaderStyle-CssClass="center" DataField="numEstudiantes" HeaderText="Numero de Estudiantes" SortExpression="numEstudiantes" />
-                            <asp:TemplateField HeaderStyle-CssClass="center" HeaderText="Acciones" SortExpression="idCarrera">
+                            <asp:TemplateField HeaderStyle-CssClass="center" HeaderText="Acciones (Modificar / Eliminar)" SortExpression="idCarrera">
                                 <ItemTemplate>
-                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/Administrador/RegistroCarrera.aspx?id=", Eval("idCarrera")) %>' ID="btnModificarGV" runat="server" Visible="true" CssClass="blue blue-text text-darken-4 btnModificar waves-effect waves-light btn modal-trigger" Text='Modificar' />
-                                    <asp:HyperLink NavigateUrl="#mdlEliminar" ID="btnEliminarGV" runat="server" idCarrera='<%# Eval("idCarrera") %>' Visible='<%# (Convert.ToInt32(Eval("numEstudiantes")) > 0) ? false : true %>' CssClass="red red-text text-darken-4 eliminarModal waves-effect waves-light btn modal-trigger" Text='Eliminar' />
+                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/Administrador/RegistroCarrera.aspx?id=", Eval("idCarrera")) %>' ID="btnModificarGV" runat="server" Visible="true"  CssClass="btnModificar waves-effect modal-trigger" />
+                                    <asp:HyperLink Visible='<%# (Convert.ToInt32(Eval("numEstudiantes")) > 0) ? false : true %>' NavigateUrl="#mdlEliminar" ID="btnEliminarGV" runat="server" idCarrera='<%# Eval("idCarrera") %>'  CssClass="eliminarModal waves-effect modal-trigger"/>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

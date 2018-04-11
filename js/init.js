@@ -23,6 +23,14 @@
         if ($('select').length > 0) {
             $('select').material_select();
         }
+
+        if ($(".btnModificar").length > 0) {
+            $(".btnModificar").html("<i class='material-icons edit'>edit</i>");
+        }
+
+        if($(".eliminarModal").length > 0){
+            $(".eliminarModal").html("<i class='material-icons delete'>delete</i>");
+        }
         
         if ($('.dropdown-button').length > 0) {
             $('.dropdown-button').dropdown({
