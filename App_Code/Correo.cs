@@ -40,12 +40,13 @@ public class Correo
         mensaje.Body += "<b>Usuario: </b>"+becario.IdBecario;
         mensaje.Body += "<br><b>Contraseña: </b>" + becario.Contrasenna;
         mensaje.BodyEncoding = Encoding.UTF8;
-        mensaje.To.Add((string)reader[0]);
+        string correo = (string)reader[0];
+        mensaje.To.Add(correo);
         reader.Close();
 
         //Configuración SMTPT
         SmtpClient clienteSMTP = new SmtpClient();
-        clienteSMTP.Credentials = new NetworkCredential(Correo.hostMail, Correo.hostPass); //Correo y contraseña del emisor
+        clienteSMTP.Credentials = new NetworkCredential("", ""); //Correo y contraseña del emisor
         clienteSMTP.Port = 587;
         clienteSMTP.Host = "smtp.gmail.com";
         clienteSMTP.EnableSsl = true;

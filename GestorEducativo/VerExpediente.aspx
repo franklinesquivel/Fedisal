@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
     <uc:Header Titulo="" runat="server" ID="Header"/>
-
+    <script src="../js/VerExpediente.js"></script>
     <body>
         <header>
             <uc:Menu Titulo="Gestor Educativo" runat="server" ID="Menu" />

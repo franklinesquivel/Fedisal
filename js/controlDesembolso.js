@@ -14,7 +14,6 @@
             success: function (r) {
                 let respuesta = ``;
                 if (r.d != false) {
-                    console.log(respuesta);
                     respuesta = `<table class='centered'>
                         <thead>
                             <th>Materia</th>
@@ -33,10 +32,9 @@
                     respuesta += `
                         </tbody>
                         </table>
-                        <button id='btnAprobarDesembolso' class ='waves-effect waves-light btn'>Aprobar Desembolso</button>
+                        <button id='btnAprobarDesembolso' class ='center-align waves-effect waves-light btn'>Aprobar Desembolso</button>
                         <input type='hidden' id='txtIdCiclo' value='${idCiclo}' />`
                     ;
-                    $("")
                 } else {
                     respuesta = `<h5>No hay asignaturas ingresadas</h5>`;
                 }
@@ -57,11 +55,11 @@
             dataType: 'json',
             success: function (r) {
                 if (r.d != false) {
-                    console.log("Listo");
                     $(".modal").modal('close');
+                    Materialize.toast('Desembolso aprobado!', 1000);
                     desaparecerFila(idCiclo);
                 } else {
-                    console.log('Error');
+                    Materialize.toast('Ocurrio un Error :(!', 1000);
                 }
             }
         });
@@ -70,7 +68,6 @@
     function desaparecerFila(idCiclo) {
         for (var i = 0; i < $("table#DGV tbody tr td").length; i++) {
             let elemento = $("table#DGV tbody tr td").eq(i).find("a");
-            console.log($(elemento).attr("idCiclo") == idCiclo);
             if ($(elemento).attr("idCiclo") == idCiclo) {
                 $(elemento).parent().parent().fadeOut("slow");
                 break;

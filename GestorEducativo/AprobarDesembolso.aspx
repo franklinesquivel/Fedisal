@@ -7,6 +7,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <uc:Header Titulo="" runat="server" ID="Header"/>
+    <script src="../js/controlDesembolso.js"></script>
         <body>
             <header>
             <uc:Menu Titulo="Gestor Educativo" runat="server" ID="Menu" />
@@ -61,7 +62,7 @@
                     INNER JOIN Becario B ON C.idBecario = B.idBecario 
                     INNER JOIN ProgramaBecas P ON B.idPrograma = P.idPrograma
                     INNER JOIN InformacionPersonal I ON B.idInformacion = I.idInformacion
-                    WHERE C.evidenciaNotas= 0ORDER BY C.anio, C.nCiclo, [NombreBecario]">
+                    WHERE C.evidenciaNotas= 0 ORDER BY C.anio, C.nCiclo, [NombreBecario]">
             </asp:SqlDataSource>
         </form>
         </main>

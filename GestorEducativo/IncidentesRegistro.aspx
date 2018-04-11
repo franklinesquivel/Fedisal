@@ -6,6 +6,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
          <uc:Header Titulo="" runat="server" ID="Header"/>
+    <script src="../js/modal.js"></script>
 <body>
             <header>
             <uc:Menu Titulo="Gestor Educativo" runat="server" ID="Menu" />
@@ -44,9 +45,9 @@
                                     <asp:Label ID="lblID" runat="server" Text='<%# Bind("idBecario") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="nombres" HeaderText="Nombre del becario" SortExpression="nombres" />
-                            <asp:BoundField DataField="apellidos" HeaderText="Apellido del becario" SortExpression="apellidos" />
-                            <asp:BoundField DataField="nombre" HeaderText="Programa de Becas" SortExpression="nombre" />
+                            <asp:BoundField DataField="nombres" HeaderText="Nombre" SortExpression="nombres" />
+                            <asp:BoundField DataField="apellidos" HeaderText="Apellido" SortExpression="apellidos" />
+                            <asp:BoundField DataField="nombre" HeaderText="Programa" SortExpression="nombre" />
 
                             <asp:TemplateField HeaderText="Aplicar" SortExpression="idBecario">
                                 <EditItemTemplate>

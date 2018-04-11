@@ -15,7 +15,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/init.js"></script>
-    <script src="js/login.js"></script>
+    <!-- <script src="js/login.js"></script> -->
     <link href="css/login.css" rel="stylesheet" />
 </head>
 <body class="grey lighten-4">

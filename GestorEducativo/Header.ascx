@@ -15,7 +15,4 @@
     <script src="../js/jquery.min.js"></script>
     <script src="../js/materialize.min.js"></script>
     <script src="../js/init.js"></script>
-    <script src="../js/modal.js"></script>
-    <script src="../js/VerExpediente.js"></script>
-    <script src="../js/controlDesembolso.js"></script>
 </head>
