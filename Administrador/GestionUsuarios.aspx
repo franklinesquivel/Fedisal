@@ -32,7 +32,7 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="sdsUsuarios" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>" SelectCommand="SELECT u.idUsuario AS Código, ip.nombres AS Nombre, ip.apellidos AS Apellido, tu.descripcion AS [Tipo de Usuario] FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE (u.idUsuario &lt;&gt; @idUser)">
+                <asp:SqlDataSource ID="sdsUsuarios" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>" SelectCommand="SELECT u.idUsuario AS Código, ip.nombres AS Nombre, ip.apellidos AS Apellido, tu.descripcion AS [Tipo de Usuario] FROM Usuario AS u INNER JOIN TipoUsuario AS tu ON tu.idTipoUsuario = u.idTipoUsuario INNER JOIN InformacionPersonal AS ip ON ip.idInformacion = u.idInformacion WHERE (u.idUsuario &lt;&gt; @idUser) AND (tu.idTipoUsuario &lt;&gt; 'A')">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="idH" DefaultValue="0" Name="idUser" PropertyName="Text" />
                     </SelectParameters>
