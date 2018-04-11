@@ -12,9 +12,10 @@
         <header>
             <uc:Menu Titulo="Programas de Becas" runat="server" ID="Menu" />
         </header>
+        <br />
         <main>
             <div class="row">
-                <table class="centered">
+                <table class="centered col l10 offset-l1 m10 offset-m1 s10 offset-s1">
                     <thead>
                         <tr>
                             <th>Código</th>

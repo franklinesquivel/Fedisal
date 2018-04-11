@@ -38,7 +38,7 @@
                 </div>
                 <div class="row">
                     <asp:GridView runat="server" ID="DGV" AllowPaging="True" 
-                        AutoGenerateColumns="False" 
+                        AutoGenerateColumns="False" EmptyDataText="No hay ciclos por aprobar"
                         DataSourceID="SqlDataSource1" DataKeyNames="idCiclo">
                         <Columns>
                             <asp:BoundField DataField="CodigoB" HeaderText="Código" SortExpression="CodigoB" />

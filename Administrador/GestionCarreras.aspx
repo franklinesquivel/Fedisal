@@ -10,8 +10,9 @@
         <header>
             <uc:Menu Titulo="Carreras" runat="server" ID="Menu" />
         </header>
+        <br />
         <main class="container">
-            <div class="row col l10 offset-l1">
+            <div class="row col l10 offset-l1 m10 offset-m1 s10 offset-s1">
                 <form id="form1" runat="server">
                     <asp:GridView ID="gdCarreras" runat="server" CssClass="centered" AllowPaging="True" 
                         DataKeyNames="idCarrera"
@@ -31,7 +32,7 @@
 
                     <asp:SqlDataSource ID="sqlDataS" runat="server" ConnectionString="<%$ ConnectionStrings:Fedisal_CS %>"
                         SelectCommand="
-                            SELECT C.idCarrera, C.nombre, COUNT(idBecario) AS [numEstudiantes] FROM Carrera C FULL JOIN Becario B ON C.idCarrera = B.idBecario GROUP BY C.idCarrera, C.nombre ORDER BY C.idCarrera;
+                            SELECT C.idCarrera, C.nombre, COUNT(idBecario) AS [numEstudiantes] FROM Carrera C FULL JOIN Becario B ON C.idCarrera = B.idCarrera GROUP BY C.idCarrera, C.nombre ORDER BY C.idCarrera;
                         ">
                     </asp:SqlDataSource>
                 </form>

@@ -12,7 +12,7 @@
             <uc:Menu Titulo="Nivel Educativo" runat="server" ID="Menu" />
         </header>
         <main class="container">
-            <div class="row col l10 offset-l1">
+            <div class="row col l10 offset-l1 m10 offset-m1 s10 offset-s1">
                 <form id="form1" runat="server">
                     <asp:GridView ID="gdNivelEducativo" runat="server" CssClass="centered" AllowPaging="True" 
                         DataKeyNames="idNivelEducativo"

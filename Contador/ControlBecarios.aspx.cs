@@ -34,7 +34,7 @@ public partial class Contador_ControlBecarios : System.Web.UI.Page
                 filtro = "idBecario";
             }
             //if () { 
-            SqlDataSource1.SelectCommand = "SELECT C.idCiclo, C.anio, nCiclo, INF.nombres, INF.apellidos, PB.nombre AS [programa], B.idBecario FROM Becario BW "
+            SqlDataSource1.SelectCommand = "SELECT C.idCiclo, C.anio, nCiclo, INF.nombres, INF.apellidos, PB.nombre AS [programa], B.idBecario FROM Becario B "
                 + " INNER JOIN Ciclo C ON B.idBecario = C.idBecario"
                 + " INNER JOIN InformacionPersonal INF ON B.idInformacion = INF.idInformacion"
                 + " INNER JOIN ProgramaBecas PB ON B.idPrograma = PB.idPrograma WHERE C.evidenciaNotas = 1 AND "+ filtro +" LIKE '%"+ txtBuscar.Text +"%' ORDER BY C.nCiclo DESC; ";
@@ -42,7 +42,7 @@ public partial class Contador_ControlBecarios : System.Web.UI.Page
         }
         catch (Exception err)
         {
-            SqlDataSource1.SelectCommand = "SELECT C.idCiclo, C.anio, nCiclo, INF.nombres, INF.apellidos, PB.nombre AS [programa], B.idBecario FROM Becario BW" 
+            SqlDataSource1.SelectCommand = "SELECT C.idCiclo, C.anio, nCiclo, INF.nombres, INF.apellidos, PB.nombre AS [programa], B.idBecario FROM Becario B" 
                 +" INNER JOIN Ciclo C ON B.idBecario = C.idBecario"
                 +" INNER JOIN InformacionPersonal INF ON B.idInformacion = INF.idInformacion"
                 +" INNER JOIN ProgramaBecas PB ON B.idPrograma = PB.idPrograma WHERE C.evidenciaNotas = 1 ORDER BY C.nCiclo DESC; ";

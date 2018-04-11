@@ -17,7 +17,8 @@
             <div class="container">
                 <asp:GridView
                     ID="gvUsuarios" CssClass="centered" runat="server"
-                    AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="Código"
+                    AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="Código" 
+                    CssClasss="col l10 offset-l1 m10 offset-m1 s10 offset-s1"
                     DataSourceID="sdsUsuarios">
                     <Columns>
                         <asp:BoundField DataField="Código" HeaderStyle-CssClass="center" HeaderText="Código" ReadOnly="True" SortExpression="Código" />
