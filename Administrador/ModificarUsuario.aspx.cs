@@ -111,9 +111,20 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                         else if (codigoUser == "G") { codiGen = Usuario_Model.genCodigo("GestorEducativo"); }
                         if (Usuario_Model.Insertar(new Usuario(0, codiGen, name, apellido, dui, fechaNac, residencia, telefono, email)))
                         {
-                            if (Usuario_Model.Insertar(dui, email, codigoUser, codiGen, nombreUser, GenerarContrasenna()))
+                            string contra = GenerarContrasenna();
+                            if (Usuario_Model.Insertar(dui, email, codigoUser, codiGen, nombreUser, contra))
                             {
-                                mensaje = "Materialize.toast('Usuario ingresado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
+                                SqlDataReader reader = DBConnection.GetData("SELECT idInformacion FROM InformacionPersonal WHERE correoElectronico = '"+ email+"'");
+                                reader.Read();
+                                int id = Convert.ToInt32(reader["idInformacion"].ToString());
+                                reader.Close();
+                                if (Correo.EnviarCorreoUsuario(new Usuario(email, name, contra, id))) {
+                                    mensaje = "Materialize.toast('Usuario ingresado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
+                                }
+                                else {
+                                    mensaje = "Materialize.toast('Error al ingresar usuario', 2000)";
+                                }
+                                
                             }
                         }
                     }
