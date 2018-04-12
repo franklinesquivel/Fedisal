@@ -19,9 +19,9 @@
             <br />
             <div class="row">
                 <div class="col l6 s12 m10 offset-l3 offset-m1">
-                  <div class="card">
+                  <div class="card teal lighten-5">
                     <div class="card-content">
-                      <span class="card-title center-align blue-grey darken-1 white-text">Datos de Becario</span>
+                      <b><span class="card-title center-align teal-text">Datos de Becario</span></b>
                       <div class="row">
                           <ul>
                               <li runat="server" id="nombreB"></li>
