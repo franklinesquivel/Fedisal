@@ -118,7 +118,7 @@ public partial class Administrador_ModificarUsuario : System.Web.UI.Page
                                 reader.Read();
                                 int id = Convert.ToInt32(reader["idInformacion"].ToString());
                                 reader.Close();
-                                if (Correo.EnviarCorreoUsuario(new Usuario(email, name, contra, id))) {
+                                if (Correo.EnviarCorreoUsuario(new Usuario(email, codiGen, contra, id))) {
                                     mensaje = "Materialize.toast('Usuario ingresado con exito', 1000, '', function(){ location.href = '/Administrador/GestionUsuarios.aspx'})";
                                 }
                                 else {
