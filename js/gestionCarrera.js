@@ -14,7 +14,7 @@
                 console.log(r);
                 if (r.d == true) {
                     $('#mdlEliminar').modal('close');
-                    Materialize.toast('Eliminación exitosa!', 1000, '', "function(){ location.href = '/Administrador/GestionCarreras.aspx'}");
+                    Materialize.toast('Eliminación exitosa!', 1000, '', function () { location.reload();});
                 } else {
                     Materialize.toast('Ocurrio un Error :(!', 1000);
                 }

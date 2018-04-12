@@ -29,7 +29,7 @@ public class TipoIncidente_Model
     public static int VerificarExistencia(string nombre)
     { //Verifica la existencia por nombre
         SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(LOWER(nombre)) FROM TipoIncidente WHERE nombre = LOWER(@nombre)");
-        cmd.Parameters.Add("@nombre", SqlDbType.Int);
+        cmd.Parameters.Add("@nombre", SqlDbType.VarChar);
 
         cmd.Parameters["@nombre"].Value = nombre;
         return Int32.Parse(DBConnection.QueryScalar(cmd));

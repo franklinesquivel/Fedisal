@@ -82,4 +82,12 @@ public class NivelEducativo_Model
         cmd.Parameters["@id"].Value = id;
         return DBConnection.ExecuteCommandIUD(cmd);
     }
+
+    public static int VerificarExistencia(string nombre) {
+        SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(LOWER(nombre)) FROM NivelEducativo WHERE nombre = LOWER(@nombre)");
+        cmd.Parameters.Add("@nombre", SqlDbType.VarChar);
+
+        cmd.Parameters["@nombre"].Value = nombre;
+        return Int32.Parse(DBConnection.QueryScalar(cmd));
+    }
 }
