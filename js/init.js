@@ -44,6 +44,13 @@
             $(".btnMdlDetalle").html("<i class='material-icons'>visibility</i>");
         }
 
+        if ($("#details").length > 0) {
+            $('textarea#details').characterCounter();
+        }
+
+        if($(".iconHidden").length > 0){
+            $(".iconHidden").html("<i class='material-icons'>visibility_off</i>");
+        }
         
         if ($('.dropdown-button').length > 0) {
             $('.dropdown-button').dropdown({

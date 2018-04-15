@@ -37,7 +37,7 @@ public partial class Contador_ControlBecarios : System.Web.UI.Page
             SqlDataSource1.SelectCommand = "SELECT C.idCiclo, C.anio, nCiclo, INF.nombres, INF.apellidos, PB.nombre AS [programa], B.idBecario FROM Becario B "
                 + " INNER JOIN Ciclo C ON B.idBecario = C.idBecario"
                 + " INNER JOIN InformacionPersonal INF ON B.idInformacion = INF.idInformacion"
-                + " INNER JOIN ProgramaBecas PB ON B.idPrograma = PB.idPrograma WHERE C.evidenciaNotas = 1 AND "+ filtro +" LIKE '%"+ txtBuscar.Text +"%' ORDER BY C.nCiclo DESC; ";
+                + " INNER JOIN ProgramaBecas PB ON B.idPrograma = PB.idPrograma WHERE C.evidenciaNotas = 1 AND C.bloqueado = 0 AND " + filtro +" LIKE '%"+ txtBuscar.Text +"%' ORDER BY C.nCiclo DESC; ";
             DGV.DataBind();
         }
         catch (Exception err)
@@ -45,8 +45,21 @@ public partial class Contador_ControlBecarios : System.Web.UI.Page
             SqlDataSource1.SelectCommand = "SELECT C.idCiclo, C.anio, nCiclo, INF.nombres, INF.apellidos, PB.nombre AS [programa], B.idBecario FROM Becario B" 
                 +" INNER JOIN Ciclo C ON B.idBecario = C.idBecario"
                 +" INNER JOIN InformacionPersonal INF ON B.idInformacion = INF.idInformacion"
-                +" INNER JOIN ProgramaBecas PB ON B.idPrograma = PB.idPrograma WHERE C.evidenciaNotas = 1 ORDER BY C.nCiclo DESC; ";
+                +" INNER JOIN ProgramaBecas PB ON B.idPrograma = PB.idPrograma WHERE C.evidenciaNotas = 1 AND C.bloqueado = 0 ORDER BY C.nCiclo DESC; ";
             DGV.DataBind();
+        }
+    }
+
+    [System.Web.Services.WebMethod]
+    public static object BloquearCiclo(string idCiclo)
+    {
+        try
+        {
+            return Ciclo_Model.BloquearDesembolso(Int32.Parse(idCiclo.ToString()));
+        }
+        catch (Exception e)
+        {
+            return false;
         }
     }
 }

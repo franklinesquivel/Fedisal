@@ -17,6 +17,7 @@
             </div>
         </li>
         <li><a href="/Contador/" class="waves-effect">Inicio<i class="material-icons">home</i></a></li>
+        <li><a href="/Contador/listaBecarios.aspx" class="waves-effect">Becarios<i class="material-icons">person</i></a></li>
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li>

@@ -33,7 +33,7 @@ public class Correo
 
         //Configuración del mensaje
         MailMessage mensaje = new MailMessage();
-        mensaje.From = new MailAddress(Correo.hostMail);
+        mensaje.From = new MailAddress("");//AÑADIR
         mensaje.Subject = "FEDISAL - Becario";
         mensaje.IsBodyHtml = true;
         mensaje.Body = "";
@@ -46,7 +46,7 @@ public class Correo
 
         //Configuración SMTPT
         SmtpClient clienteSMTP = new SmtpClient();
-        clienteSMTP.Credentials = new NetworkCredential(Correo.hostMail, Correo.hostPass);
+        clienteSMTP.Credentials = new NetworkCredential("", ""); //AÑADIR
         clienteSMTP.Port = 587;
         clienteSMTP.Host = "smtp.gmail.com";
         clienteSMTP.EnableSsl = true;
@@ -70,7 +70,7 @@ public class Correo
 
         //Configuración del mensaje
         MailMessage mensaje = new MailMessage();
-        mensaje.From = new MailAddress(Correo.hostMail);
+        mensaje.From = new MailAddress("");//AÑADIR
         mensaje.Subject = "FEDISAL - Nuevo Usuario";
         mensaje.IsBodyHtml = true;
         mensaje.Body = "";
@@ -82,7 +82,7 @@ public class Correo
 
         //Configuración SMTPT
         SmtpClient clienteSMTP = new SmtpClient();
-        clienteSMTP.Credentials = new NetworkCredential(Correo.hostMail, Correo.hostPass);
+        clienteSMTP.Credentials = new NetworkCredential("", "");//AÑADIR
         clienteSMTP.Port = 587;
         clienteSMTP.Host = "smtp.gmail.com";
         clienteSMTP.EnableSsl = true;

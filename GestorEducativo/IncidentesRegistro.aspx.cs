@@ -18,15 +18,19 @@ public partial class IncidentesRegistro : System.Web.UI.Page
         }
     }
     [System.Web.Services.WebMethod]
-    public static Boolean InsertarIncidente(int idTipo, string idBecario)
+    public static Boolean InsertarIncidente(int idTipo, string idBecario, string fecha, string descripcion)
     {
         Incidentes incidente = new Incidentes(idBecario, idTipo);
-        SqlCommand comando = DBConnection.GetCommand("INSERT INTO BitacoraIncidentes(idTipoIncidente,idBecario) VALUES(@idTipo,@idBeca)");
+        SqlCommand comando = DBConnection.GetCommand("INSERT INTO BitacoraIncidentes(idTipoIncidente, idBecario, fechaAplicacion, descripcion) VALUES(@idTipo, @idBeca, @fecha, @descripcion)");
         comando.Parameters.Add("@idTipo", SqlDbType.Int);
         comando.Parameters.Add("@idBeca", SqlDbType.VarChar);
+        comando.Parameters.Add("@fecha", SqlDbType.Date);
+        comando.Parameters.Add("@descripcion", SqlDbType.VarChar);
 
         comando.Parameters["@idTipo"].Value = incidente.IdTipoIncidente;
         comando.Parameters["@idBeca"].Value = incidente.IdBecario;
+        comando.Parameters["@fecha"].Value = fecha;
+        comando.Parameters["@descripcion"].Value = descripcion;
         if (DBConnection.ExecuteCommandIUD(comando))
         {
             return true;

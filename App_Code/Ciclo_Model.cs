@@ -26,4 +26,15 @@ public class Ciclo_Model
         cmd.Parameters["@valor"].Value = 1;
         return DBConnection.ExecuteCommandIUD(cmd);
     }
+
+    public static bool BloquearDesembolso(int id)
+    {
+        SqlCommand cmd = DBConnection.GetCommand("UPDATE Ciclo SET bloqueado = @valor WHERE idCiclo = @id");
+        cmd.Parameters.Add("@id", SqlDbType.Int);
+        cmd.Parameters.Add("@valor", SqlDbType.Int);
+
+        cmd.Parameters["@id"].Value = id;
+        cmd.Parameters["@valor"].Value = 1;
+        return DBConnection.ExecuteCommandIUD(cmd);
+    }
 }

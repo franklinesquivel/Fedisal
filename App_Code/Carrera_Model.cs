@@ -25,6 +25,11 @@ public class Carrera_Model
         return Int32.Parse(DBConnection.QueryScalar(cmd));
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="nombre"></param>
+    /// <returns></returns>
     public static int VerificarExistencia(string nombre)
     { //Verifica la existencia por nombre
         SqlCommand cmd = DBConnection.GetCommand("SELECT COUNT(LOWER(nombre)) FROM Carrera WHERE nombre = LOWER(@nombre)");

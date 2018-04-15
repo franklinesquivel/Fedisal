@@ -42,6 +42,8 @@
                     <Columns>
                         <asp:BoundField DataField="TipoIncidente" HeaderText="Tipo de Incidente" SortExpression="TipoIncidente" />
                         <asp:BoundField DataField="descripcion" HeaderText="Descripción" SortExpression="descripcion" />
+                        <asp:BoundField DataField="fechaAplicacion" DataFormatString="{0:yyyy-MM-dd}" HeaderText="Fecha (Apliación)" SortExpression="fechaAplicacion" />
+                        <asp:BoundField DataField="detalles" HeaderText="Detalles" SortExpression="detalles" />
                     </Columns>
                 </asp:GridView>
             </div>

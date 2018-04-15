@@ -295,6 +295,7 @@ CREATE TABLE [Ciclo] (
     [nCiclo] INTEGER,
     [evidenciaNotas] BIT,
     [idBecario] VARCHAR(12),
+	[bloqueado] BIT,
     CONSTRAINT [PK_Ciclo] PRIMARY KEY ([idCiclo])
 )
 GO
@@ -363,6 +364,8 @@ CREATE TABLE [BitacoraIncidentes] (
     [idBitacora] INTEGER IDENTITY(1,1) NOT NULL,
     [idTipoIncidente] INTEGER,
     [idBecario] VARCHAR(12),
+	[fechaAplicacion] DATE NOT NULL,
+    [descripcion] VARCHAR(500) NULL,
     CONSTRAINT [PK_BitacoraIncidentes] PRIMARY KEY ([idBitacora])
 )
 GO
@@ -475,7 +478,7 @@ INSERT INTO [TipoUsuario] VALUES
 ('G', 'GestorEducativo');
 
 INSERT INTO [InformacionPersonal] VALUES
-('Franklin Armando', 'Esquivel Guevara', '00307070-5', '1998-09-26', 'Col. Santa Lucía, PJE H, Casa # 150', '76702869', 'frank.esquivel115@gmail.com');
+('', '', '00307070-5', '1998-09-26', '', '', '');
 
 INSERT INTO [Usuario] VALUES
 ('A0001', 1, 'A', 'FAEG', '20150126');
@@ -487,3 +490,53 @@ ALTER TABLE Desembolso DROP CONSTRAINT Becario_Desembolso;
 ALTER TABLE Desembolso DROP COLUMN idBecario;
 ALTER TABLE Desembolso ADD idCiclo int NOT NULL;
 ALTER TABLE Desembolso ADD CONSTRAINT fk_desembolso_ciclo FOREIGN KEY (idCiclo) REFERENCES Ciclo(idCiclo);
+
+USE Fedisal;
+--CARRERAS
+SELECT * FROM Carrera;
+INSERT INTO Carrera(nombre) VALUES
+('Ingeniería en Sistemas'),
+('Técnico en computación'),
+('Licenciatura en Idiomas'),
+('Licenciatura en Diseño Gráfico'),
+('Ingeniería Mecánica');
+
+--NIVEL EDUCATIVO
+SELECT * FROM NivelEducativo;
+INSERT INTO NivelEducativo(nombre, descripcion) VALUES
+('Estudios de grado', 'Formarción a personas para que ejerzan la docencia.'),
+('Maestría en Oracle', 'Para ser DBA.');
+
+--UNIVERSIDAD
+SELECT * FROM Universidad;
+INSERT INTO Universidad(nombre, direccion, telefono) VALUES
+('Universidad de El Salvador', 'Ciudad Univesitaria. Fina de av.Mártires y Héroes del 30 de julio, San Salvador.', '2511-2000'),
+('Universidad Centromaericana José Simeón Cañas.', 'Boulevar Los Proceres.', '2210-6600'),
+('Universidad Francisco Gavidia', 'Calle el progreso 2748,  San Salvador.', '2249-2700'),
+('Universidad Tecnológica.', '19 AV sur, San Salvador.', '2275-8888');
+
+
+--Información personal
+SELECT * FROM InformacionPersonal;
+INSERT INTO InformacionPersonal(nombres, apellidos, dui, fechaNacimiento, direccionResidencia, telefono, correoElectronico)
+VALUES ('', '', '12345678-9', '1999-04-07', 'En el paraíso', '2255-7777', ''),
+('', '', '98765432-1', '1999-04-09', 'San Martín', '2273-6000', ''),
+('', '', '55555555-5', '1997-10-10', 'San Salvador','2222-2222', '');
+
+--USUARIO
+SELECT * FROM Usuario;
+SELECT * FROM TipoUsuario;
+INSERT INTO Usuario(idUsuario, idInformacion, idTipoUsuario, contrasenna)
+VALUES ('G0001', 2, 'G', '20150126'), ('C0001', 3, 'C', '20150126');
+
+-- Tipo Inicidente
+SELECT * FROM TipoIncidente;
+INSERT INTO TipoIncidente(nombre, descripcion) VALUES ('Notas', 'Malas notas.'), 
+('Peleas', 'Se aplica si causa riñas dentro de la Universidad.'),
+('Bajo desempeño', 'Si las notas van en declive.');
+
+--Programa Becas
+SELECT * FROM ProgramaBecas;
+INSERT INTO ProgramaBecas(idPrograma, nombre, descripcion) VALUES('ABCD', 'ASP Developer', 'Aprender de 0 a 50 asp'),
+('EFGH', 'SQL Developer', 'Para ser DBA pro'), ('IJKL' , 'REACT JS Developer', 'componentes.'), 
+('MNOP', 'VUE JS Developer','pro');

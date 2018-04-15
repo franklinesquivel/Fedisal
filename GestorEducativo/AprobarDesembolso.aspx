@@ -68,7 +68,7 @@
         </main>
         <div id="mdlDetalle" class="modal"> <!-- Modal para registrar incidente -->
             <div class="modal-content">
-                <h4>Asignaturas registradas</h4>
+                <h4 class="center-align">Asignaturas registradas</h4>
                 <br />
                 <div id="contenMdl" class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
                     

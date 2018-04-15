@@ -38,6 +38,7 @@
                         <ul>
                             <li><a href="/Administrador/ModificarUsuario.aspx" class="waves-effect">Añadir<i class="material-icons">library_add</i></a></li>
                             <li><a href="/Administrador/GestionUsuarios.aspx" class="waves-effect">Gestionar<i class="material-icons">poll</i></a></li>
+                            <li><a href="/Administrador/ListaBecarios.aspx" class="waves-effect">Lista Becarios<i class="material-icons">format_list_numbered</i></a></li>
                         </ul>
                     </div>
                 </li>

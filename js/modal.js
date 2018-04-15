@@ -17,7 +17,7 @@
                 url: 'IncidentesRegistro.aspx/InsertarIncidente',
                 cache: true,
                 asyc: false,
-                data: JSON.stringify({ idTipo: $("#ddlIncidentes").val(), idBecario: $('#txtIdBecario').val() }),
+                data: JSON.stringify({ idTipo: $("#ddlIncidentes").val(), idBecario: $('#txtIdBecario').val(), fecha: $("#dateApply").val(), descripcion: $("#details").val() }),
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function (r) {

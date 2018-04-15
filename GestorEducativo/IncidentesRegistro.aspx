@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <asp:GridView ID="DGV"  runat="server" CssClass="striped" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="idBecario">
+                    <asp:GridView ID="DGV" EmptyDataText="No hay Becarios Registrados"  runat="server" CssClass="striped" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="idBecario">
                         <Columns>
                             <asp:TemplateField HeaderText="idBecario" SortExpression="idBecario" Visible="False">
                                 <EditItemTemplate>
@@ -75,7 +75,12 @@
                                 <ItemTemplate>
                                     <asp:HyperLink NavigateUrl='<%# string.Concat("/GestorEducativo/HistorialPresupuesto.aspx?id=", Eval("idBecario")) %>' ID="lblBeca" runat="server" CssClass="iconSee waves-effect" Text="Ver" />
                                 </ItemTemplate>
-                            </asp:TemplateField>                 
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Presupuesto Inicial" SortExpression="idBecario">
+                                <ItemTemplate>
+                                    <asp:HyperLink NavigateUrl='<%# string.Concat("/GestorEducativo/PresupuestoInicial.aspx?id=", Eval("idBecario")) %>' ID="lblBeca" runat="server" CssClass="iconSee waves-effect" Text="Ver" />
+                                </ItemTemplate>
+                            </asp:TemplateField>            
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -86,12 +91,20 @@
             <%--<asp:TextBox ForeColor="White" ID="txtIdBecario" CssClass="form-control if" runat="server" />--%>
             <div id="modal1" class="modal"> <!-- Modal para registrar incidente -->
                 <div class="modal-content">
-                    <h4>Registro Incidente con el becado</h4>
+                    <h4 class="center-align">Aplicar Incidente</h4>
                     <br />
                         <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
                             <asp:DropDownList ID="ddlIncidentes" runat="server">
                             </asp:DropDownList>
                             <asp:Label AssociatedControlID="ddlIncidentes" Text="Seleccione el tipo de Incidente" runat="server" />
+                        </div>
+                        <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
+                            <input type="date" id="dateApply"/>
+                            <label for="dateApply" class="active">Fecha</label>
+                        </div>
+                        <div class="input-field col s10 m6 l6 offset-s1 offset-m3 offset-l3">
+                            <textarea id="details" class="materialize-textarea" data-length="500"></textarea>
+                            <label for="detail">Detalles</label>
                         </div>
                         <input type="hidden" id="txtIdBecario" value="" />
                     <div class="input-field col s12 center-align">

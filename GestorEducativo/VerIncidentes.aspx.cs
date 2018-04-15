@@ -57,7 +57,7 @@ public partial class GestorEducativo_VerIncidentes : System.Web.UI.Page
         reader.Close();
         
         //Obtenemos información y la asociamos al datagridview
-        SqlDataSource1.SelectCommand = "SELECT  TI.nombre AS[TipoIncidente], TI.descripcion AS[descripcion], BI.idBitacora FROM BitacoraIncidentes BI"
+        SqlDataSource1.SelectCommand = "SELECT  TI.nombre AS[TipoIncidente], TI.descripcion AS[descripcion], BI.idBitacora, BI.fechaAplicacion, BI.descripcion AS[detalles] FROM BitacoraIncidentes BI"
             + " INNER JOIN TipoIncidente TI ON BI.idTipoIncidente = TI.idTipoIncidente"
             + " WHERE BI.idBecario = '" + id + "'";
         DGV.DataBind();
